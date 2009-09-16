@@ -1,0 +1,30 @@
+Jar file                     Version
+
+aopalliance.jar              -
+cglib.jar                    2.1
+clickstream.jar              1.0.3
+commons-beanutils.jar        1.6.1
+commons-collections.jar      2.1.1
+commons-dbcp.jar             1.2.1
+commons-fileupload.jar       1.0
+commons-lang.jar             2.0
+commons-logging.jar          1.0.4
+commons-pool.jar             1.2
+cos-multipart.jar            -
+dom4j.jar                    1.6
+ehcache.jar                  0.9
+hibernate2.jar               2.1.8
+log4j.jar                    1.2.8
+lucene.jar                   1.4.3
+mail.jar                     1.2
+mysql-connector-java.jar     3.1.7
+odmg.jar                     3.0
+ognl.jar                     -
+oscore.jar                   -
+pell-multipart.jar           -
+pg74.214.jdbc3.jar           -
+spring-xwork-integration.jar 1.1.3
+spring.jar                   1.1.5
+velocity-dep.jar             -
+webwork.jar                  2.1.6
+xwork.jar                    1.0.4
