@@ -1,0 +1,6 @@
+#set ($baseImages  = "$!{req.contextPath}")
+##set ($baseImages  = "http://images.javafree.com.br")
+#set ($baseFiles  = "http://uploads.javafree.com.br")
+#set ($basePath  = "$!{req.contextPath}")
+#set ($jbbuser = $req.getSession().getAttribute("jbbuser"))
+#set ($jbbUrlBeforeLogin = $req.getSession().getAttribute("jbbUrlBeforeLogin"))

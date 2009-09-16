@@ -1,0 +1,13 @@
+Bugs corrigidos:
+Bug: Erro ao Editar fórum;
+Bug: Erro ao excluir o último post de um fórum;
+Bug: Erro ao editar perfil do usuário;
+Bug: Erro no tratamento dos cookies quando um usuário é excluído;
+Bug: Validação JavaScript em campos da área administrativa;
+
+Novas funcionalidades:
+Administração: Edição de usuários;
+Administração: Criação de categorias;
+Administração: Internacioinalização dos botões;
+Administração: Deslocamento dos fóruns para cima e para baixo;
+Administração: Configuração do fórum out-of-bd (mais performante);

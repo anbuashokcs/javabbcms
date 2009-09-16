@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+    <class 
+        name="org.javabb.vo.Newsletter" 
+        table="jbb_newsletter"
+    >
+        <id
+            name="id"
+            type="java.lang.Long"
+            column="news_id"
+        >
+            <generator class="increment"/>
+        </id>
+    
+        <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            length="255"
+        />
+        <property
+            name="active"
+            type="java.lang.Integer"
+            column="active"
+            length="1"
+        />
+        <property
+            name="htmlText"
+            type="java.lang.String"
+            column="html_text"
+        />
+    
+    </class>
+</hibernate-mapping>

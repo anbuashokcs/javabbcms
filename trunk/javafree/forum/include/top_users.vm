@@ -1,0 +1,25 @@
+<table cellpadding="4" cellspacing="0" border="0" width="100%" align="top" class=forumline>
+    <thead>
+        <tr>
+          <TH class=titleGenmed noWrap align=middle width=100 colspan="2">&nbsp;#message("topics.top.users.forum")&nbsp;</TH>
+        </tr>
+    </thead>
+
+    <tbody>
+  
+    <!-- top users table here -->
+  #foreach($fTopUser in ${forum.forumTopUsers})
+      #set($userRank = $action.userFormatter.getUserRank($fTopUser.postCount))
+            <tr>
+                <td width="1%">
+                        <img src="forum/images/${userRank.rankImage}" border="0" title="${userRank.rankName}" alt="" />
+                </td>
+                <td width="99%">
+                    <a href="viewprofile.jbb?u=		${fTopUser.user.id}" title="${fTopUser.user.user}">${fTopUser.user.user}</a>
+                    ${fTopUser.postCount}
+                </td>
+            </tr>
+      				  #end  
+    </tbody>
+
+</table>

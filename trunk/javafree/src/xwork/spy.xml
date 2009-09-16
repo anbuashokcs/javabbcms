@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="spyPackage" extends="default">
+
+        <action name="spy_table" class="userAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/spy_table.vm</param>
+            </result>
+        </action>
+		
+		<action name="spy" class="userAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/spy_topics.vm</param>
+            </result>
+        </action>
+
+	</package>
+</xwork>

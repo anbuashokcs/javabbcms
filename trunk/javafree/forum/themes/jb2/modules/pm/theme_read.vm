@@ -1,0 +1,161 @@
+<html>
+<head>
+<HEAD>
+<TITLE>$jbbConfig.getForumConfig().getForumName() :: #message("pms")</TITLE>
+
+<script language="Javascript" type="text/javascript">
+  function confirmDelete(id){
+  	if(confirm("#message("confirm_delete")")){
+		document.location.href="deleteSelectedOutbox.jbb?idPm=" + id;
+ 	 }
+  }
+</script>
+
+#parse("forum/themes/jb2/header.vm")
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      
+<table width="100%" cellspacing="1" cellpadding="3" border="0" align="center">      
+  <tr>
+	<td valign="top" align="center" width="100%">
+	  <table height="40" cellspacing="2" cellpadding="2" border="0">
+		<tr valign="middle">
+		  <td><a href="inbox.jbb"><img src="forum/themes/jb2/images/msg_inbox.gif" border="0" alt='#message("inbox")' /></td>
+		  <td><span class="cat"><a href="inbox.jbb">#message("inbox") &nbsp;</a></span></td>
+
+		  <td><a href="outbox.jbb"><img src="forum/themes/jb2/images/msg_sentbox.gif" border="0" alt='#message("outbox")' /></a></td>
+		  <td><span class="cat"><a href="outbox.jbb">#message("outbox")</a> &nbsp;</span></td>
+		</tr>
+	  </table>
+	</td>
+
+	<td align="right">
+	</td>
+  </tr>
+</table>
+
+<br clear="all" />
+#if ($act == "readIn")
+	<form name="frmDeleteInbox" id="frmDeleteInbox" method="post" action="deleteSelectedInbox.jbb">
+#else
+	<form name="frmDeleteInbox" id="frmDeleteInbox" method="post" action="deleteSelectedOutbox.jbb">		
+#end
+<table width="100%" cellspacing="2" cellpadding="2" border="0">
+  <tr>
+#if ($act == "readIn")
+	  <td valign="middle"><a href="pm.reply.jbb?pm.id=$pm.id"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply.gif" border="0" /></a></td>
+#else
+	  <td align="left" valign="middle"><a href="new.jbb"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/msg_newpost.gif" border="0" /></a></td>
+#end
+	  <td align="left" width="100%">&nbsp;<span class="nav"><a href="forum.jbb" class="nav">$jbbConfig.getForumConfig().getForumName() :: #message("forum_index")</a></span></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%" class="forumline">
+	<tr>
+	  <th colspan="3" class="thHead" nowrap="nowrap">#message("pms") :: #message("inbox")</th>
+	</tr>
+	<tr>
+	  <td class="row2"><span class="genmed">#message("pm.from"):</span></td>
+
+	  <td width="100%" class="row2" colspan="2"><span class="genmed">$pm.userFrom.user</span></td>
+	</tr>
+	<tr>
+	  <td class="row2"><span class="genmed">#message("pm.to"): </span></td>
+	  <td width="100%" class="row2" colspan="2"><span class="genmed">$pm.userTo.user</span></td>
+	</tr>
+	<tr>
+
+	  <td class="row2"><span class="genmed">#message("pm.date"):</span></td>
+	  <td width="100%" class="row2" colspan="2"><span class="genmed">$vh.dateMinuteFormat($!{pm.data})</span></td>
+	</tr>
+	<tr>
+	  <td class="row2"><span class="genmed">#message("pm.subject"):</span></td>
+	  <td width="100%" class="row2"><span class="genmed">$pm.topic</span></td>
+#if ($act == "readIn")
+	  ##<td nowrap="nowrap" class="row2" align="right"> <a href="quote.jbb?pm.id=$pm.id"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_quote.gif" border="0" /></a> </td>
+#end
+
+	</tr>
+	<tr>
+	  <td valign="top" colspan="3" class="row1"><span class="postbody">
+
+
+		$action.formatTextToBBCode($pm.text.toString())
+
+		#if(${pm.attachSign} == 1)
+			#if(${pm.userFrom.userSig} != "")
+				<BR>_________________<BR>
+				${pm.userFrom.userSig_formated}
+			#end
+		#end
+
+	  </span></td>
+	</tr>
+	<tr>
+	  <td width="78%" height="28" valign="bottom" colspan="3" class="row1">
+		<table cellspacing="0" cellpadding="0" border="0" height="18">
+		  <tr>
+			<td valign="middle" nowrap="nowrap">
+              <a href="viewprofile.jbb?u=${pm.userFrom.id}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_profile.gif" border="0">
+              </a>
+              #if(${pm.userFrom.show_mail} == 1)
+              <a href="mailto:${pm.userFrom.email}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_email.gif" border="0">
+              </a>
+          	  #end
+
+              #if(${pm.userFrom.website} != "")
+              <a href="${pm.userFrom.website}" target="_blank">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_www.gif" border="0">
+              </a>
+          	  #end
+
+              #if(${pm.userFrom.user_yim} != "")
+              <a href="http://edit.yahoo.com/config/send_webmesg?.target=${pm.userFrom.user_yim}&.src=pg" target="_blank">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_yim.gif" border="0">
+              </a>
+          	  #end
+
+              #if(${pm.userFrom.user_msnm} != "")
+             <a href="viewprofile.jbb?u=${pm.userFrom.id}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_msnm.gif" border="0">
+              </a>
+          	  #end
+
+              #if(${pm.userFrom.user_icq} != "")
+             <a href="http://wwp.icq.com/scripts/search.dll?to=${pm.userFrom.user_icq}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_icq_add.gif" border="0">
+              </a>
+          	  #end
+
+            </TD>
+		  </tr>
+		</table>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="cat" colspan="3" height="28" align="right">
+	  	<input type="hidden" name="idPm" value="$pm.id" />
+		<input type="button" value='#message("pm.remove")' class="liteoption" onclick="confirmDelete('$pm.id');" />
+	  </td>
+	</tr>
+  </table>
+  <table width="100%" cellspacing="2" border="0" align="center" cellpadding="2">
+	<tr>
+#if ($act == "readIn")
+	  <td valign="middle"><a href="pm.reply.jbb?pm.id=$pm.id"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply.gif" border="0" /></a></td>
+#else
+	  <td align="left" valign="middle"><a href="new.jbb"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/msg_newpost.gif" border="0" /></a></td>
+#end
+	</tr>
+  </table>
+</form>
+
+
+#parse("forum/themes/jb2/footer.vm")

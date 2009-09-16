@@ -1,0 +1,12 @@
+<p>$message1</p>
+  <a href="${conf.domain}${url}">${conf.domain}${url}</a> 
+  <br>
+  <p>$topic: <b>$topicName</b>
+  <br>
+  <br>
+  $message2</p>
+<hr>
+<br>
+<font size="2">${conf.forumName}<br>
+<a href="mailto:${conf.adminMail}">${conf.adminMail}</a></font>
+<p>&nbsp; </p>

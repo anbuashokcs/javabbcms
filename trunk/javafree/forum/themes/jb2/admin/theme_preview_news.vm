@@ -1,0 +1,10 @@
+<b>#message("subject"):</b> $newsletter.name
+<bR><bR>
+	
+$newsletter.htmlText
+
+<bR>
+<bR>
+<bR>
+<bR>
+#parse("forum/themes/jb2/admin/theme_footer.vm")

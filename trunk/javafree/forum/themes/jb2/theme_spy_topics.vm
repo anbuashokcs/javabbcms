@@ -1,0 +1,40 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "spy")
+<html>
+<head>
+ <TITLE>${jbbConfig.forumConfig.forumName} - #message("spy")</TITLE>
+ 
+
+#parse("forum/themes/jb2/header.vm")
+<script src="$basePath/forum/include/spy.js" type="text/javascript"></script>
+<script src="$basePath/forum/include/spy_jbb.js" type="text/javascript"></script>
+
+<link href="$basePath/forum/include/spy_jbb.css" type=text/css rel=stylesheet>
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall>
+				<SPAN class=nav>
+                <A class=nav href="forum.jbb">${jbbConfig.forumConfig.forumName} - #message("index_forum")</A> 
+                - <a href="spy.jbb">#message("spy")</a>
+                </SPAN>
+               </TD>
+                <td align="right" valign="bottom" class="gensmall">
+                </td>
+            </TR>
+          </TBODY>
+      </TABLE>
+<br><br>
+		<span class="nav">#message("watching_topics")</span>
+<br>
+		<div id="holder" align="left" style="width: 80%">
+		</div>
+
+
+#parse("forum/themes/jb2/footer.vm")

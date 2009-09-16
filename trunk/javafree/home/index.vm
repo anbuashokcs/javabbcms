@@ -1,0 +1,230 @@
+#set($headerTitle = "O Melhor conteúdo Java")
+#parse("home/header.vm")
+#include("home/css/css_menu_tree.vm")
+#include("home/js/panel.vm")
+
+<body>
+
+	<div id="content">
+		#parse("home/menu_topo.vm")
+		<div id="main">
+			
+			
+			
+		<div id=mynews>
+			#foreach($destaque in $destaques)
+				<div class="news_style" id="id=news$velocityCount">
+					#set($destLink = "${basePath}/noticia/${destaque.notId}/${vh.parseStringTitle($destaque.title)}")
+					<h2><a href="$destLink">$destaque.title</a></h2>
+					<p>
+					<img src="$destaque.linkImg"/>
+						$vh.substring($vh.removeHTML($destaque.body),0,460)
+						<br>
+						<a href="$destLink">Ler artigo</a>
+						##<img src="$basePath/forum/themes/jb2/images/icon_faq.gif" style="border: 0px; padding: 0px; margin: 0 10px 0px 0;">
+						##<a href="${destLink}#comments">comentários: $destaque.comments.size()</a>
+					</p>
+				</div>
+			#end
+			<div id=mynewsdis>
+				<div class=news_border>
+					<div id=showhere class=news_show ></div>
+				</div>
+				<div class="buttondiv" id="news_button" style="top:398.5px;border: 0; margin: 0 25px 0 10px;">
+					<img src=$basePath/home/images/prev.gif align="absmiddle" id=news_prev style="border: 0; ">
+					<img src=$basePath/home/images/pause.gif align="absmiddle" id=news_pause style="border: 0; ">
+					<img src=$basePath/home/images/next.gif align="absmiddle" id=news_next style="border: 0; ">
+				</div>
+			</div>
+			</div>
+			
+			
+			
+			
+			##<script language="JavaScript1.1" type="text/javascript" src=http://www.submarino.com.br/afiliados/get_banner.asp?tipo=full&franq=261711></script>
+			
+
+			
+			### antiga rl
+			<div id="rl1">
+				<ul>
+					<h3><br>Notícias<Br></h3>
+					#foreach($noticia in $noticias)
+						<li><a href="${basePath}/noticia/${noticia.notId}/${vh.parseStringTitle($noticia.title)}">$noticia.title</a></li>
+					#end
+				</ul>
+			</div>
+			
+			
+			
+			
+			<div id="rr">
+				<ul>
+					<h3><br><Br></h3>
+					#foreach($noticiaSec in $noticiasSecond)
+						<li><a href="${basePath}/noticia/${noticiaSec.notId}/${vh.parseStringTitle($noticiaSec.title)}">$noticiaSec.title</a></li>
+					#end				
+				</ul>
+			</div>	
+			
+			
+				   <div align="center">
+											<script type="text/javascript"><!--
+			google_ad_client = "pub-9439984557405450";
+			/* 468x60, criado 04/02/09 */
+			google_ad_slot = "6353266813";
+			google_ad_width = 468;
+			google_ad_height = 60;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+			       	</div>
+
+			
+		</div>
+		
+
+
+		<div id="ad">
+			<p><a href="http://twitter.com/JavaFree" target="_blank"><img src="http://www.javafree.org/home/images/twitterjf.gif" style="border:0" alt="Siga nos" /></a></p>
+		</div>
+
+	
+		<div id="shortnews">
+			<a name="menunews" />
+			<ul id="side_menu">
+			<li><a href="$basePath/index">Forum JavaFree</a>
+				<ul>
+				#foreach($post in $posts)
+					<li><a href="${basePath}/topic-${post.topic.id}-${vh.parseStringTitle($post.topic.titleTopic)}?page=${post.topic.pageLastPost}#${post.topic.lastPostId}">
+							$post.topic.titleTopic
+						</a>
+					</li>
+				#end
+				</ul>
+			<li><a href="#menunews">Últimos Artigos</a>
+			<ul>
+				#foreach($topic in $lastArticles)
+					#if($velocityCount < 10)
+						<li>
+						<a href="${basePath}/artigo/${topic.id}/${vh.parseStringTitle($topic.titleTopic)}">
+							$topic.titleTopic
+						</a>
+						</li>
+					#end
+				#end
+			</ul>				
+				
+
+			#*
+			<li><a href="#menunews">Últimos artigos</a>
+			<ul>
+				#foreach($topic in $lastArticles)
+				<li>
+					<a href="${basePath}/artigo/${topic.id}/${vh.parseStringTitle($topic.titleTopic)}">
+						$topic.titleTopic
+					</a>
+				</li>
+				#end
+			</ul>
+
+			<li><a href="#menunews">Vagas em TI</a>
+				<ul>
+				<li><a href="http://www.empregonaweb.com/empresa/doFullSearch.action?searchType=&key=&vagaEstado.estadoId=&vagaCidade=&areaId=-1" target="_blank">
+					<img src="$basePath/forum/themes/jb2/images/icon_mini_search.gif" border = "0">&nbsp;
+					<b>Procurar vagas</b>
+					</a>
+				</li>			
+				#foreach($feed in $feedEmpregos)
+					<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+				#end
+				</ul>
+			
+			<li><a href="#menunews">Blogs em TI</a>
+			<ul>
+				#foreach($feed in $feedInfoBlogs)
+					<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+				#end	
+				</ul>
+
+
+				</ul>
+
+		<center><br><br>
+			<a href="http://feeds2.feedburner.com/JavaFreeorg"><img src="$basePath/home/images/jf-rss.gif" border="0"></a>
+		</center>
+				
+				
+				*#
+				
+		</div>
+		#*
+				<div id="ad">
+				<fieldset style="width: 100px;">
+					<legend>Procurar</legend>
+				
+					<form action="http://javafree.uol.com.br/customSearch.jbb" id="cse-search-box">
+					  <div>
+					    <input type="hidden" name="cx" value="partner-pub-9439984557405450:f7zor0-i5vx" />
+					    <input type="hidden" name="cof" value="FORID:10" />
+					    <input type="hidden" name="ie" value="ISO-8859-1" />
+					    <input type="text" name="q" size="32" />
+					    <input type="submit" name="sa" value="Pesquisar" />
+					  </div>
+					</form>
+
+					
+				</fieldset>	
+		</div>
+		*#
+		
+	<div id="line"></div>
+		
+		<div id="left">
+			<h3>Últimos Comentários</h3>
+				<ul>
+				#foreach($cmm in $comments)
+				<li>
+					<a href="${basePath}/noticia/$cmm.noticias.notId/${vh.parseStringTitle($cmm.noticias.title)}#$cmm.id">
+						$vh.substring($vh.removeHTML($cmm.body),0,100)...
+					</a>
+				</li>
+				#end
+				</ul>
+		</div>
+					
+		<div id="right">	
+			<div id="rl">
+				<h3><br>Vagas em TI<Br></h3>
+				<ul>
+					#foreach($feed in $feedEmpregos)
+						<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+					#end
+				</ul>
+			</div>
+			
+			<div id="rr">
+				<h3><br>Blogs<Br></h3>
+				<ul>
+					#foreach($feed in $feedInfoBlogs)
+						#if($velocityCount < 16)
+							<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+						#end
+					#end
+				</ul>
+			</div>
+		
+			
+		</div>
+		
+		
+		
+		
+
+	##parse("home/js/js_menu_active.vm")		
+	#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

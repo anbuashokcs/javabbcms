@@ -1,0 +1,100 @@
+#set($headerTitle = "Artigos - Categoria: $action.replaceTut($forum.nome)")
+#parse("home/header.vm")
+#include("home/css/css_menu_tree.vm")
+
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+
+		<div id="main">
+			<h5><a href="$basePath/">Home</a> > <a href="$basePath/artigos/">Artigos</a> > <a href="${basePath}/catartigos/$forum.id/${vh.parseStringTitle($forum.nome)}">$action.replaceTut($forum.nome)</a> ></h5>
+				<br>
+			#foreach($topic in $list) 
+				##$vh.dateMinuteFormat($itemNoticia.publishDate)
+				<h2>
+					<a href="${basePath}/artigo/${topic.id}/$vh.parseStringTitle($topic.titleTopic)">$topic.titleTopic</a>
+				</h2>
+					autor: $topic.user.user | visualizações: $topic.visualizacoes
+				<p>
+				#if($velocityCount != $list.size())
+					<div id="line"></div>
+				#end
+			#end
+			
+		</div>
+
+		
+
+		#showEnvieSeuArtigo("")
+	
+		#if($list.size > 4)
+			<div id="ad">
+				#displayBanner($action.loadLocationBanner(1))
+			</div>
+		#end
+
+		<div id="shortnews">
+		
+			<a name="menunews" />
+			<ul id="side_menu">
+			
+			<li><a href="#menunews">Outras Categorias de Artigos</a>
+			<ul>
+				#foreach($art in $articles)
+					#if($forumId != $art.id)
+					<li>
+						<a href="${basePath}/catartigos/$art.id/${vh.parseStringTitle($art.nome)}}">
+							$action.replaceTut($art.nome)
+						</a>
+					</li>
+					#end
+				#end
+
+			</ul>			
+			
+			#*
+			<li><a href="#menunews">Últimos artigos</a>
+			<ul>
+				#foreach($topic in $lastArticles)
+				<li>
+					<a href="${basePath}/artigo/${topic.id}/${vh.parseStringTitle($topic.titleTopic)}">
+						$topic.titleTopic
+					</a>
+				</li>
+				#end
+			</ul>
+			*#
+			<li><a href="#menunews">Vagas em TI</a>
+				<ul>
+				<li><a href="http://www.empregonaweb.com/empresa/doFullSearch.action?searchType=&key=&vagaEstado.estadoId=&vagaCidade=&areaId=-1" target="_blank">
+					<img src="$basePath/forum/themes/jb2/images/icon_mini_search.gif" border = "0">&nbsp;
+					<b>Procurar vagas</b>
+					</a>
+				</li>			
+				#foreach($feed in $feedEmpregos)
+					<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+				#end	
+				</ul>
+			
+			<li><a href="#menunews">Blogs em TI</a>
+			<ul>
+				#foreach($feed in $feedInfoBlogs)
+					<li><a href="$feed.feedURL" target="_blank">$vh.substring($feed.feedTitle, 0,30)</a></li>
+				#end	
+				</ul>
+
+				</ul>	
+		</div>
+		
+
+		
+		
+		
+		<div id="line"></div>
+		
+		#parse("home/js/js_menu_active.vm")		
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

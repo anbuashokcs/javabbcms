@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- ================================ -->
+<!--  Application context definition  -->
+<!-- ================================ -->
+<beans default-autowire="byName" default-dependency-check="objects">
+
+<!-- ================================ -->
+<!--  Application context definition  -->
+<!-- ================================ -->
+
+    <!-- ===================== -->
+    <!--  General Definitions  -->
+    <!-- ===================== -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" dependency-check="none">
+        <property name="location">
+            <value>classpath:/jdbc.properties</value>
+        </property>
+    </bean>
+    <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator" dependency-check="none">
+        <property name="proxyTargetClass">
+            <value>true</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+                <!-- <value>traceInterceptor</value> -->
+            </list>
+        </property>
+        <property name="beanNames">
+            <list>
+                <value>*Transaction</value>
+            </list>
+        </property>
+    </bean>
+
+	
+    <!-- bean name="traceInterceptor" class="org.springframework.aop.interceptor.TraceInterceptor"/ -->
+
+	 <!-- =========== -->
+    <!--  Resources  -->
+    <!-- =========== -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" dependency-check="none"> 
+		<description>Default datasource that uses C3PO as a pool implementation</description>
+		 <property name="driverClass">
+			 <value>com.mysql.jdbc.Driver</value>
+		 </property>
+		 <property name="jdbcUrl">
+			 <value>${jdbc.url}</value>
+		  </property>
+			<property name="initialPoolSize"><value>1</value></property>
+			<property name="minPoolSize"><value>5</value></property>
+			<property name="maxPoolSize"><value>50</value></property>
+			<property name="maxIdleTime"><value>10</value></property>
+			<property name="idleConnectionTestPeriod"><value>20</value></property>
+		 <property name="properties">
+			 <props>
+				 <prop key="user">${jdbc.username}</prop>
+				 <prop key="password">${jdbc.password}</prop>
+			 </props>
+		</property>
+	</bean>	
+	
+	
+	
+    <!-- =========== -->
+    <!--  Resources  -->
+    <!-- =========== ->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" dependency-check="none">
+        <property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
+        <property name="url"><value>${jdbc.url}</value></property>
+        <property name="username"><value>${jdbc.username}</value></property>
+        <property name="password"><value>${jdbc.password}</value></property>
+        <property name="maxActive"><value>${jdbc.maxActive}</value></property>
+        <property name="maxIdle"><value>${jdbc.maxIdle}</value></property>
+        <property name="maxWait"><value>${jdbc.maxWait}</value></property>
+        <property name="removeAbandoned"><value>${jdbc.removeAbandoned}</value></property>
+        <property name="removeAbandonedTimeout"><value>${jdbc.removeAbandonedTimeout}</value></property>
+    </bean -->
+	
+	
+    <bean id="transactionManager" class="org.springframework.orm.hibernate.HibernateTransactionManager" dependency-check="none"/>
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor" dependency-check="none">
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- =========== -->
+    <!--  Hibernate  -->
+    <!-- =========== -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate.LocalSessionFactoryBean" dependency-check="none">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>/org/javabb/vo/AnswerNotify.hbm.xml</value>
+                <value>/org/javabb/vo/Category.hbm.xml</value>
+                <value>/org/javabb/vo/Forum.hbm.xml</value>
+                <value>/org/javabb/vo/Post.hbm.xml</value>
+                <value>/org/javabb/vo/Topic.hbm.xml</value>
+                <value>/org/javabb/vo/User.hbm.xml</value>
+                <value>/org/javabb/vo/BadWord.hbm.xml</value>
+                <value>/org/javabb/vo/Smile.hbm.xml</value>
+                <value>/org/javabb/vo/SearchLockUp.hbm.xml</value>
+                <value>/org/javabb/vo/PrivMsgSent.hbm.xml</value>				
+                <value>/org/javabb/vo/PrivMsgRecivied.hbm.xml</value>
+                <value>/org/javabb/vo/ForumTopUser.hbm.xml</value>
+                <value>/org/javabb/vo/UserRank.hbm.xml</value>
+                <value>/org/javabb/vo/FavUserTopic.hbm.xml</value>
+                <value>/org/javabb/vo/Newsletter.hbm.xml</value>
+                <value>/org/javabb/vo/PostFile.hbm.xml</value>
+                <value>/org/javabb/vo/Noticias.hbm.xml</value>
+                <value>/org/javabb/vo/Comment.hbm.xml</value>
+                <value>/org/javabb/vo/ArticleTag.hbm.xml</value>
+                <value>/org/javabb/vo/Article.hbm.xml</value>
+                <value>/org/javabb/vo/CatArticle.hbm.xml</value>
+                <value>/org/javabb/vo/Wiki.hbm.xml</value>
+				<value>/org/javabb/vo/Warning.hbm.xml</value>
+				<value>/org/javabb/vo/Banners.hbm.xml</value>
+				<value>/org/javabb/vo/BBLog.hbm.xml</value>
+				<value>/org/javabb/vo/Partner.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ======== -->
+    <!--  Lucene  -->
+    <!-- ======== -->
+
+	<bean id="analyzer" class="org.javabb.lucene.analysis.PortugueseAnalyzer"/>
+
+	<bean id="lucenePath" class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg index="0"><value>${lucene.index.dir}</value></constructor-arg>
+	</bean>
+
+	<bean id="indexer" class="org.javabb.lucene.index.Indexer">
+		<constructor-arg index="0"><ref local="analyzer" /></constructor-arg>
+		<constructor-arg index="1"><ref local="lucenePath" /></constructor-arg>
+		<constructor-arg index="2"><value>${lucene.index.optimize}</value></constructor-arg>
+		<constructor-arg index="3"><value>${lucene.index.create}</value></constructor-arg>
+	</bean>
+
+	<bean id="searcher" class="org.javabb.lucene.search.SimpleLuceneSearcher" autowire="constructor" />
+
+	<bean id="optimizeLuceneIndex" class="org.javabb.lucene.index.LuceneOptimizeIndexTimerTask" autowire="constructor" />
+
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask" dependency-check="none">
+		<property name="delay"><value>${lucene.index.delay}</value></property>
+		<property name="period"><value>${lucene.index.period}</value></property>
+		<property name="timerTask"><ref local="optimizeLuceneIndex" /></property>
+	</bean>
+
+    <!-- ====== -->
+    <!-- QUARTZ -->
+    <!-- ====== -->
+	<bean id="indexPostsJob" class="org.springframework.scheduling.quartz.JobDetailBean" dependency-check="none">
+		<property name="jobClass">
+			<value>org.javabb.quartz.IndexPostsJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="indexLucenePostsDAO">
+					<ref bean="indexLucenePostsDAO"/>
+				</entry>
+				<entry key="postTransaction">
+					<ref bean="postTransaction"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="indexPostsWithLucene" class="org.springframework.scheduling.quartz.CronTriggerBean" dependency-check="none">
+		<property name="jobDetail">
+			<ref bean="indexPostsJob"/>
+		</property>
+		<property name="cronExpression">
+			<value>10 42 * * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="sortUsersByForumDayTask" class="org.springframework.scheduling.quartz.JobDetailBean" dependency-check="none">
+		<property name="jobClass">
+			<value>org.javabb.quartz.RefreshUserRankForum</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="forumTransaction">
+					<ref bean="forumTransaction"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="sortUsersByForumDayJob" class="org.springframework.scheduling.quartz.CronTriggerBean" dependency-check="none">
+		<property name="jobDetail">
+			<ref bean="sortUsersByForumDayTask"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 51 * * * ?</value>
+			  <!-- S MM H D M W -->
+		</property>
+	</bean>
+
+	<bean id="renewUserSecurityCodeTask" class="org.springframework.scheduling.quartz.JobDetailBean" dependency-check="none">
+		<property name="jobClass">
+			<value>org.javabb.quartz.UserSecurityCodeRenew</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="userTransaction">
+					<ref bean="userTransaction"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="renewUserSecurityCodeJob" class="org.springframework.scheduling.quartz.CronTriggerBean" dependency-check="none">
+		<property name="jobDetail">
+			<ref bean="renewUserSecurityCodeTask"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 00 21 31 * ?</value>
+			  <!-- S MM H D M W -->
+		</property>
+	</bean>
+
+	
+	<bean id="refreshFeedTask" class="org.springframework.scheduling.quartz.JobDetailBean" dependency-check="none">
+		<property name="jobClass">
+			<value>org.javabb.quartz.RefreshFeeds</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="forumTransaction">
+					<ref bean="forumTransaction"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="refreshFeedJob" class="org.springframework.scheduling.quartz.CronTriggerBean" dependency-check="none">
+		<property name="jobDetail">
+			<ref bean="refreshFeedTask"/>
+		</property>
+		<property name="cronExpression">
+			<value>50 * * * * ?</value>
+			  <!-- S MM H D M W -->
+		</property>
+	</bean>	
+	
+
+	<bean id="persistentCacheTask" class="org.springframework.scheduling.quartz.JobDetailBean" dependency-check="none">
+		<property name="jobClass">
+			<value>org.javabb.quartz.PersistentCache</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="topicTransaction">
+					<ref bean="topicTransaction"/>
+				</entry>
+				<entry key="userTransaction">
+					<ref bean="userTransaction"/>
+				</entry>
+				<entry key="noticiasTransaction">
+					<ref bean="noticiasTransaction"/>
+				</entry>
+				<entry key="bannerTransaction">
+					<ref bean="bannerTransaction"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="persistentCacheJob" class="org.springframework.scheduling.quartz.CronTriggerBean" dependency-check="none">
+		<property name="jobDetail">
+			<ref bean="persistentCacheTask"/>
+		</property>
+		<property name="cronExpression">
+			<value>59 * * * * ?</value>
+			  <!-- S MM H D M W -->
+		</property>
+	</bean>		
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" dependency-check="none">
+		<property name="triggers">
+			<list>
+				<!-- ref bean="indexPostsWithLucene"/ -->
+				<!-- ref bean="sortUsersByForumDayJob"/ -->
+				
+				<ref bean="refreshFeedJob"/>
+				<!-- ref bean="renewUserSecurityCodeJob"/ -->
+				<ref bean="persistentCacheJob"/>
+			</list>
+		</property>
+		<property name="dataSource"><null/></property>
+	</bean>
+
+
+    <!-- ====== -->
+    <!--  DAOs  -->
+    <!-- ====== -->
+    <bean id="badWordDAO" class="org.javabb.dao.hibernate.BadWordHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="categoryDAO" class="org.javabb.dao.hibernate.CategoryHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="forumDAO" class="org.javabb.dao.hibernate.ForumHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="postDAO" class="org.javabb.dao.hibernate.PostHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="postFileDAO" class="org.javabb.dao.jdbc.JdbcPostFileDAO" singleton="false" dependency-check="none"/>
+    <bean id="smileDAO" class="org.javabb.dao.hibernate.SmileHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="topicDAO" class="org.javabb.dao.hibernate.TopicHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="userDAO" class="org.javabb.dao.hibernate.UserHibernateDAO" singleton="false" dependency-check="none"/>
+    <bean id="userRankDAO" class="org.javabb.dao.jdbc.JdbcUserRankDAO" singleton="false" dependency-check="none"/>
+    <bean id="userSecurityDAO" class="org.javabb.dao.jdbc.JdbcUserSecurityDAO" singleton="false" dependency-check="none"/>
+	<bean id="privMsgSentDAO" class="org.javabb.dao.hibernate.PrivMsgSentHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="privMsgReciviedDAO" class="org.javabb.dao.hibernate.PrivMsgReciviedHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="refreshStatsDAO" class="org.javabb.dao.jdbc.JdbcRefreshStatsDAO" singleton="false" dependency-check="none" />
+	<bean id="indexLucenePostsDAO" class="org.javabb.dao.jdbc.JdbcIndexLucenePosts" singleton="false" dependency-check="none" />
+	<bean id="forumTopUserDAO" class="org.javabb.dao.hibernate.ForumTopUserHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="genericDAO" class="org.javabb.dao.hibernate.HibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="newsDAO" class="org.javabb.dao.hibernate.NewsHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="noticiasDAO" class="org.javabb.dao.hibernate.NoticiasHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="wikiDAO" class="org.javabb.dao.hibernate.WikiHibernateDAO" singleton="false" dependency-check="none" />
+	<bean id="bannerDAO" class="org.javabb.dao.hibernate.BannerHibernateDAO" singleton="false" dependency-check="none" />
+	
+    <!-- ============ -->
+    <!--  Components  -->
+    <!-- ============ -->
+    <bean id="postFormatter" class="org.javabb.component.PostFormatter" singleton="false" />
+    <bean id="userFormatter" class="org.javabb.component.UserFormatter" singleton="false" />
+    <bean id="jbbConfig" class="org.javabb.infra.JbbConfig" singleton="true" />
+    <bean id="online" class="org.javabb.infra.Online" singleton="false" />
+	
+    <!-- ============== -->
+    <!--  Transactions  -->
+    <!-- ============== -->
+    <bean id="badWordTransaction" class="org.javabb.transaction.BadWordTransaction" singleton="false" />
+    <bean id="categoryTransaction" class="org.javabb.transaction.CategoryTransaction" singleton="false" />
+    <bean id="forumTransaction" class="org.javabb.transaction.ForumTransaction" singleton="false" />
+    <bean id="postTransaction" class="org.javabb.transaction.PostTransaction" singleton="false" />
+    <bean id="smileTransaction" class="org.javabb.transaction.SmileTransaction" singleton="false" />
+    <bean id="topicTransaction" class="org.javabb.transaction.TopicTransaction" singleton="false" />
+    <bean id="userTransaction" class="org.javabb.transaction.UserTransaction" singleton="false" />
+	<bean id="pmTransaction" class="org.javabb.transaction.PrivMsgTransaction" singleton="false" />
+	<bean id="genericTransaction" class="org.javabb.transaction.Transaction" singleton="false" />
+	<bean id="newsTransaction" class="org.javabb.transaction.NewsTransaction" singleton="false" />
+	<bean id="noticiasTransaction" class="org.javabb.transaction.NoticiasTransaction" singleton="false" />
+	<bean id="wikiTransaction" class="org.javabb.transaction.WikiTransaction" singleton="false" />
+	<bean id="bannerTransaction" class="org.javabb.transaction.BannerTransaction" singleton="false" />
+	<bean id="partnerTransaction" class="org.javabb.transaction.PartnerTransaction" singleton="false" />
+	
+    <!-- ========= -->
+    <!--  Actions  -->
+    <!-- ========= -->
+    <bean id="badWordAction" class="org.javabb.action.BadWordAction" singleton="false" dependency-check="none"/>
+    <bean id="categoryAction" class="org.javabb.action.CategoryAction" singleton="false" dependency-check="none"/>
+    <bean id="forumAction" class="org.javabb.action.ForumAction" singleton="false" dependency-check="none"/>
+    <bean id="postAction" class="org.javabb.action.PostAction" singleton="false" dependency-check="none"/>
+    <bean id="smileAction" class="org.javabb.action.SmileAction" singleton="false" dependency-check="none"/>
+    <bean id="topicAction" class="org.javabb.action.TopicAction" singleton="false" dependency-check="none"/>
+    <bean id="userAction" class="org.javabb.action.UserAction" singleton="false" dependency-check="none"/>
+	<bean id="searchAction" class="org.javabb.action.SearchAction" singleton="false" dependency-check="none"/>
+	<bean id="pmAction" class="org.javabb.action.PrivMsgAction" singleton="false" dependency-check="none" />
+	<bean id="newsAction" class="org.javabb.action.NewsAction" singleton="false" dependency-check="none" />
+	<bean id="fileAction" class="org.javabb.action.FileAction" singleton="false" dependency-check="none" />
+	<bean id="noticiasAction" class="org.javabb.action.home.NoticiasAction" singleton="false" dependency-check="none" />
+	<bean id="artigosAction" class="org.javabb.action.home.ArtigosAction" singleton="false" dependency-check="none" />
+	<bean id="wikiAction" class="org.javabb.action.home.WikiAction" singleton="false" dependency-check="none" />
+	<bean id="migrationAction" class="org.javabb.action.home.MigrationAction" singleton="false" dependency-check="none" />
+	<bean id="bannerAction" class="org.javabb.action.home.BannersAction" singleton="false" dependency-check="none" />
+		
+
+    <!-- ================= -->
+    <!--  WW Interceptors  -->
+    <!-- ================= -->
+    <bean id="verifyCookieInterceptor" class="org.javabb.interceptor.VerifyCookieInterceptor" singleton="false" />
+	<bean id="configInterceptor" class="org.javabb.interceptor.ConfigInterceptor" singleton="false" />
+	<bean id="delayInterceptor" class="org.javabb.interceptor.DelayInterceptor" singleton="false" />
+
+	
+    <!-- ================= -->
+    <!--  Remote Objects   -->
+    <!-- ================= -->
+	
+	<bean id="remoteFunctions" class="org.javabb.action.ajax.ActionFacade" singleton="false" dependency-check="none" />
+	
+	
+	<!-- ================= -->
+    <!-- Caching components-->
+    <!-- ================= -->
+	<!--bean id="categoryCache" class="org.javabb.cache.persistence.CategoryCache" singleton="false" dependency-check="none" />	
+	
+	
+	<bean id="cacheUtils" class="org.javabb.cache.clients.MemCacheUtils" singleton="true">
+		<constructor-arg><value>127.0.0.1:11211</value></constructor-arg>
+	</bean-->
+	
+	<bean id="categoryCache" class="org.javabb.cache.local.CategorySingleCache" singleton="false" dependency-check="none" />
+	<bean id="counterCache" class="org.javabb.cache.local.CounterSingleCache" singleton="false" dependency-check="none" />
+	<bean id="userCache" class="org.javabb.cache.local.UserSingleCache" singleton="false" dependency-check="none" />
+	<bean id="postCache" class="org.javabb.cache.local.PostSingleCache" singleton="false" dependency-check="none" />
+	<bean id="topicCache" class="org.javabb.cache.local.TopicSingleCache" singleton="false" dependency-check="none" />
+	<bean id="noticiasCache" class="org.javabb.cache.local.NoticiasSingleCache" singleton="false" dependency-check="none" />
+	<bean id="wikiCache" class="org.javabb.cache.local.WikiSingleCache" singleton="false" dependency-check="none" />
+	<bean id="bannerCache" class="org.javabb.cache.local.BannerSingleCache" singleton="false" dependency-check="none" />
+		
+	 
+	
+</beans>

@@ -1,0 +1,232 @@
+
+body { padding: 0; margin: 0; font: 0.7em Tahoma, Arial, sans-serif; line-height: 1.6em; background: #fff; color: #454545; }
+
+/* links */
+a { color: #003B6E; background: inherit; }
+a:hover { color: #9EC068; background: inherit; }	
+
+/* headings */
+#society {
+  background: #f5f5f5;
+  width: 100%;
+  left: -10px;
+  text-align:right;
+  color: #aaa;
+  font-size: 11px;
+}
+
+#banner {
+  float:right;
+}
+
+h1 { font: bold 2.9em "Verdana", Sans-Serif; margin: 0; letter-spacing: -1px; }
+h2 { font: bold 1.6em Verdana, Sans-Serif; margin: 0; padding: 0; }
+h1 a, h2 a { color: #2b2b2b; background: #fff; text-decoration: none; }
+h1 a:hover, h2 a:hover { color: #2b2b2b; background: #FFF; }
+.title { color: #970F00; background: #fff; }
+
+/* lists and form elements */
+ul { 
+
+	margin: 0; 
+	padding : 0; 
+	list-style : none; 
+	list-style-type:none;
+	list-style-image:url(http://www.javafree.org/interface/images/bullet-green.gif);
+	margin-left:8px;	
+	padding-left:8px;	
+
+}
+form { margin: 0; }
+input.search { width: 279px; border: none; background: #fff url(http://www.javafree.org/interface/images/input.gif) no-repeat; padding: 6px 10px; color: #1E67A8; font-weight: bold; }
+input.button { padding: 3px; }
+
+/* content holder */
+#content { margin: 0px auto; width: 960px; }
+
+
+.bullet-red {
+	list-style-type:none;
+	list-style-image:url(http://www.javafree.org/interface/images/bullet-red.gif);
+	margin-top:0px;
+	margin-left:10px;	
+	padding-left:10px;		
+}
+
+.bullet-green {
+	list-style-type:none;
+	list-style-image:url(http://www.javafree.org/interface/images/bullet-green.gif);
+	margin-top:0px;
+	margin-left:10px;	
+	padding-left:10px;		
+}
+
+.bullet-black {
+	list-style-type:none;
+	list-style-image:url(http://www.javafree.org/interface/images/bullet-black.gif);
+	margin-top:0px;
+	margin-left:10px;	
+	padding-left:10px;		
+}
+
+
+/* header */
+#header { height: 75px; }
+#logo { padding: 15px 0 0 8px; }
+#logo p { margin: 0; padding: 0 0 0 10px; color: #808080; background: #fff; }
+#top_info { float: right; width: 570px; margin: 20px 5px 0 0; text-align: right; }
+
+/* horizontal tabbed menu */	
+#tabs { background: #fff url(http://www.javafree.org/interface/images/bigbox.gif) no-repeat top center; color: #000;  height: 64px; text-align: center; padding: 0 0 0 110px; }
+#tabs li { display: inline; height: 45px; }
+#tabs li a { float: left; background: #fff url(http://www.javafree.org/interface/images/barbg.gif) no-repeat; color: #808080; padding: 7px 0; width: 82px; text-align: center; font-weight: bold; text-decoration: none; }
+#tabs li a:hover { background: #fff url(http://www.javafree.org/interface/images/barcurrent.gif) no-repeat; color: #000; }	
+#tabs li a.current { background: #fff url(http://www.javafree.org/interface/images/barcurrent.gif) no-repeat; color: #2C71AE; }	
+.key { text-decoration: underline; }
+
+/* search form */
+#search { 
+	float: left;
+	clear: both;
+	color: #000;
+	background: #fff url(http://www.javafree.org/interface/images/searchbg.gif) no-repeat;
+	padding: 14px 0 20px 5px;
+	width: 500px;
+	margin: 5px 0 4px 99px;
+}
+	#search p { padding: 0; margin: 0; }
+
+
+/* grey subheader */
+.gboxtop { clear: both; height: 8px; background: #dedede url(http://www.javafree.org/interface/images/gboxtop.gif) no-repeat; color: #000; }
+.gbox { background: #dedede url(http://www.javafree.org/interface/images/gbox.gif) no-repeat bottom left; color: #444; padding: 1px 13px 7px 13px; margin: 0 0 20px 0; }
+.gbox p { padding: 7px 0; margin: 0;}
+
+
+/* left side */
+.left { float: left; width: 650px; margin: 0 0 10px 0; 
+
+}
+.left_articles {
+	margin: 0 20px 15px 10px;
+	padding: 10px 0 0 0;
+	text-align: justify;
+	border-bottom: 1px dotted #ccc;
+	color: #000;
+	background: #fff;
+	font-size: 1.2em;
+	line-height: 1.5em; 
+}
+
+/* To normal contents */
+.maincontent { 
+	width: 960; 
+	margin: 10px 10px 10px 10px; 
+	padding: 10px 0px 0px 0px;
+	clear:both; 
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+		
+.calendar { height: 50px; float: left; background: #fff url(http://www.javafree.org/interface/images/calendar.gif) no-repeat; width: 50px; padding: 5px 0 0 9px;  color: #808080;
+font-size: 0.8em;
+line-height: 1.8em;
+}
+.calendar p { padding: 0; margin: 0; }
+.description { padding: 0 0 2px 0; margin: 0 10px 5px 0; border-bottom: 1px dotted #ccc; }
+.thumbnail { float: left; margin: 0 18px 8px 0; border: 1px solid #dedede; }
+
+.comment { height: 50px; float: left; background: #fff url(http://www.javafree.org/interface/images/comment.gif) no-repeat; width: 50px; padding: 5px 0 0 9px;  color: #808080; }
+
+/* bottom thirds */
+.thirds { float: left; width: 203px; background: #eee; margin: 0 12px 0 0; color: #5d5d5d; }
+	.smallboxtop { height: 6px; background: #fff url(http://www.javafree.org/interface/images/smallboxtop.gif) no-repeat; color: #000; }
+	.smallbox { background: #fff url(http://www.javafree.org/interface/images/smallbox.gif) no-repeat bottom left; color: #444; padding: 1px 10px 10px 10px;  }
+	.smallbox p { padding: 0; margin: 0; }
+
+	
+/* right side */
+#right {
+	float: right;
+	width: 295px;
+	margin: 0 0 10px 0;
+}
+	.boxtop { height: 19px; background: #fff url(http://www.javafree.org/interface/images/boxtop.gif) no-repeat; color: #000; 
+	}
+	.box { background: #fff url(http://www.javafree.org/interface/images/box.gif) no-repeat bottom left; color: #5b5b5b; padding: 0 10px 15px 10px; margin: 0 0 10px 0; 
+	font-size: 1.2em;
+	line-height: 1.5em; 
+	
+	}
+	.box p { padding: 0; margin: 0;}
+	.image { float: left; margin: 0 9px 3px 0; }
+
+
+/* misc */
+.buttons { text-align: right; padding: 4px 3px 0 0;}
+.left_articles .buttons { float: right; height: 20px; }
+.bluebtn { 
+	background: #FFFFFF 
+	url(http://www.javafree.org/interface/images/bluebtn.gif) no-repeat; 
+	width: 100px; 
+	padding: 1px 16px 5px 16px; 
+	color: #fff; 
+	text-decoration: none; 
+}
+
+.blueinputbtn {
+	background: #FFFFFF 
+	url(http://www.javafree.org/interface/images/bluebtn.gif) no-repeat; 
+	width: 55px; 
+	height: 17px; 
+	color: #fff; 
+	text-decoration: none; 
+	border-style:solid;
+    border-width:0px;
+	padding:0px 0x 1px 1px;
+	font-size: 0.9em;
+  }
+
+
+.greenbtn { background: #FFFFFF url(http://www.javafree.org/interface/images/greenbtn.gif) no-repeat; width: 100px; padding: 1px 17px 5px 16px; color: #fff; text-decoration: none; }
+.bluebtn:hover, .greenbtn:hover { background: #488EB2 url(http://www.javafree.org/interface/images/hoverbtn.gif) no-repeat; color: #fff; }
+
+/* footer  */
+.footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
+
+.plain{
+	border:solid black 1px;
+	margin-bottom:2px;
+	margin-top:2px;
+	}
+
+.accordionClass {
+   border-style        : none none none none;
+   border-color        : #bbb;
+   border-width        : 1px 1px 1px 1px;
+}
+	
+.accordionTabTitleBar {
+   font-size           : 12px;
+   padding             : 4px 6px 4px 6px;
+   border-style        : solid solid solid solid;
+   border-color        : #bbb;
+   border-width        : 1px 1px 1px 1px;
+}
+
+.accordionTabTitleBar:hover {
+   text-decoration:bold;
+   background-color : #bbb;
+   color            : #000000;
+}
+
+.accordionTabContentBox {
+   border           : 1px solid #bbb;
+   border-top-width : 0px;
+   padding          : 0px 8px 0px 8px;
+}
+
+#quadro {
+	border: 1px solid #bbb;
+	padding: 2px 4px 4px 4px;
+}

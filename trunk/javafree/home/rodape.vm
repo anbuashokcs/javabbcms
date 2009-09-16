@@ -1,0 +1,46 @@
+	<div id="footer">
+			<ul id="fr" class="links">
+				<li><a href="http://feeds2.feedburner.com/JavaFreeorg" title="RSS Pages">RSS Notícias</a></li>			
+				<li><a href="http://feeds2.feedburner.com/javafree/OdRh" title="RSS Articles">RSS Fórum</a></li>
+				<li>&nbsp;</li>
+			</ul>
+			
+			#if($action.hasModeratorPermission())
+			<ul id="fr" class="links">			
+				<li><a href="$basePath/newsPendentes.jbb" title="RSS Articles">Notícias Pendentes</a></li>
+				#if("$!userLogged.admin" == "1")
+					<li><a href="$basePath/listAllBanners.jbb" title="RSS Articles">Banners</a></li>
+				#end
+			</ul>
+			#end
+			
+			<div id="fl">
+				<p class="links"><a href="$basePath/index.jf">Home</a>
+				<a href="$basePath/sobre.jbb">Sobre</a>
+				<a href="http://www.empregonaweb.com/">Empregos</a>
+				<a href="http://www.infoblogs.com.br/">Blogs</a>
+				<a href="${basePath}/anuncio.jbb">Anuncie</a>
+				<p>O JavaFree.org é uma comunidade java formada pela coolaboração dos desenvolvedores da tecnologia java. A publicação de artigos além de ajudar a comunidade java, ajuda a dar maior visibilidade para o autor. Contribua conosco.</p>
+				<p>&copy; Copyright <strong>JavaFree.org</strong><br />
+				Design: Luka Cvrk &nbsp;|&nbsp; Desenvolvimento: <a href="http://www.empregonaweb.com/user/curriculo.action?id=2">Dalton Camargo</a>
+				&nbsp;|&nbsp; <a href="http://whos.amung.us/stats/44l90veu934o/" rel="nofollow" target="_blank"><img src="http://whos.amung.us/swidget/44l90veu934o.png" border="0" /></a>
+				</p>
+				
+			</div>
+		</div>
+#if("$!userLogged" == "")
+			<script type="text/javascript">
+			setTimeout("window.location.reload();",500000);
+		</script>
+#end
+
+		
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-634369-10");
+pageTracker._trackPageview();
+} catch(err) {}</script>

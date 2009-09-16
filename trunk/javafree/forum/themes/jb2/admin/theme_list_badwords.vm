@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+
+<META content="MSHTML 6.00.2737.800" name=GENERATOR></HEAD>
+
+<script language="Javascript" type="text/javascript">
+  function confirmDelete(id){
+  	if(confirm("#message("confirm_delete")")){
+  		document.location.href="del_badword.jbb?id=" + id;
+ 	 }
+  }
+</script>
+
+<BODY text=#000000 vLink=#5493b4 link=#006699 bgColor=#ffffff><A name=top></A>
+<br /><br /><H1>#message("badword_list")</H1><br />
+<TABLE class=forumline cellSpacing=1 cellPadding=4 width="100%" align=center 
+border=0>
+    <TBODY>
+      <TR> 
+        <TH class=cat colSpan=7>#message("badword_list")</TH>
+      </TR>
+      <tr>
+       <th class="thTop" align="center" width="10%">
+  #
+       </th>
+       <th class="thTop" align="center" width="40%">
+        #message("badword")
+       </th>
+       <th class="thTop" align="center" width="40%">
+        #message("badword_replacement")
+       </th>
+       <th class="thTop" align="center" width="25%">
+        #message("edit")
+       </th>
+       <th class="thTop" align="center" width="25%">
+        #message("delete")
+       </th>
+      </tr>
+      
+  #foreach ($bw in $badWords)
+        <TR> 
+         <TD class=row2 vAlign=center align=middle>
+          <SPAN class=genmed>
+            $bw.idBadWord
+          </SPAN>
+         </TD>
+         <TD class=row1 vAlign=center align=middle>
+          <SPAN class=genmed>
+            $bw.word
+          </SPAN>
+         </TD>
+         <TD class=row1 vAlign=center align=middle>
+          <SPAN class=genmed>
+            $bw.replacement
+          </SPAN>
+         </TD>
+          <TD class=row2 vAlign=center align=middle>
+            <SPAN class=genmed>
+            <A href="load_badword.jbb?id=$bw.idBadWord">#message("edit")</A>
+            </SPAN>
+          </TD>
+          <TD class=row1 vAlign=center align=middle>
+          <SPAN class=genmed>
+            <A href="javascript:confirmDelete('$bw.idBadWord');">#message("delete")</A>
+          </SPAN>
+         </TD>
+        </TR>
+  #end
+
+      <TR> 
+        <TD class=row2 colSpan=7 align="center">
+          <INPUT class=liteoption type=button value="#message("new_badword")" onclick="document.location.href='prepare_badword.jbb'">
+        </TD>
+      </TR>
+      <TR> 
+        <TD class=spaceRow colSpan=7 height=1><IMG height=1 alt="" 
+      src="admin_forums_files/spacer.gif" width=1></TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+<br />
+#parse("forum/themes/jb2/admin/theme_footer.vm")

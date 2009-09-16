@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+${res.setContentType("text/xml")}
+
+
+#parse("forum/include/imports.vm")
+
+
+
+<materias>
+	#foreach($noticia in $noticias)
+		#if($velocityCount < 6)
+		   <materia>
+		      <data>
+		         <dia>$vh.dateFormat($noticia.publishDate,"dd")</dia>
+		         <mes>$vh.dateFormat($!{noticia.publishDate},"MM")</mes>
+		         <ano>$vh.dateFormat($!{noticia.publishDate},"yyyy")</ano>
+		         <hora>$vh.dateFormat($!{noticia.publishDate},"kk")</hora>
+		         <minuto>$vh.dateFormat($!{noticia.publishDate},"mm")</minuto>
+				 
+		      </data>
+		      <url>http://www.javafree.org/noticia/${noticia.notId}/${vh.parseStringTitle($noticia.title)}</url>
+		      <titulo>$!{noticia.title}</titulo>
+		      <texto>http://www.javafree.org/noticia/${noticia.notId}/${vh.parseStringTitle($noticia.title)}</texto>
+		      <linkExterno>S</linkExterno>
+		   </materia>
+		#end
+	#end
+</materias>

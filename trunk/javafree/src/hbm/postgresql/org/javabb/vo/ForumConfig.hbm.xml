@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.ForumConfig" 
+    table="jbb_config"
+>
+
+    <id
+        name="idConfig"
+        type="java.lang.Long"
+        column="id_config"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="theme"
+        type="java.lang.String"
+        column="theme"
+        length="-1"
+    />
+
+    <property
+        name="domain"
+        type="java.lang.String"
+        column="domain"
+        length="200"
+    />
+
+    <property
+        name="forumName"
+        type="java.lang.String"
+        column="forumname"
+        length="200"
+    />
+    
+	<property
+        name="lang"
+        type="java.lang.String"
+        column="lang"
+        length="200"
+    />
+
+	<property
+        name="formatDate"
+        type="java.lang.String"
+        column="format_date"
+        length="200"
+    />
+
+	<property
+        name="formatTime"
+        type="java.lang.String"
+        column="format_time"
+        length="200"
+    />
+
+	<property
+        name="topicsPage"
+        type="java.lang.Integer"
+        column="topics_page"
+        length="3"
+    />
+
+	<property
+        name="postsPage"
+        type="java.lang.Integer"
+        column="posts_page"
+        length="3"
+    />   
+
+
+</class>
+</hibernate-mapping>

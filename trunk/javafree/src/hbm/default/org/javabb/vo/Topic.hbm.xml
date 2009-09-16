@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+
+<class 
+    name="org.javabb.vo.Topic" 
+    table="jbb_topics"
+>
+
+        <!-- cache usage="read-write" /-->
+
+    <id
+        name="idTopic"
+        type="java.lang.Long"
+        column="id_topic"
+    >
+		<generator class="increment"/>
+    </id>
+
+    <property
+        name="titleTopic"
+        type="java.lang.String"
+        column="title_topic"
+        length="-1"
+    />
+
+    <property
+        name="dataTopico"
+        type="java.util.Date"
+        column="data_topico"
+        length="20"
+    />
+
+    <property
+        name="lastPostDate"
+        type="java.util.Date"
+        column="last_post_date"
+        length="20"
+    />
+
+    <property
+        name="lastPostId"
+        type="java.lang.Long"
+        column="last_post_id"
+        length="-1"
+    />
+
+    <property
+        name="lastPostUserName"
+        type="java.lang.String"
+        column="last_post_user_name"
+        length="255"
+    />
+
+    <property
+        name="lastPostUserId"
+        type="java.lang.Long"
+        column="last_post_user_id"
+        length="-1"
+    />
+
+    <property
+        name="pageLastPost"
+        type="java.lang.Integer"
+        column="last_post_page"
+        length="-1"
+    />
+
+    <property
+        name="visualizacoes"
+        type="java.lang.Integer"
+        column="visualizacoes"
+        length="-1"
+    />
+    
+    <property
+        name="partnerId"
+        type="java.lang.Integer"
+        column="partner_id"
+        length="-1"
+    />
+
+    <property
+        name="topicStatus"
+        type="java.lang.Integer"
+        column="topic_status"
+        length="-1"
+    />
+
+    <property
+        name="topicModel"
+        type="java.lang.Integer"
+        column="topic_model"
+        length="-1"
+    />
+
+    <property
+        name="respostas"
+        type="java.lang.Integer"
+        column="respostas"
+        length="-1"
+    />
+
+    <property
+        name="notifyMe"
+        type="java.lang.Integer"
+        column="notify_me"
+        length="1"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to User -->
+    <many-to-one
+        name="user"
+        class="org.javabb.vo.User"
+        not-null="true"
+    >
+        <column name="id_user" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Forum -->
+    <many-to-one
+        name="forum"
+        class="org.javabb.vo.Forum"
+        not-null="true"
+    >
+        <column name="id_forum" />
+    </many-to-one>
+
+    <!-- bi-directional one-to-many association to Post -->   
+    <set
+        name="posts"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="id_topic" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Post"
+        />
+    </set>
+
+
+    <!-- bi-directional one-to-many association to JbbAnswerNotify -->
+    <set
+        name="answerNotifies"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="id_topic" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.AnswerNotify"
+        />
+    </set>
+	
+	
+    <!-- bi-directional one-to-many association to JbbAnswerNotify -->
+    <set
+        name="favUserTopics"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="id_topic" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.FavUserTopic"
+        />
+    </set>	
+
+</class>
+</hibernate-mapping>

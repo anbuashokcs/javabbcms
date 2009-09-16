@@ -1,0 +1,386 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "index")
+<HTML dir=ltr><HEAD><TITLE>${jbbConfig.forumConfig.forumName} :: #message("index_forum")</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META http-equiv=Content-Style-Type content=text/css>
+<META content="MSHTML 6.00.2737.800" name=GENERATOR>
+#parse("forum/themes/jb2/header.vm")
+<script type="text/javascript" src="${basePath}/home/js/jquery/jquery-1.3.1.js"></script>
+
+<style>
+	
+	ul#side_menu, ul#side_menu ul {
+		list-style-type:none;
+		margin: 0;
+		padding: 0;
+		width: 20em;
+	}
+
+	ul#side_menu a {
+		display: block;
+		text-decoration: none;	
+	}
+
+	ul#side_menu li {
+		margin-top: 1px;
+	}
+
+	ul#side_menu li a {
+		background: #333;
+		color: #fff;	
+		padding: 0.5em;
+	}
+
+	ul#side_menu li a:hover {
+		background: #000;
+	}
+
+	ul#side_menu li ul li a {
+		background: #F8F8F8;
+		color: #000;
+		padding-left: 20px;
+	}
+
+	ul#side_menu li ul li a:hover {
+		background: #aaa;
+		border-left: 5px #000 solid;
+		padding-left: 15px;
+	}
+	
+	.side-container {
+		clear:both;
+		font-size:100%;
+		padding:10px 0 2em 10px;
+		padding: 0;
+		margin-top: 15px;
+		vertical-align: top;
+	}
+	
+</style>
+
+
+<TR>
+    <TD background="$baseImages/forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+  
+
+<table cellpadding="0" width="100%" cellspacing="0" border="0">
+	<tr>
+	#set($totalPostsUnreads = 0)
+	#foreach($cat in $lstCategory)
+		#if ($category.id.toString() != "")
+			#if($category.id == $cat.id)
+	    		#set($cssTab = "active")
+	    	#else
+            	#set($cssTab = "inactive")
+	    	#end
+	    #else
+		#if($velocityCount == 1)
+	    	#set($cssTab = "active")
+	    #else
+	    	#set($cssTab = "inactive")
+	    #end
+	#end
+	
+	##User must be logged to see the number of new posts
+	#if (${jbbuser.idUser.toString()} != "")
+		#set($nmbUnreads = $action.getNmbUnreadsInCat($cat))
+		#set($totalPostsUnreads = ($totalPostsUnreads + $nmbUnreads))	
+	#else
+		#set($nmbUnreads = 0)
+	#end
+
+	
+		<td nowrap class="${cssTab}Tab">
+			<div class="${cssTab}1"> 
+				<div class="${cssTab}2">
+					<div class="${cssTab}3"></div>
+				</div>
+			</div>
+				<div class="${cssTab}TabText">&nbsp;&nbsp; 
+					#if($cssTab == "inactive")
+						<a href="$basePath/cat-${cat.id}-${vh.parseStringTitle($cat.nameCategory)}">$cat.nameCategory #if($nmbUnreads > 0 )($nmbUnreads) #end</a>
+					#else
+						$cat.nameCategory #if($nmbUnreads > 0 )($nmbUnreads) #end
+					#end
+				&nbsp;&nbsp;
+				</div>
+		</td>
+		<td>&nbsp;&nbsp;</td>
+	#end
+
+	<td width="100%">&nbsp;</td>
+	</tr>
+</table> 
+
+<div style="padding-bottom: 10px;">
+	<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" id="subTabs">
+		<tr>
+			<td>&nbsp;
+			
+			#if (${jbbuser.idUser.toString()} != "")
+				<span class="inactiveText">
+					<a href="$basePath/search_author.jbb?u=${jbbuser.id}">#message("view_myposts")</a>
+				</span>
+				&nbsp;|&nbsp;
+			#end
+
+			<span class="inactiveText"><a href="$basePath/unanswered_posts.jbb">#message("unanswared_posts")</a></span>
+			&nbsp;|&nbsp;
+			<span class="inactiveText"><a href="$basePath/newPosts.jbb">#message("new_posts")</a></span>
+		    #if($jbbuser.getAdmin() == 1)
+		    	&nbsp;|&nbsp;
+			    <span class="inactiveText"><a href="$basePath/admin/admin.jbb">#message("admin")</a></span>
+		    #end 
+			</td>
+		</tr>
+	</table>
+	
+	##<a href="http://www.bomdeblog.com.br" target="_blank"><img src="http://www.bomdeblog.com.br/templates/misc/images/banner.gif" border="0"></a>
+	
+</div>
+
+<!-- FORUM TABLE -->
+
+			
+<table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline" valign="top">
+  	   #if($vh.isNull(${userLogged.idUser.toString()}) == 1)
+	   <TR>
+		<TD  valign="top"> 
+		
+			#displayBanner($action.loadLocationBanner(4))
+		</TD>
+		</TR>
+		#end
+  
+  <TR bgColor=#ffffff>
+    
+	<TD valign="top">
+	
+  <table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline" valign="top">
+	  <tr>
+		<th colspan="2" class="titleGenmed" height="25" nowrap="nowrap">&nbsp;#message("forum")&nbsp;</th>
+		<th class="titleGenmed" height="25" nowrap="nowrap">&nbsp;#message("topics")&nbsp;</th>
+		<th class="titleGenmed" height="25" nowrap="nowrap">&nbsp;#message("messages")&nbsp;</th>
+		<th class="titleGenmed" height="25" nowrap="nowrap">&nbsp;#message("last_message")&nbsp;</th>
+	  </tr>
+	  
+	  		#foreach ($forum in ${category.foruns})
+    			<tr>
+				  <td class="row1" align="center" valign="middle" height="50" >
+				  	#if($action.isForumRead($forum))
+				  		<img src="$baseImages/forum/themes/jb2/images/folder_big.gif" />
+				  	#else
+				  		<img src="$baseImages/forum/themes/jb2/images/folder_new_big.gif" />				  		
+				  	#end
+				  </td>
+				  <td class="row1" width="100%" height="50">
+				    <span class="forumlink">
+				      <a href="$basePath/f-${forum.id}-$vh.parseStringTitle($!{forum.nome})" class="forumlink">
+					      ${forum.nome}
+				      </a>
+				      </br>
+				    </span> 
+				    <span class="genmed">${forum.descricao}</span>
+			  	  </td>
+  				  <td class="row1" align="center" valign="middle" height="50">
+				  #if($vh.isNull($!{forum.topicCount.toString()}) != 1)
+  					$vh.formatDigitValue(${forum.topicCount.toString()})
+  				  #else
+  				   0
+				  #end
+				  </td>
+				  <td class="row1" align="center" valign="middle" height="50">
+				  #if($vh.isNull($!{forum.postCount.toString()}) != 1)
+					 $vh.formatDigitValue(${forum.postCount.toString()})
+				  #else 
+				  	0
+				  #end
+				  </td>
+				  <TD class=row2 vAlign=center noWrap align=middle>
+					#if($vh.isNull(${forum.lastPostUserName.toString()}) != 1)
+						<SPAN class=postdetails>$vh.dateMinuteFormat(${forum.lastPostDate})<BR>
+						  	<A href="$basePath/viewprofile.jbb?u=${forum.lastPostUserId}">
+							  $!{forum.lastPostUserName}
+							</A>
+						  	<A href="$basePath/viewtopic.jbb?p=${forum.lastPostId}&page=${forum.lastPagePost}#${forum.lastPostId}">
+	  							<IMG title="#message("show_last_message")" alt="#message("show_last_message")" src="$baseImages/forum/themes/jb2/images/icon_latest_reply.gif" border="0">
+						  	</A>
+	  					</SPAN>
+  				  	#end
+				  </TD>
+    			</tr>
+      		#end
+		</table> 
+       </TD>
+		<td valign="top">
+		
+		<a href="http://twitter.com/JavaFree" target="_blank"><img src="$baseImages/home/images/twitterjf.gif" style="border:0" alt="Siga nos" /></a>
+		
+		#if("$!{categoryId}" == "" || "$!{categoryId}" == "1" || "$!{categoryId}" == "4")
+				<ul id="side_menu">
+				
+				<li><a href="$basePath/recentTopics.jbb?message=recent">Últimos Posts</a>
+					<ul>
+						#foreach($post in $posts)
+							<li>
+							<a href="${basePath}/topic-${post.topic.id}-${vh.parseStringTitle($post.topic.titleTopic)}?page=${post.topic.pageLastPost}#${post.topic.lastPostId}">
+							$post.topic.titleTopic
+							</a></li>
+						#end	
+					</ul>				
+				
+				
+				<li><a href="#">Últimas Notícias</a>
+					<ul>
+						<li><a href="${basePath}/enviarNoticia">
+							<img src="$baseImages/forum/themes/jb2/images/icon_latest_reply.gif" border = "0">&nbsp;
+							<b>Enviar notícia</b>
+							</a>
+						</li>
+						#foreach($noticia in $noticias)
+							#if($velocityCount < 7)
+							<li><a href="${basePath}/noticia/${noticia.notId}/${vh.parseStringTitle($noticia.title)}">$noticia.title</a></li>
+							#end
+						#end
+					</ul>
+
+
+				</ul>
+		#else
+				<ul id="side_menu">
+							<li><a href="#">Links Úteis</a>
+					<ul>
+						<li><a href="$basePath/noticias/">Notícias</a></li>
+						<li><a href="$basePath/artigos/">Artigos</a></li>
+						<li><a href="$basePath/sobre.jbb">Quem Somos</a></li>
+						<li><a href="$basePath/wallpapers.jbb">Wallpapers</a></li>
+						<li><a href="$basePath/anuncio.jbb">Anuncie aqui!</a></li>
+					</ul>
+				</ul>
+		
+		#end
+		#*
+			<center>
+			<br>
+				<a href="http://feeds2.feedburner.com/javafree/OdRh"><img src="$basePath/home/images/jf-rss.gif" border="0"></a>
+			</center>
+		*#
+			</td>
+       </TR>
+	   
+	   #if($vh.isNull(${userLogged.idUser.toString()}) != 1)
+	   <TR>
+		<TD  valign="top"> 
+		
+			#displayBanner($action.loadLocationBanner(4))
+		</TD>
+		</TR>
+		#end
+	   </table>
+
+<!-- END OF TABLE FORUM -->
+
+
+## Who is Online
+
+      <TABLE class=forumline cellSpacing=1 cellPadding=3 width="100%" border=0>
+
+        <TR>
+		<th colspan="2" class="titleGenmed" height="25" nowrap="nowrap" align="left">#message("who_stay_online")</th>
+       </TR>
+        <TR>
+          <TD class=row1 vAlign=center align=middle rowSpan=2>
+            <IMG alt="#message("who_stay_online")" src="$baseImages/forum/themes/jb2/images/whosonline.gif">
+          </TD>
+          <TD class=row1 align=left width="100%">
+            <SPAN class=gensmall>
+            #message("total_messages_forum") <B>$vh.formatDigitValue(${stats.totalPostCount.toString()})</B> 
+            #message("articles")<BR>#message("we_have") <B>$vh.formatDigitValue(${stats.totalRegisteredUsers.toString()})</B> #message("registered_users")<BR>#message("welcome_message"): 
+            <A class="gensmall" 
+            href="viewprofile.jbb?u=${stats.lastRegisteredUserId}">
+              <B>$!{stats.lastRegisteredUserName}</B>
+            </A>
+           </SPAN> 
+          </TD>
+		  </TR>
+        <TR>
+		#set($guests = ${application.onlineGuests})
+		#set($registeredUsers = ${application.onlineRegisteredUsers})
+		#set($totalOnlineUsersCount = ${guests.size()} + ${registeredUsers.size()})
+          <TD class=row1 align=left>
+          <SPAN class=gensmall>#message("there_is")
+              <B>$totalOnlineUsersCount</B> #message("online_users") ::
+              ${registeredUsers.size()} #message("registered_users") 
+            ${guests.size()} #message("guests") 
+            &nbsp; [ <b><SPAN style="COLOR: #ffa34f">#message("administrator")</SPAN></b> ] &nbsp; 
+            [ <b><SPAN style="COLOR: #006600">Colaborador</SPAN></b> ] &nbsp; 
+            [ <b><SPAN style="COLOR: #445395">Usuário</SPAN></b> ] 
+           <br>
+		#set($classAdm = "")
+		#foreach ($userol in $registeredUsers)
+		  #if(${userol.user})
+		  	#if(${userol.admin} == 1)
+		  		#set($classAdm = "style='COLOR: #ffa34f'")
+			#elseif(${userol.admin} == 2)
+				#set($classAdm = "style='COLOR: #006600''")
+		  	#else
+		  		#set($classAdm = "class='gensmall'")
+		  	#end
+		  	<A $classAdm href="$basePath/viewprofile.jbb?u=${userol.id}"><B>${userol.user}</B></A>#if($velocityCount != ${registeredUsers.size()}), #end
+		  #end
+		#end
+         </SPAN>
+        </TD>
+      </TR>
+    </TABLE>
+            
+## END OF Who is Online
+
+
+        <TABLE cellSpacing=1 cellPadding=1 width="100%" border=0>
+        <TR>
+          <TD vAlign=top align=left>
+          <SPAN class=gensmall>#message("info_minutes_online")</SPAN>
+          </TD>
+          </TR>
+          </TABLE>
+  #if($vh.isNull(${userLogged.idUser.toString()}) == 1)
+	  <form method="post" action="verifylogin.jbb">
+	  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="forumline">
+	    <tr>
+	  <th colspan="2" class="titleGenmed" height="25" nowrap="nowrap">&nbsp;#message("enter")&nbsp;</th>
+	    </tr>
+	  <tr>
+	    <td class="row1" align="center" valign="middle" height="28"><span class="gensmall">#message("user"):
+	  <input class="post" type="text" name="user.user" size="10" />
+	  &nbsp;&nbsp;&nbsp;#message("password"):
+	  <input class="post" type="password" name="user.passwordHash" size="10" />
+	  &nbsp;&nbsp;&nbsp;
+	  <input type="submit" class="mainoption" name="login" value="#message("enter")" />
+	  </span>
+	     </td>
+	  </tr>
+	    </table>
+	  </form>
+  #end        
+        </TD>
+       </TR>
+
+<!--
+${userLogged.lastVisitTimestamp}
+-->
+   
+	   
+<script>
+	#if($totalPostsUnreads > 0)
+		document.title = "($totalPostsUnreads) ${jbbConfig.forumConfig.forumName} :: #message("index_forum")";
+	#else
+		document.title = "${jbbConfig.forumConfig.forumName} :: #message("index_forum")";
+	#end
+	setTimeout("window.location.reload();",200000);
+</script>
+
+#parse("forum/themes/jb2/footer.vm")

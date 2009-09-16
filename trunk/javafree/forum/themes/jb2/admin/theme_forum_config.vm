@@ -1,0 +1,165 @@
+<HTML><HEAD>
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+</head>
+<script src="forum/include/gen_validatorv2.js" type="text/javascript"></script>
+<BODY text=#000000 vLink=#5493b4 link=#006699 bgColor=#ffffff><A name=top></A>
+<H1>#message("forum_config")</H1>
+<P>
+#message("forum_config_text")
+</P>
+<form name="frmConfig" id="frmConfig" action="save_forum_config.jbb" method="post" >
+  <TABLE class=forumline cellSpacing=1 cellPadding=4 width="100%" align=center border=0>
+    <TBODY>
+      <TR> 
+        <TH class=thHead colSpan=7>#message("forum_config")</TH>
+      </TR>
+      <tr>
+        <td class="row1">#message("forum_name")</td>
+        <td class="row2"><input id="forumConfigView.forumName" name="forumConfigView.forumName" value="$!jbbConfig.forumConfig.forumName" class="post" style="width: 300px" /></td>        
+      </tr>
+
+      <tr>
+        <td class="row1">#message("configuration_forum_url")</td>
+        <td class="row2"><input id="forumConfigView.domain" name="forumConfigView.domain" value="$!jbbConfig.forumConfig.domain" class="post" style="width: 300px" /></td>        
+      </tr>
+      
+     
+      <tr>
+        <td class="row1">#message("forum_format_date")</td>
+        <td class="row2"><input id="forumConfigView.dateFormat" name="forumConfigView.dateFormat" value="$!jbbConfig.forumConfig.dateFormat" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("forum_format_time")</td>
+        <td class="row2"><input id="forumConfigView.timeFormat" name="forumConfigView.timeFormat" value="$!jbbConfig.forumConfig.timeFormat" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("posts_per_page")</td>
+        <td class="row2"><input id="forumConfigView.postsPage" name="forumConfigView.postsPage" value="$!jbbConfig.forumConfig.postsPage" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("topics_per_page")</td>
+        <td class="row2"><input id="forumConfigView.topicsPage" name="forumConfigView.topicsPage" value="$!jbbConfig.forumConfig.topicsPage" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("forum_lang")</td>
+        <td class="row2">
+        	<select name="forumConfigView.buttonLang" id="forumConfigView.buttonLang">
+        		#foreach($lang in $btnLang)
+        			<option value="$lang"
+        			#if($lang == $jbbConfig.forumConfig.buttonLang)
+        				selected
+        			#end
+        			>$lang</option>
+		        #end
+	        </select>
+		</td>        
+      </tr>
+
+      <TR> 
+        <TD class=cat colspan=2>
+			<center>#message("configuration_email")</center>
+        </TD>
+      </TR>
+
+      <tr>
+        <td class="row1">#message("configuration_admin_email")</td>
+        <td class="row2"><input id="forumConfigView.adminMail" name="forumConfigView.adminMail" value="$!jbbConfig.forumConfig.adminMail" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("configuration_smtp_host")</td>
+        <td class="row2"><input id="forumConfigView.smtpHost" name="forumConfigView.smtpHost" value="$!jbbConfig.forumConfig.smtpHost" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("configuration_smtp_user")</td>
+        <td class="row2"><input id="forumConfigView.smtpUser" name="forumConfigView.smtpUser" value="$!jbbConfig.forumConfig.smtpUser" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1">#message("configuration_smtp_password")</td>
+        <td class="row2"><input type="password" id="forumConfigView.smtpPassword" name="forumConfigView.smtpPassword" value="$!jbbConfig.forumConfig.smtpPassword" class="post" style="width: 300px" /></td>        
+      </tr>
+      <tr>
+        <td class="row1"></td>
+        <td class="row2"><SPAN class=gensmall>#message("configuration_smtp_leave_empty")</SPAN></td>        
+      </tr>
+
+      <tr>
+        <td class="row1">#message("flood_control")</td>
+        <td class="row2">
+        	<select name="forumConfigView.floodControl" id="forumConfigView.floodControl">
+        		<option value="1" #if($!jbbConfig.forumConfig.floodControl == "1") selected  #end >#message("yes")</option>
+		         <option value="0" #if($!jbbConfig.forumConfig.floodControl == "0") selected  #end >#message("no")</option>
+	        </select>
+		</td>
+      </tr>      
+
+      <tr>
+        <td class="row1">#message("forum_config_admin_active_captcha")</td>
+        <td class="row2">
+        	<select name="forumConfigView.activeCaptcha" id="forumConfigView.activeCaptcha">
+		         <option value="0" #if($!jbbConfig.forumConfig.activeCaptcha == "0") selected  #end >#message("no")</option>
+        		<option value="1" #if($!jbbConfig.forumConfig.activeCaptcha == "1") selected  #end >#message("yes")</option>
+	        </select>
+		</td>
+      </tr>  
+
+
+      <tr>
+        <td class="row1">#message("configuration_notify_topic")</td>
+        <td class="row2"><textarea id="forumConfigView.notifyTopic" name="forumConfigView.notifyTopic" style="width: 300px" cols="30" rows="2" class="post">$!jbbConfig.forumConfig.notifyTopic</textarea></td>
+      </tr>            
+
+      <tr>
+        <td class="row1">#message("configuration_forum_announce")</td>
+        <td class="row2"><textarea id="forumConfigView.forumAnnounceText" name="forumConfigView.forumAnnounceText" style="width: 300px" cols="40" rows="4" class="post">$!jbbConfig.forumConfig.forumAnnounceText</textarea></td>
+      </tr> 
+
+      <TR> 
+        <TD class=cat colspan=2>
+          <center>
+            <input class=mainoption type=submit value="#message("send")" />
+            <input class=liteoption type=button value="#message("cancel")" onclick="history.back()" />
+          <center>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</FORM>
+
+
+<script language="JavaScript" type="text/javascript">
+ var frmvalidator  = new Validator("frmConfig");
+ frmvalidator.addValidation("forumConfigView.forumName","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.forumName","minlen=1","#message("field_mandatory")");
+
+ frmvalidator.addValidation("forumConfigView.domain","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.domain","minlen=1","#message("field_mandatory")");
+
+ frmvalidator.addValidation("forumConfigView.dateFormat","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.dateFormat","minlen=3","#message("field_mandatory")");
+ 
+ frmvalidator.addValidation("forumConfigView.timeFormat","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.timeFormat","minlen=3","#message("field_mandatory")");
+
+ frmvalidator.addValidation("forumConfigView.postsPage","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.postsPage","minlen=1","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.postsPage","numeric","#message("just_numbers")");
+
+ frmvalidator.addValidation("forumConfigView.topicsPage","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.topicsPage","minlen=1","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.topicsPage","numeric","#message("just_numbers")");
+
+ frmvalidator.addValidation("forumConfigView.adminMail","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.adminMail","minlen=5","#message("field_mandatory")");
+
+ frmvalidator.addValidation("forumConfigView.smtpHost","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.smtpHost","minlen=5","#message("field_mandatory")");
+
+ frmvalidator.addValidation("forumConfigView.notifyTopic","req","#message("field_mandatory")");
+ frmvalidator.addValidation("forumConfigView.notifyTopic","minlen=5","#message("field_mandatory")");
+
+</script> 
+
+
+#parse("forum/themes/jb2/admin/theme_footer.vm")
+
+</BODY></HTML>

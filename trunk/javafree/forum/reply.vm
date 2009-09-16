@@ -1,0 +1,2 @@
+#parse("forum/include/misc.vm")
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/theme_reply.vm")

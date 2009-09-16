@@ -1,0 +1,58 @@
+#set($headerTitle = "Notícias Pendentes")
+#parse("home/header.vm")
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+			<h3><a href="#">Notícias Pendentes</a></h3>
+
+			#foreach($itemNoticia in $noticias)
+				<h2>
+					<a href="${basePath}/noticia/${itemNoticia.notId}/${vh.parseStringTitle($itemNoticia.title)}">$vh.removeHTML($itemNoticia.title)</a>
+				</h2>
+				<p>
+				#if($itemNoticia.linkImg.toString() != "")
+					<img src="$itemNoticia.linkImg"/>
+				#end
+					$vh.removeHTML($itemNoticia.body)
+					<br>
+					<center> <a href="${basePath}/loadEditNoticia.jbb?noticia.notId=${itemNoticia.notId}">Editar</a> 
+					- <a href="javascript:excluir('${basePath}/excluirNoticia.jbb?noticia.notId=${itemNoticia.notId}');">Excluir</a> 
+					- <a href="${basePath}/approveNoticia.jbb?noticia.notId=$itemNoticia.notId">Aprovar</a></center>
+				</p>
+				#if($velocityCount != $noticias.size())
+					<div id="line"></div>
+				#end
+			#end
+			
+			
+		
+			
+		</div>
+		
+		
+		<div id="ad">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-9439984557405450";
+			/* 200x200, criado 03/11/08 */
+			google_ad_slot = "3473586953";
+			google_ad_width = 200;
+			google_ad_height = 200;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		
+		
+
+		<div id="line"></div>
+		
+		
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

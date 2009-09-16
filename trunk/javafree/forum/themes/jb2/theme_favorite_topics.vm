@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>${jbbConfig.forumConfig.forumName}</title>
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+<script src="forum/include/forum.js" type="text/javascript"></script>
+</HEAD>
+
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+
+<script language="javascript">
+	function click(url){
+		opener.location.href=url;
+		window.close();
+	}
+</script>
+
+#if($users.size() > 0)
+	<table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline" align="center">
+	  <tr>
+	  <th width="4%" height="25" class="thCornerL" nowrap="nowrap">&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("forum")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("topic")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("author")&nbsp;</th>
+	
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("answers")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("displays")&nbsp;</th>
+	  </tr>
+	  #foreach ($favTopicUser in $users)
+		  <tr>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <A href="javascript:click('viewtopic.jbb?t=${topic.id}#${topic.idLastPost}');">
+		      #if($action.isTopicRead($favTopicUser.topic))
+		      <img src="forum/themes/jb2/images/folder.gif" width="19" height="18" border="0" />
+		      #else
+		          <img src="forum/themes/jb2/images/folder_new.gif" width="19" height="18" border="0" />
+		      #end
+		    </a>
+		  </td>
+		  
+		  <td class="row1">
+		    <span class="forumlink">
+		      <a href="javascript:click('viewforum.jbb?f=${favTopicUser.topic.forum.id}');" class="forumlink">$!{favTopicUser.topic.forum.nome}</a>
+		    </span>
+		  </td>
+		  
+		  <td class="row2">
+		    <span class="topictitle">
+		      <a href="javascript:click('viewtopic.jbb?t=${favTopicUser.topic.id}');" class="topictitle">$!{favTopicUser.topic.titleTopic}</a>
+		    </span>
+		  </td>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <span class="name">
+		    </span>
+		      <a href="javascript:click('viewprofile.jbb?u=${favTopicUser.topic.user.id}');">$!{favTopicUser.topic.user.user}</a>
+		  </td>
+		  
+		  <td class="row2" align="center" valign="middle">
+		    <span class="postdetails">$!{favTopicUser.topic.respostas}</span>
+		  </td>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <span class="postdetails">$!{favTopicUser.topic.visualizacoes}</span>
+		  </td>
+		
+		  </tr>
+	  #end
+	  
+	  <tr>
+	  <th class="catBottom" colspan="7" height="28" valign="middle">&nbsp; </td>
+	  </tr>
+	</table>
+#end
+
+
+
+#if($topics.size() > 0)
+	<table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline" align="center">
+	  <tr>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("forum_fav_favorites")&nbsp;</th>
+	  </tr>
+	  #foreach ($favTopicUser in $topics)
+		  <tr>
+
+		  <td class="row1">
+		    <span class="forumlink">
+		      <a href="javascript:click('viewprofile.jbb?u=${favTopicUser.user.idUser}');" class="forumlink">$!{favTopicUser.user.user}</a>
+		    </span>
+		  </td>
+
+		  </tr>
+	  #end
+	  
+	  <tr>
+	  <th class="catBottom" colspan="7" height="28" valign="middle">&nbsp; </td>
+	  </tr>
+	</table>
+#end
+
+
+#if($topics.size() == 0 && $users.size() == 0)
+	<table class="forumline" width="100%" cellspacing="1" cellpadding="4" border="0">
+	  <tr>
+	  <th class="thHead" height="25"><b>#message("info")</b></th>
+	  </tr>
+	  <tr>
+	  <td class="row1"><table width="100%" cellspacing="0" cellpadding="1" border="0">
+	  <tr>
+	  <td>&nbsp;</td>
+	  </tr>
+	  <tr>
+	  <td align="center">
+ 		<br />
+	  	#message("forum_fav_no_favorites")
+	  	<Br><br>
+		<span class="genmed"><a href="javascript:window.close();" class="genmed">#message("close_window")</a></span>
+	  </td>
+	  </tr>
+	  <tr>
+	  <td>&nbsp;</td>
+	  </tr>
+	  </table></td>
+	  </tr>
+	</table>
+#end
+
+#parse("forum/themes/jb2/admin/theme_footer.vm")

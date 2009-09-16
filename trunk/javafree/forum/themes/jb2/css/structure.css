@@ -1,0 +1,610 @@
+/****************************************/
+/***** Wrapper **************************/
+/****************************************/
+#wrap			{ width:998px; margin:0 auto; text-align:center; background:url(../images/new/bg.gif) repeat-y left top }
+
+#header			{ width:982px; height:82px; background:url(.../images/new/bg-header.gif) no-repeat left top; margin:0 auto; text-align:left; position:relative }
+	#header .logo			{ position:absolute; top:16px; left:26px; display:block; width:192px; height:47px }
+	#header .top			{ position:absolute; top:7px; left:348px; width:420px; color:#CCC }
+	#header .top A			{ color:#333 }
+	#header .top A:hover	{ color:#015ba7 }
+	#header .top EM			{ font-style:normal; padding:0 5px }
+	#language				{ position:absolute; top:7px; right:20px; width:135px; text-align:right }
+	#language A				{ background:url(../images/new/dropdown-1.gif) no-repeat right center; padding-right:16px; color:#333 }
+	#language A:hover		{ color:#015ba7 }
+	#language UL			{ margin-left:10px }
+	#language UL LI			{ background:#FFF; border-bottom:1px #DDD solid; padding:4px 0 }
+	#language UL LI A		{ background:none; padding-right:5px }
+	#header .login			{ position:absolute; top:38px; left:348px; width:400px; color:#333; font-weight:bold }
+	#header .login A		{ color:#015ba7 }
+	#header .login A:hover	{ color:#000 }
+
+#menu					{ text-align:left; width:982px; height:32px; margin:0 auto; background:url(../images/new/bg-menu.gif) no-repeat left top; color:#FFF; font-size:13px }
+#menu .floatRight		{ display:block; width:133px; height:32px; line-height:30px; color:#FFF; text-align:center }
+#menu .floatRight:hover	{ background:url(../images/new/menu-login-ov.gif) no-repeat left top }
+#menu B,
+#menu STRONG			{ font-weight:normal; padding:0 10px }
+#menu STRONG			{ padding:0 }
+#menu A					{ color:#FFF; display:block; height:32px }
+#menu UL				{ padding-left:24px }
+#menu LI A				{ float:left } /* for ie6 */
+#menu LI A:hover		{ color:#000 }
+#menu LI				{ display:inline; float:left; line-height:32px }
+#menu LI.activ			{ background:url(../images/new/menu-activ-gen.gif) repeat-x left top }
+#menu LI.activ A		{ background:url(../images/new/menu-activ-left.gif) no-repeat left top; color:#000; padding-left:20px }
+#menu LI.activ STRONG	{ background:url(../images/new/menu-activ-right.gif) no-repeat right top; display:block; padding-right:20px }
+#menu LI.hide			{ visibility:hidden; width:8px }
+
+#wrapContent		{ text-align:left; width:948px; overflow:hidden; margin:0 auto; padding:20px 0 10px 0 }
+#sidebar			{ float:left; width:248px }
+.widget				{ width:100%; margin-bottom:12px }
+.widget H2			{ font-size:15px; padding:18px }
+.widget-Search			{ background:url(../images/new/search.gif) no-repeat left top; height:96px; color:#FFF }
+.widget-Search H2		{ padding:13px 18px }
+.widget-Search FORM		{ padding:10px 20px; position:relative }
+.widget-Search INPUT	{ width:184px; margin-right:2px; background:none; border:none; font-size:15px }
+.widget-Search .submit	{ width:20px; position:absolute; right:18px; margin:0; cursor:pointer }
+.widget-browse					{ background:url(../images/new/browse-gen.gif) repeat-y left top; text-align:center }
+.widget-browse .bgTop			{ background:url(../images/new/browse-top.gif) no-repeat left top }
+.widget-browse .bgBottom		{ background:url(../images/new/browse-bottom.gif) no-repeat left bottom; padding-bottom:7px }
+.widget-browse H2				{ text-align:left; color:#333; cursor:pointer; background-repeat:no-repeat; background-position:220px center }
+.widget-browse H2.noLink		{ cursor:text }
+.widget-browse H2.open			{ background-image:url(../images/new/arrow-down-666.gif) }
+.widget-browse H2.close			{ background-image:url(../images/new/arrow-right-666.gif) }
+.widget-browse .in				{ background:#FFF url(../images/new/browse-in-top.gif) no-repeat left top; width:235px; margin:0 auto; text-align:left }
+.widget-browse .in .bgBottom	{ background:url(../images/new/browse-in-bottom.gif) no-repeat left bottom; padding:9px 14px }
+.widget-browse .in A			{ display:block; color:#666; font-size:12px; padding:6px 0 }
+.widget-browse .in A.activ		{ padding-left:12px; background:url(../images/new/arrow-ov.gif) left no-repeat}
+.widget-browse .in A.activ,
+.widget-browse .in A:hover			{ font-weight:bold; color:#000 }
+.widget-browse .in UL				{ margin:-2px 0 10px 0 }
+.widget-browse .in LI				{ display:inline; line-height:10px }
+.widget-browse .in LI A				{ padding-left:12px }
+.widget-browse .in LI A.activ,
+.widget-browse .in LI A:hover		{ font-weight:normal; color:#666; font-size:12px; background:url(../images/new/arrow-ov.gif) no-repeat left center }
+.widget-browse .moreCat				{ text-align:left; font-weight:bold; padding:15px 0 10px 20px }
+
+#bannerTopBig		{ background:url(../images/new/banner-top-big.jpg) no-repeat left top; width:678px; height:147px; overflow:hidden; margin-bottom:-5px }
+#bannerTopBig IMG	{ margin:5px }
+
+#bannerTopSmall		{ background:url(../images/new/banner-top-small.jpg) no-repeat left top; width:678px; height:116px; overflow:hidden; margin-bottom:-8px }
+#bannerTopSmall IMG	{ margin:5px }
+
+#content			{ float:right; width:678px }
+
+.widget-boxes H1		{ font-size:15px; color:#666; padding-bottom:10px; background:url(../images/new/line-999.gif) repeat-x left bottom }
+.widget-boxes H1 SPAN	{ float:right }
+.widget-boxes .margin	{ padding:15px }
+
+
+.box3Boxes				{ width:100%; overflow:hidden; background:url(../images/new/3-box-gen.gif) repeat-y left top }
+.box3Boxes .bgTop		{ background:url(./images/new/3-box-top.gif) no-repeat left top }
+.box3Boxes .bgBottom	{ background:url(../images/new/3-box-bottom.gif) no-repeat left bottom }
+
+.box2Boxes				{ width:100%; overflow:hidden; background:url(.../images/new/2-middle-box-gen.gif) repeat-y left top }
+.box2Boxes .bgTop		{ background:url(../images/new/2-top-box-gen.gif) no-repeat left top }
+.box2Boxes .bgBottom	{ background:url(../images/new/2-bottom-box-gen.gif) no-repeat left bottom }
+
+.box1BoxGreySimple				{ width:100%; overflow:hidden; background:url(../images/new/1-box-grey-simple-gen.gif) repeat-y left top }
+.box1BoxGreySimple .bgTop		{ background:url(../images/new/1-box-grey-simple-top.gif) no-repeat left top }
+.box1BoxGreySimple .bgBottom	{ background:url(../images/new/1-box-grey-simple-bottom.gif) no-repeat left bottom }
+
+.box1BoxBlueSimple				{ width:100%; overflow:hidden; background:url(../images/new/background-678-blue.gif) repeat-y left top }
+.box1BoxBlueSimple .bgTop		{ background:url(../images/new/1-box-blue-simple-top.gif) no-repeat left top }
+.box1BoxBlueSimple .bgBottom	{ background:url(../images/new/1-box-blue-simple-bottom.gif) no-repeat left bottom }
+
+.box1BoxBlueSimple img {margin-right:5px;vertical-align:middle;}
+
+
+.box1BoxTurqoise		{ width:100%; overflow:hidden; background:url(../images/new/background-330.gif) repeat-y left top }
+.box1BoxTurqoise .bgTop		{ background:url(../images/new/box-turqoise-top.gif) no-repeat left top }
+.box1BoxTurqoise .bgBottom	{ background:url(../images/new/1-box-332-bottom.gif) no-repeat left bottom }
+.box1BoxTurqoise H2 		{color:#666666;font-size:15px;padding-bottom:10px;padding-top:10px;}
+.box1BoxTurqoise .innerMargin	{ text-align:center;background:transparent url(../images/new/line-999.gif) repeat-x scroll left bottom;padding-bottom:10px; }
+.box1BoxTurqoise .topicLead	{ font-weight:bold;color:#000000; }
+.box1BoxTurqoise h5	{ font-size:11px;font-weight:bold;color:#015BA7;padding-bottom:10px;}
+
+
+.box1BoxRed			{ width:100%; overflow:hidden; background:url(../images/new/background-330.gif) repeat-y left top }
+.box1BoxRed .bgTop		{ background:url(../images/new/box-red-top.gif) no-repeat left top }
+.box1BoxRed .bgBottom		{ background:url(../images/new/1-box-332-bottom.gif) no-repeat left bottom }
+.box1BoxRed H2 			{color:#666666;font-size:15px;padding-bottom:10px;padding-top:10px;}
+.box1BoxRed .innerMargin	{ text-align:center;background:transparent url(../images/new/line-999.gif) repeat-x scroll left bottom;padding-bottom:10px; }
+.box1BoxRed .topicLead		{ font-weight:bold;color:#000000;padding-bottom:10px;}
+.box1BoxRed h5		{ font-size:11px;font-weight:bold;color:#015BA7;padding-bottom:10px;}
+
+.box1BoxGrey				{ width:100%; overflow:hidden; background:url(../images/new/1-box-grey-gen.gif) repeat-y left top }
+.box1BoxGrey .bgTop			{ background:url(../images/new/1-box-grey-top.gif) no-repeat left top }
+.box1BoxGrey .bgBottom		{ background:url(../images/new/1-box-grey-bottom.gif) no-repeat left bottom }
+
+.box1BoxGreen			{ width:100%; overflow:hidden; background:url(../images/new/1-box-green-gen.gif) repeat-y left top }
+.box1BoxGreen .bgTop	{ background:url(../images/new/1-box-green-top.gif) no-repeat left top }
+.box1BoxGreen .bgBottom	{ background:url(../images/new/1-box-green-bottom.gif) no-repeat left bottom }
+
+.box1BoxBlue			{ width:100%; overflow:hidden; background:url(../imgs/_box/1-box-green-gen.gif) repeat-y left top }
+.box1BoxBlue .bgTop	{ background:url(../imgs/_box/1-box-blue-top.gif) no-repeat left top }
+.box1BoxBlue .bgTopGreen{ background:url(../imgs/_box/1-box-green-top.gif) no-repeat left top }
+.box1BoxBlue .bgBottom	{ background:url(../imgs/_box/1-box-green-bottom.gif) no-repeat left bottom }
+
+.box1BoxGreenSmall				{ width:451px; overflow:hidden; background:url(../imgs/_box/2-box-green-gray-gen.gif) repeat-y left top }
+.box1BoxGreenSmall .bgTop		{ background:url(../imgs/_box/2-box-green-gray-top.gif) no-repeat left top }
+.box1BoxGreenSmall .bgBottom	{ background:url(../imgs/_box/2-box-green-gray-bottom.gif) no-repeat left bottom }
+
+.box1BoxGraySmallest			{ width:220px; overflow:hidden; background:url(../imgs/_box/2-box-green-gray-gen.gif) repeat-y right top }
+.box1BoxGraySmallest .bgTop		{ background:url(../imgs/_box/2-box-green-gray-top.gif) no-repeat right top }
+.box1BoxGraySmallest .bgBottom	{ background:url(../imgs/_box/2-box-green-gray-bottom.gif) no-repeat right bottom }
+
+.box2BoxGreenGray			{ width:100%; overflow:hidden; background:url(../imgs/_box/2-box-green-gray-gen.gif) repeat-y left top }
+.box2BoxGreenGray .bgTop	{ background:url(../imgs/_box/2-box-green-gray-top.gif) no-repeat left top }
+.box2BoxGreenGray .bgBottom	{ background:url(../imgs/_box/2-box-green-gray-bottom.gif) no-repeat left bottom }
+
+.box2BoxGrayBlue			{ width:100%; overflow:hidden; background:url(../imgs/_box/2-box-gray-blue-gen.gif) repeat-y left top }
+.box2BoxGrayBlue .bgTop		{ background:url(../imgs/_box/2-box-gray-blue-top.gif) no-repeat left top }
+.box2BoxGrayBlue .bgBottom	{ background:url(../imgs/_box/2-box-gray-blue-bottom.gif) no-repeat left bottom }
+
+.box1BoxGreenBorderFull			{ width:680px; overflow:hidden; background:url(../imgs/_box/1-box-green-full-border-gen.gif) repeat-y left top }
+.box1BoxGreenBorderFull	.bgTop		{ background:url(../imgs/_box/1-box-green-full-border-top.gif) no-repeat left top }
+.box1BoxGreenBorderFull	.bgBottom	{ background:url(../imgs/_box/1-box-green-full-border-bottom.gif) no-repeat left bottom; padding-bottom:40px;}
+
+.box1BoxGreenBorder				{ width:663px; overflow:hidden; background:url(../imgs/_box/1-box-green-border-gen.gif) repeat-y left top }
+.box1BoxGreenBorder .top		{ background:url(../imgs/_box/1-box-green-border-top.gif) no-repeat left top }
+.box1BoxGreenBorder .bottom		{ background:url(../imgs/_box/1-box-green-border-bottom.gif) no-repeat left bottom }
+.box1BoxGreenBorder .margin		{ padding:15px !important }
+
+#questions .margin				{ width:100%; padding-bottom:38px }
+#questions .new,
+#questions .bestPractices,
+#questions .otherUsers			{ width:194px; float:left; margin-right:35px }
+#questions .otherUsers			{ margin-right:0 }
+#questions H1					{ background-repeat:no-repeat; background-position:left top; padding:5px 0 15px 70px; margin-bottom:13px }
+#questions .new H1				{ background-image:url(../imgs/_icons/box-new.gif) }
+#questions .bestPractices H1	{ background-image:url(../imgs/_icons/box-best-practices.gif); padding-left:50px }
+#questions .otherUsers H1		{ background-image:url(../imgs/_icons/box-other-users.gif) }
+#questions .more				{ display:block; border-top:1px #CECECE solid; padding:10px 0 0 15px; width:205px; margin-left:-15px; position:absolute }
+#questions UL					{ padding-bottom:13px }
+#questions LI					{ padding-bottom:3px }
+#questions LI STRONG			{ display:block; padding-bottom:2px }
+#questions LI A					{ display:block; background:url(../imgs/_icons/bullet-1.gif) no-repeat left center; padding-left:13px; color:#015ba7 }
+#questions LI A:hover			{ color:#000 }
+#questions .forceCol			{ width:310px; margin-right:28px;}
+#questions .forceCol h1			{ padding:0px;background:transparent url(../imgs/_efect/line-999.gif) repeat-x scroll left bottom; padding-bottom:10px; color:#414141; font-size:12px;}
+#questions .forceCol h1 strong	{ font-size:14px; color:#000000; font-weight:normal}
+#questions .forceCol p.img		{ text-align:center; margin-bottom:-20px}
+
+
+
+#featuredContent .margin			{ padding:15px 0; width:100% }
+#featuredContent .bgMiddle			{ background:url(../imgs/bg-ccc.gif) repeat-y 327px top; width:100%; overflow:hidden }
+#featuredContent H1					{ margin:0 15px }
+#featuredContent H1 SPAN STRONG		{ background:url(../imgs/_icons/checked.gif) no-repeat left center; padding-left:16px; color:#015ba7; font-size:10px; font-weight:normal }
+#featuredContent H1 SPAN IMG		{ vertical-align:middle; margin-left:10px }
+#featuredContent H3					{ padding:12px 15px 10px 15px; font-size:11px; font-weight:bold }
+#featuredContent .bottom			{ clear:both; border-top:1px #d2d2d2 solid; padding-top:12px; text-align:center }
+#featuredContent .bottom A			{ color:#015ba7 }
+#featuredContent .bottom A:hover	{ color:#000 }
+#featuredContent DIV.floatLeft		{ width:326px; padding-bottom:10px; margin-left:1px }
+#featuredContent DIV.floatRight		{ width:349px; padding-bottom:10px; margin-right:1px }
+#featuredContent .item				{ padding:10px 15px; overflow:hidden }
+#featuredContent .voting			{ width:41px; background-repeat:no-repeat; background-position:left top; font-size:10px; letter-spacing:-1px; color:#9f9d9d; text-align:center; text-transform:uppercase }
+#featuredContent .voting STRONG		{ display:block; font-size:12px; color:#21733b }
+#featuredContent .vote A			{ display:block; width:100%; height:38px; background:url(../imgs/_icons/vote.gif) no-repeat left top; margin-bottom:5px }
+#featuredContent .vote A:hover		{ background-image:url(../imgs/_icons/voted.gif) }
+#featuredContent .voted				{ background-image:url(../imgs/_icons/voted.gif); padding-top:43px }
+#featuredContent .text				{ float:right; width:240px }
+#featuredContent .floatRight .text	{ width:262px }
+#featuredContent .text H2			{ font-size:11px; padding-bottom:2px; font-weight:bold }
+#featuredContent .text H2 A			{ color:#015ba7 }
+#featuredContent .text H2 A:hover	{ color:#000 }
+#featuredContent .text H2 A SPAN	{ color:#999; font-size:11px; font-weight:normal }
+#featuredContent .text SMALL		{ display:block; background:url(../imgs/_icons/author.gif) no-repeat left center; color:#999; padding:0 0 2px 15px; font-size:11px }
+#featuredContent H4					{ font-size:10px; color:#72993a; font-weight:bold; padding-bottom:1px }
+#featuredContent .itemOv			{ background:#f8f3dd }
+#featuredContent .itemOv .text		{ float:none; width:auto; line-height:16px }
+#featuredContent .itemOv H2,
+#featuredContent .itemOv H4			{ padding-bottom:4px }
+
+.topTitle							{ background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; width:650px; overflow:hidden; margin:0 15px; position:relative }
+
+#featuredPopularContent .margin							{ padding:15px 0 0 0; width:100% }
+#featuredPopularContent .bgMiddle						{ background:url(../imgs/bg-ccc.gif) repeat-y 310px top; width:650px; overflow:hidden; padding:15px 0 5px 0; margin:0 15px }
+#featuredPopularContent H3								{ padding:0 0 10px 0; font-weight:normal; color:#666666; font-size:15px }
+#featuredPopularContent DIV.floatLeft,
+#featuredPopularContent H3.floatLeft					{ width:260px }
+#featuredPopularContent DIV.floatRight,
+#featuredPopularContent H3.floatRight					{ width:320px }
+#featuredPopularContent DIV.floatLeft H4 A				{ font-size:12px; color:#015ba7; font-weight:normal }
+#featuredPopularContent DIV.floatLeft H4 A:hover		{ color:#000 }
+#featuredPopularContent DIV.floatLeft H4 SMALL			{ font-size:11px; color:#999; font-weight:normal }
+#featuredPopularContent DIV.floatLeft P					{ line-height:16px; padding:8px 0 10px 0 }
+#featuredPopularContent DIV.floatLeft .picture					{ position:relative; width:100%; overflow:hidden }
+#featuredPopularContent DIV.floatLeft .picture A.linkView		{ position:absolute; right:0; bottom:10px; width:100px; color:#015ba7; font-weight:bold }
+#featuredPopularContent DIV.floatLeft .picture A.linkView:hover	{ color:#000 }
+#featuredPopularContent DIV.floatLeft .picture IMG		{ border:1px #d6d5d4 solid }
+#featuredPopularContent DIV.floatRight LI				{ width:100%; overflow:hidden; padding:6px 0; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#featuredPopularContent DIV.floatRight LI.last			{ background:none }
+#featuredPopularContent DIV.floatRight LI A				{ color:#015ba7; width:230px }
+#featuredPopularContent DIV.floatRight LI A:hover		{ color:#000 }
+#featuredPopularContent DIV.floatRight LI SPAN			{ color:#81ac42; font-size:10px; text-transform:uppercase; float:right; width:90px }
+#featuredPopularContent DIV.floatRight LI SPAN B		{ color:#9f9d9d; font-weight:normal }
+
+H3.paidTraining			{ background:url(../imgs/_icons/paid-training.gif) no-repeat left top; padding-left:45px !important; width:275px !important; line-height:32px }
+H3.featuredTraining		{ padding-top:6px !important }
+DIV.paidTraining H4		{ font-weight:normal }
+DIV.paidTraining P		{ line-height:16px; padding:8px 0 10px 0 }
+DIV.paidTraining LI		{ width:auto !important; border-bottom:none !important; padding:2px 0 2px 10px !important; background:url(../imgs/_icons/bullet-1.gif) no-repeat left 8px !important }
+
+#blogs H2				{ font-size:15px; padding-bottom:6px }
+#blogs DIV.floatLeft	{ width:215px }
+#blogs UL.floatRight	{ width:380px }
+#blogs LI				{ width:100%; overflow:hidden; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; padding-bottom:10px; margin-bottom:12px }
+#blogs LI LI			{ color:#999; background:url(../imgs/_icons/arrow-ov.gif) no-repeat left 13px; padding:8px 0 0 14px; margin:0 }
+#blogs LI.last			{ background:none; margin-bottom:0; padding-bottom:0 }
+#blogs UL UL			{ margin-top:16px }
+#blogs .bottom			{ width:100%; overflow:hidden; clear:both; padding-top:10px; font-weight:bold }
+#blogs .bottom IMG		{ float:right }
+
+#featuredArticle .margin			{ padding:15px 0 0 0; width:100% }
+#featuredArticle H1					{ margin:0 15px }
+#featuredArticle .bgMiddle			{ width:100%; overflow:hidden; background:url(../imgs/bg-ccc.gif) repeat-y 454px top }
+#featuredArticle DIV.floatLeft		{ width:432px; margin-left:1px; padding:15px 0 15px 15px }
+#featuredArticle DIV.floatRight		{ width:193px; margin-right:1px; padding:15px 15px 15px 0 }
+#featuredArticle H2,
+#featuredArticle H2 A				{ color:#015ba7; font-weight:bold; padding-bottom:2px }
+#featuredArticle H2 A:hover			{ color:#000 }
+#featuredArticle H2 SPAN,
+#featuredArticle H2 A SPAN			{ color:#999; font-weight:normal }
+#featuredArticle .floatLeft H2		{ font-size:14px }
+#featuredArticle .floatLeft H2 A	{ font-weight:normal }
+#featuredArticle .floatLeft H2 SPAN	{ font-size:11px }
+#featuredArticle .floatLeft P		{ width:254px; line-height:16px }
+#featuredArticle .floatLeft DIV		{ color:#99908c; padding:8px 0 14px 0 }
+#featuredArticle .floatRight H2		{ font-size:11px }
+#featuredArticle .floatRight .border{ background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; padding-bottom:15px; margin-bottom:15px }
+
+#marketingPractices .margin				{ overflow:hidden; width:100%; padding-left:0; padding-right:0 }
+#marketingPractices DIV.floatLeft		{ width:418px; margin-left:1px; background:url(../imgs/bg-ccc.gif) repeat-y 224px top; padding-left:15px }
+#marketingPractices DIV.floatRight		{ width:190px; margin-right:1px; padding-right:15px }
+#marketingPractices H1					{ background-color:#FFF }
+#marketingPractices H2					{ font-size:11px; color:#015ba7; font-weight:bold; padding-bottom:2px }
+#marketingPractices H2 A				{ font-weight:normal; color:#015ba7 }
+#marketingPractices H2 A:hover			{ color:#000 }
+#marketingPractices H2 SPAN				{ color:#999; font-size:11px; font-weight:normal }
+#marketingPractices .border				{ background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; padding-bottom:16px }
+#marketingPractices DIV.floatRight DIV	{ padding-top:16px }
+#marketingPractices .icon1				{ background-image:url(../imgs/_icons/marketing-1.gif) }
+#marketingPractices .icon2				{ background-image:url(../imgs/_icons/marketing-2.gif) }
+#marketingPractices .icon3				{ background-image:url(../imgs/_icons/marketing-3.gif) }
+#marketingPractices .icon4				{ background-image:url(../imgs/_icons/marketing-4.gif) }
+#marketingPractices .icon5				{ background-image:url(../imgs/_icons/marketing-5.gif) }
+#marketingPractices .icon6				{ background-image:url(../imgs/_icons/marketing-6.gif) }
+#marketingPractices DIV.floatLeft UL			{ width:195px; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; padding:5px 0 8px 0 }
+#marketingPractices DIV.floatLeft UL.noBorder	{ background:none }
+#marketingPractices DIV.floatLeft LI H2			{ background-repeat:no-repeat; background-position:left center; padding:10px 0 5px 25px }
+#marketingPractices DIV.floatLeft LI			{ padding-bottom:3px; line-height:14px }
+#marketingPractices DIV.floatLeft LI A			{ display:block; background:url(../imgs/_icons/bullet-1.gif) no-repeat 20px center; padding-left:30px; color:#015ba7 }
+#marketingPractices DIV.floatLeft LI A:hover	{ color:#000 }
+#marketingPractices DIV.floatLeft .bottom		{ padding-top:10px; background:#FFF; border-top:1px #CCC solid }
+#marketingPractices DIV.floatRight H1			{ background-color:transparent }
+#marketingPractices DIV.floatRight UL			{ padding-top:15px }
+#marketingPractices DIV.floatRight LI			{ padding-bottom:10px; position:relative }
+#marketingPractices DIV.floatRight LI A			{ color:#015ba7 }
+#marketingPractices DIV.floatRight LI A:hover	{ color:#000 }
+#marketingPractices DIV.floatRight LI A IMG		{ vertical-align:middle; margin-right:5px }
+.roleBased LI A		{ padding-left:10px !important; background-position:left 6px !important }
+.roleBased LI H2	{ padding-left:0 !important }
+
+.tooltip			{ width:321px; padding:0 !important }
+.tooltip .top		{ background:url(../imgs/_box/tooltip-top.png) no-repeat left top; height:21px; padding:0 !important; font-size:1px }
+.tooltip .bottom	{ background:url(../imgs/_box/tooltip-bottom.png) no-repeat left top; height:15px; padding:0 !important; font-size:1px }
+.tooltip .margin	{ background:url(../imgs/_box/tooltip-gen.png) repeat-y left top; padding:10px 25px !important; width:271px !important }
+.tooltip H2			{ padding-bottom:10px; font-size:15px; color:#666 }
+.tooltip P			{ color:#333 }
+
+#userGroup H1,
+#userGroupMaps H1				{ margin-bottom:10px }
+#userGroupMaps .content			{ width:678px; margin:0 -15px; overflow:hidden }
+#userGroupMaps .content A		{ float:left; text-align:center; margin:0 23px 15px 23px }
+#userGroupMaps .content A IMG	{ display:block }
+
+.left421				{ width:421px }
+.right220				{ width:220px }
+
+#topTags .content		{ padding:10px 0 }
+#topTags .bottom		{ font-weight:bold; border-top:1px #CCC solid; padding-top:8px }
+
+#topTaggers .content	{ padding:10px 0 5px 0 }
+#topTaggers  LI			{ padding-bottom:5px }
+#topTaggers  LI SPAN	{ float:right; color:#999 }
+#topTaggers .bottom		{ font-weight:bold; border-top:1px #CCC solid; padding-top:8px }
+
+#discussions UL			{ background:url(../imgs/bg-ccc.gif) repeat-y 50% top; width:100%; overflow:hidden }
+#discussions UL LI		{ width:47%; height: 100px; overflow:hidden; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; padding:15px 0 }
+#discussions UL LI.last	{ background:none }
+#discussions UL .nr		{ float:left; background:url(../imgs/_icons/comments.gif) no-repeat left top; width:26px; height:22px; line-height:16px; text-align:center; color:#FFF }
+#discussions UL H2		{ font-size:11px; font-weight:bold; padding-top:2px ; height: 30px; overflow: hidden;}
+#discussions UL P		{ color:#999; padding:2px 0 6px 0 ; height:37px; margin-bottom: 3px; overflow-y:hidden}
+#discussions UL H3		{ font-size:11px; font-weight:normal }
+#discussions UL .text	{ float:right; width:164px }
+#discussions .bottom	{ font-weight:bold; border-top:1px #CCC solid; padding-top:10px }
+
+#discussionBoards .bottom	{ font-weight:bold; border-top:1px #CCC solid; padding-top:10px }
+#discussionBoards LI		{ padding:10px 0; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; width:100%; overflow:hidden }
+#discussionBoards LI.last	{ background:none }
+#discussionBoards UL .nr	{ float:right; background:url(../imgs/_icons/msgs.gif) no-repeat left top; width:46px; height:30px; padding-top:2px; color:#FFF; text-align:center }
+#discussionBoards UL H2		{ font-size:11px; font-weight:bold; padding-bottom:6px; width:360px }
+#discussionBoards UL P		{ color:#999; padding-bottom:5px; width:360px }
+#discussionBoards UL SPAN	{ display:block; color:#999; width:360px }
+
+#gettingStarted .margin			{ padding:15px 8px }
+#gettingStarted .callendarWrap	{ float:right; margin-left:30px }
+#gettingStarted .text P			{ padding:30px 0 15px 0; margin-left:10px }
+#gettingStarted .text P.tip		{ background:#fef4de; padding-top:15px; padding-left:15px }
+#gettingStarted .picture		{ margin:10px 10px 0px 10px}
+#gettingStarted .col-1			{ width:505px;}
+#gettingStarted .printlink		{ padding:5px; padding-left:20px}
+
+.callendarWrap						{ width:316px }
+.callendarWrap H1					{ font-size:14px; color:#444; font-weight:bold; background:none }
+.callendarWrap .bg					{ border-left:1px #CCC solid; width:305px; padding:10px 0 10px 10px; overflow:hidden; background:#797878; position:relative }
+.callendarWrap .sendReminders		{ position:absolute; display:block; right:0; bottom:22px; width:148px; height:55px; background:url(../imgs/_icons/button-send-reminders.gif) no-repeat left top; color:#EEE }
+.callendarWrap .sendReminders SPAN	{ padding:13px 0 0 45px; display:block }
+.callendarWrap .sendReminders:hover { color:#FFF }
+.callendarWrap .info				{ float:right; width:138px; padding-top:15px }
+.callendarWrap H2					{ font-size:14px; color:#f7ab00 }
+
+.steps			{ padding-top:3px;}
+.steps H2		{ background-color:#e7edf1; background-repeat:no-repeat; font-size:12px;  color:#015ba7; padding:7px 0 7px 7px; margin-top:5px; cursor:pointer;border-bottom:3px solid #dfe6ec; }
+.steps H3		{ background-color:#fff; background-repeat:no-repeat; font-size:12px;  color:#015ba7; padding:7px 0 7px 2px; margin-top:5px; cursor:pointer;border-top:3px solid #dfe6ec; margin-left:10px;}
+.steps P		{ color:#444; padding:10px 0; margin:0 5px 0 10px; line-height:17px; }
+.steps UL		{ padding-bottom:10px }
+.steps UL LI	{ background:url(../imgs/_icons/bullet-1.gif) no-repeat left 5px; padding-left:15px; margin-left:30px }
+.steps OL LI	{ background:url(../imgs/_icons/grey-check.gif) no-repeat left 4px; padding-left:15px; margin-left:30px; margin-bottom:5px; }
+//.steps H2.open	{ background-image:url(../imgs/_icons/arrow-down-acb.gif); background-position:615px center }
+//.steps H2.close	{ background-image:url(../imgs/_icons/arrow-right-acb.gif); background-position:618px center }
+
+.steps span		{ font-size:14px; color:#666;}
+
+.tabbedBoxGreen .tabbedMenu			{ width:100%; overflow:hidden; font-size:13px; margin-left:7px }
+
+
+
+.tabbedBoxGreen .tabbedMenu LI		{ display:inline; float:left; line-height:29px; margin-right:1px }
+.tabbedBoxGreen .tabbedMenu LI A		{ background:url(../imgs/_box/tabbed-menu-left.gif) no-repeat left top; color:#333; float:left }
+.tabbedBoxGreen .tabbedMenu LI A SPAN	{ background:url(../imgs/_box/tabbed-menu-right.gif) no-repeat right top; padding:6px 12px }
+.tabbedBoxGreen .tabbedMenu LI A.activ,
+.tabbedBoxGreen .tabbedMenu LI A:hover		{ background-position:left -29px; color:#FFF }
+.tabbedBoxGreen .tabbedMenu LI A.activ SPAN,
+.tabbedBoxGreen .tabbedMenu LI A:hover SPAN	{ background-position:right -29px }
+
+.tabbedBoxGreen .tabbedMenu .navPrint	{ background:none;}
+.tabbedBoxGreen .tabbedMenu .navPrint A:hover	{ color:#000;}
+
+.tabbedBoxGreen .margin				{ padding-top:3px }
+.tabbedBoxGreen .categories			{ background:#f0f0f0 url(../imgs/_box/1-box-green-full-border-top-m.gif) no-repeat left top; margin:0 -12px; padding:10px 12px; font-size:12px; color:#333 }
+.tabbedBoxGreen .categories A.activ,
+.tabbedBoxGreen .categories A:hover	{ color:#333; font-weight:bold }
+.tabbedBoxGreen .content UL LI		{ padding:20px 0; margin:0 10px; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; width:628px; overflow:hidden }
+.tabbedBoxGreen .content UL LI.last	{ background:none; padding-bottom:10px }
+.tabbedBoxGreen .content UL LI IMG	{ margin-right:20px }
+.tabbedBoxGreen .content UL LI H2	{ font-size:12px; padding:3px 0 9px 0 }
+
+.pagination				{ font-size:12px; width:100%; overflow:hidden }
+.pagination DIV			{ color:#333; float:right; display:inline }
+.pagination DIV STRONG	{ padding-left:45px; font-weight:normal }
+.pagination DIV STRONG A{ font-weight:bold }
+
+#postIdea .margin DIV		{ text-align:center; margin-bottom:20px; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#postIdea .margin DIV IMG	{ margin:10px auto 15px auto }
+#postIdea FORM .submit		{ float:right; background:url(../imgs/_icons/submit-post-idea.gif) no-repeat left top; width:118px; height:41px; border:none; cursor:pointer; margin-top:-1px }
+#postIdea FORM .text		{ font-size:18px; color:#999; text-transform:uppercase; border-color:#bdbcbd; background:url(../imgs/_icons/gradient-1.gif) repeat-x left top; padding:6px 10px; width:485px }
+
+#popularIdeas UL.content LI			{ padding:12px 0; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#popularIdeas UL.content H2			{ font-size:12px; padding-bottom:4px }
+#popularIdeas UL.content SMALL		{ font-size:11px; color:#999; display:block; padding-bottom:8px }
+#popularIdeas UL.content P			{ color:#666 }
+#popularIdeas UL.content .boxPromote{ margin:0 0 10px 60px }
+#popularIdeas .bottom				{ margin-top:65px }
+#popularIdeas .bottom,
+#latestIdeas .bottom			{ font-weight:bold; border-top:1px #CCC solid; padding-top:8px }
+
+#latestIdeas UL.content LI		{ padding:8px 0; color:#666 }
+#latestIdeas UL.content LI H2	{ font-size:11px }
+
+#ideaExchangeCat LI				{ padding:10px 0; margin-bottom:10px; width:100%; overflow:hidden; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#ideaExchangeCat LI H2			{ font-size:14px }
+#ideaExchangeCat LI SMALL		{ color:#999; font-size:10px }
+#ideaExchangeCat LI .data		{ font-size:11px }
+#ideaExchangeCat LI .text		{ padding:6px 0 12px 0; color:#666 }
+#ideaExchangeCat LI .border		{ margin-top:12px }
+#ideaExchangeCat LI .boxPromote	{ margin:0 0 10px 10px }
+#ideaExchangeCat .pagination	{ border-top:1px #CCC solid; padding-top:10px; margin-top:-11px }
+
+#blogPost .text				{ padding-top:10px; color:#414141; width:100%; overflow:hidden }
+#blogPost .text .bottom		{ margin-top:10px; border-top:1px #d2d2d2 solid; padding-top:10px; color:#666 }
+#blogPost .text .bottom DIV	{ float:right; color:#015ba7 }
+
+.titlePost			{ width:100%; overflow:hidden; padding-top:5px }
+.titlePost .boxVote	{ margin-top:-3px }
+
+.boxVote			{ background:url(../imgs/_box/vote-left.gif) no-repeat left top; display:inline }
+.boxVote DIV		{ background:url(../imgs/_box/vote-right.gif) no-repeat right top; line-height:23px; color:#99908c; padding:0 5px 0 2px }
+
+.boxPoints			{ background:url(../imgs/_box/vote-points-left.gif) no-repeat left top; display:inline }
+.boxPoints DIV		{ background:url(../imgs/_box/vote-points-right.gif) no-repeat right top; line-height:23px; color:#99908c; padding:0 5px 0 2px }
+
+#comments UL					{ margin-bottom:40px }
+#comments LI					{ width:100%; overflow:hidden; padding:12px 0; border-bottom:1px #CCC solid }
+#comments LI .floatLeft			{ width:90px; overflow:hidden; color:#999 }
+#comments LI .floatLeft A		{ display:block; padding-bottom:2px }
+#comments LI .floatRight		{ width:328px; color:#414141 }
+#comments FORM H3				{ font-size:15px; color:#666; font-weight:normal; padding-bottom:8px; margin-bottom:8px; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#comments FORM H3 SMALL			{ font-size:11px; color:#414141 }
+#comments FORM TEXTAREA			{ border-color:#bdbcbd; background:#DDD; height:100px }
+#comments FORM .info			{ margin:8px 0 10px 0; background:#fff7d9; border:1px #ffe688 solid; color:#999; font-weight:bold; padding:7px }
+#comments FORM .submit			{ text-align:right }
+#comments FORM .submit INPUT	{ width:110px; height:24px; background:url(../imgs/_icons/submit-post-comment.gif) no-repeat left top; border:none; cursor:pointer }
+
+#recentVotes LI		{ color:#999; padding:3px 0 }
+#recentVotes UL		{ margin-top:8px }
+
+#blogArchive LI				{ width:100%; overflow:hidden; padding:25px 0; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom; color:#414141 }
+#blogArchive LI.last		{ background:none }
+#blogArchive LI H2			{ font-size:14px; padding-bottom:2px }
+#blogArchive LI SMALL		{ display:block; color:#999; margin-bottom:10px }
+#blogArchive LI .noBorderIMG,
+#blogArchive LI .border		{ margin-right:10px }
+#blogArchive LI .text		{ line-height:16px }
+#blogArchive LI .bottomLinks{ width:100%; text-align:right; clear:both; padding:15px 0 0 0 }
+#blogArchive .bottom		{ font-weight:bold; padding-top:10px; border-top:1px #CCC solid }
+#blogArchive .bottom IMG	{ float:right }
+
+#footer				{ background:#89817d url(../imgs/bg-footer.gif) no-repeat left top; padding:40px 0; color:#f3f3ec; text-align:center }
+#footer .margin		{ width:920px; margin:0 auto; text-align:left }
+#footer A			{ color:#f3f3ec }
+#footer A:hover		{ color:#FFF }
+#footer .band2		{ border-top:1px #c4c0be dotted; border-bottom:1px #c4c0be dotted; font-size:10px; width:100%; overflow:hidden; padding:15px 0; margin:10px 0 }
+#footer .band2 UL	{ float:left; width:170px; margin-right:80px }
+#footer .band3		{ text-align:center }
+
+/***** new css by Vikram Dhiman (bluewhalelabs) **************************/
+
+#bestpractcategory h2			{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:15px; color:#000000; background:#edf3f9; padding:5px 0 5px 14px; margin-top:10px;}
+#bestpractcategory .text		{ padding:15px 0 15px 0px; margin-left:13px }
+#bestpractcategory .text p		{ line-height:15px; padding:10px 0 0 0;}
+#bestpractcategory .text p.Divider		{ font-size:15px; color:#666; padding:0px; margin-bottom:14px; background:url(../imgs/_efect/line-999.gif) repeat-x left bottom }
+#bestpractcategory .keyLINKS{background:#f8f8f8 url(../imgs/_efect/line-999.gif) repeat-x left top;}
+#bestpractcategory .keyLINKS ul{padding:18px;}
+#bestpractcategory .keyLINKS ul li{float:left; width:180px}
+#bestpractcategory .keyLINKS .Divider		{  background:url(../imgs/_efect/line-999.gif) repeat-x left bottom;  }
+#bestpractcategory .heading{padding:0px 0px 8px 3px;}
+
+#communityinfo 		{margin-bottom:10px;}
+#communityinfo LI 	{background:url(../imgs/_icons/bullet-1.gif) left center no-repeat; padding:0 0 0 15px; color:#999999; margin:5px 0px 5px 0px;}
+#communityinfo LI A	{font-weight:bold}	
+#communityinfo .bottom			{ clear:both; border-top:1px #d2d2d2 solid; padding-top:10px;  }
+#communityinfo .search_box		{margin:10px 0;background:url(../imgs/_efect/line-999.gif) repeat-x left top; padding-top:10px }
+#communityinfo .search_box h4	{ color:#015ba7; font-size:11px; font-weight:bold; margin-left:15px; margin-bottom:8px;}
+#communityinfo .search_box form	{ background:#f3f3f3; padding:5px;}
+#communityinfo .search_box .txtfield{border:none; background:#FFFFFF; width:360px; padding:3px; color:#999999;}
+#communityinfo .search_box  .button{border:none; position:absolute; margin-left:5px; margin-top:-2px;}
+
+#usergroups .content	{ padding:10px 0 }
+#usergroups .content select{margin-top:5px; width:180px}
+#usergroups .bottom		{ font-weight:bold; border-top:1px #CCC solid; padding-top:8px }
+#usergroups .content ul {margin:8px 0 0px 0px;}
+#usergroups .content ul li{list-style:none; padding:8px 0;background:url(../imgs/_efect/line-999.gif) repeat-x left top; color:#666666}
+
+.box1BoxBlue .role UL{padding:13px;} 
+.box1BoxBlue .role UL LI{background:url(../imgs/_icons/arrow-orange.gif) left 8px no-repeat; margin-bottom:10px; padding-left:14px;}
+.box1BoxBlue .role UL LI a{font-size:12px; font-weight:bold;  line-height:20px;}
+
+#ideaexchange  ol.welcome{
+background:transparent url(../imgs/images/idea-exchange-top.jpg) no-repeat scroll center top;
+display:block;
+height:140px;
+margin-bottom:10px;
+padding-left:10px;
+width:640px;
+}
+#ideaexchange  ol.welcome li a{
+display:block;
+float:left;
+height:130px;
+margin-right:50px;
+overflow-x:hidden;
+overflow-y:hidden;
+text-indent:-1000px;
+width:120px;
+}
+#ideaexchange  ol.welcome li.step_four a{
+margin: 0 0 0 0;
+}
+
+#ideaexchange div#postIdea .bgBottom{height:270px;}
+#communityinfo .bgBottom{height:290px;}
+
+.margin div#idea_search{background: none !important; margin: 0 15px 0 0 !important; float: left}
+.margin div#idea_search form div{
+background: none !important;
+margin-bottom: 0 !important;
+vertical-align: middle;
+}
+#idea_search form input, input.gsc-input{
+background: url('../imgs/_icons/gradient-1.gif') repeat-x !important;
+border-color: #BDBCBD;
+color: #999;
+font-size: 18px;
+margin-right: 5px;
+padding: 7px;
+height: 25px;
+width:300px;
+}
+#idea_search form input#idea_search_submit, input.gsc-search-button{
+border: none;
+background: url('../imgs/_icons/search-button.gif') no-repeat !important;
+padding: 0px;
+height:41px;
+text-indent:-1000px;
+width:84px;	
+position: relative;
+top: 3px;
+}
+#ideaexchange #postIdea div.post_idea{background: none; margin-bottom: 0px; clear: right; float: right;}
+#ideaexchange #postIdea .margin DIV IMG{
+margin: 0 45px 0 0;}
+
+
+div.cse-overlay, div.gs-visibleUrl-long{font: 11px Verdana,Arial,Helvetica,sans-serif; color: #666; line-height: 13.75px}
+div.cse-overlay a.gs-title{font: 12px Verdana,Arial,Helvetica,sans-serif; color: #236BAD; line-height: 15px;} 
+div.cse-overlay div.gs-title{margin-bottom: 5px;}
+div.gs-visibleUrl-long{display: none}
+td.gsc-input, td.gsc-search-button, div.gsc-resultsbox-visible{padding: 10px;}
+form.gsc-search-box{width: 450px !important;}
+div.gsc-result{margin-bottom: 20px;}
+
+.boxPromote .iconPromote{font-weight: bold;}
+.boxPromote strong, .boxPromote .demote{display: block;}
+.boxPromote .demote{margin-top: 4px; background: #fff; color: #666;}
+
+
+#content .entry .vote{
+background-image:url(../imgs/_box/vote-left.gif);
+background-position:0 0;
+background-repeat:no-repeat;
+float:right;
+height:23px;
+}
+#content .entry .vote a{
+background-color:transparent;
+background-image:url(../imgs/_icons/vote-up.gif);
+background-position:5px 5px;
+background-repeat:no-repeat;
+display:block;
+float:left;
+margin-bottom:0;
+margin-right:5px;
+padding-left:25px;
+padding-top:5px;
+}
+#content .entry .vote span{
+background-color:transparent;
+background-image:url(../imgs/_box/vote-right.gif);
+background-position:right top;
+background-repeat:no-repeat;
+display:block;
+float:right;
+height:23px;
+overflow-x:hidden;
+overflow-y:hidden;
+text-indent:-1000px;
+width:20px;
+}
+
+
+
+.ui-datepicker-next{float: right}
+.ui-datepicker-prev{float: left}
+.ui-datepicker-one-month table td{padding: 2px; font-size: 11px}
+
+
+//spring09

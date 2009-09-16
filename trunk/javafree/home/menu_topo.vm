@@ -1,0 +1,48 @@
+##parse("home/js/js_ads_uol.vm")
+
+		<div id="top">
+			##<script language="JavaScript1.1" type="text/javascript" src=http://www.submarino.com.br/afiliados/get_banner.asp?tipo=full&franq=261711></script>
+			##<iframe name='ifrmSuba' width=470 height=70 frameborder=no scrolling=no src='http://www.javafree.org/banners/header.html'></iframe>
+			
+			
+			##parse("home/anuncios/uol-menu-topo.vm")
+
+			#displayBanner($action.loadLocationBanner(3))
+
+
+			##set($guests = ${application.onlineGuests})
+			##set($registeredUsers = ${application.onlineRegisteredUsers})
+			##set($totalOnlineUsersCount = ${guests.size()} + ${registeredUsers.size()})
+			
+			<p>
+			#if($userLogged.user.toString() != "")
+				<a href="${basePath}/show_edit_profile.jbb">Alterar minhas Informações</a>
+				<a href="${basePath}/logout.jbb">Logout em $userLogged.user</a>
+			#else
+				<a href="${basePath}/login.jbb">Login</a>
+				<a href="${basePath}/new_member.jbb">Registre-se</a>
+			#end
+				##<a href="#"><b> $vh.formatDigitValue($totalOnlineUsersCount.toString())</b> usuários online</a>
+			</p>
+
+
+		</div>
+	
+		<div id="logo">
+			<a href="${basePath}/index.jf"><img src="$basePath/home/images/logo.gif"></a>
+		</div>
+
+		<ul id="menu">
+			<li><a class="current" href="$basePath/index.jf">Home</a></li>
+			<li><a href="${basePath}/noticias/">Notícias</a></li>
+			<li><a href="${basePath}/artigos/">Artigos</a></li>
+			<li><a href="$basePath/index">Fórum</a></li>
+			<li><a href="$basePath/wikies/">Wiki</a></li>
+			<li><a href="${basePath}/customSearch.jbb">Busca</a></li>
+			<li><a href="$basePath/sobre.jbb">Sobre</a></li>
+			<li><a href="${basePath}/enviarNoticia">Enviar Notícia</a></li>
+			<li><a href="${basePath}/contribuir.jbb">Contribuir</a></li>
+			<li><a href="http://www.javafree.org/topic-850964-Iniciando-em-Java.html">O que é Java?</a></li>
+			
+		</ul>
+		

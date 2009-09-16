@@ -1,0 +1,14 @@
+#bean("org.javabb.infra.VelocityHelper" $vh)
+
+<div class="caixa-nav">
+<h1 id="h1-javaforum"><span>JavaForum</span></h1>
+<ul class="bullet-r">
+
+#foreach($topic in $topics)
+	<li><a href="http://www.javafree.org/javabb/viewtopic.jbb?page=${topic.pageLastPost}&t=${topic.id}#lastPost" title="${topic.titleTopic} - Última mensagem por ${topic.lastPostUserName}" target="_top">$vh.substring($topic.titleTopic, 0, 23)...</a></li>
+#end
+
+<BR>
+<center><a href="http://www.javafree.org/javabb/forum.jbb" target="_top">Índice do Fórum</a><br><br></center></ul> 
+
+</div>

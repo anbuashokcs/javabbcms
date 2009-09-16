@@ -1,0 +1,83 @@
+#set($headerTitle = "Contribuir")
+#parse("home/header.vm")
+<style>
+#main img { float: none; border: 0px; padding: none; margin: none none 5none none; }
+</style>
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+			<h5><a href="$basePath/">Home</a> > <a href="$basePath/contribuir.jbb">Contribuir</a> > </h5><br>
+			<h2>Porque Contribuir?</h2>
+			<p>
+			Através da parceria firmada entre JavaFree e UOL, e destacado em diversos portais sobre tecnologia, <a href="http://www.baguete.com.br/noticiasDetalhes.php?id=33012" target="_blank">como o Baguete</a>, o JavaFree passa a ser o provedor oficial de conteúdo Java do UOL.
+
+			</p>
+			
+<h2>O que você ganha com isso? </h2>
+
+<P>
+Além de ajudar uma das maiores comunidades online sobre Java do Mundo, você ganhará o reconhecimento de profissionais, e de muitas empresas que passam por aqui diariamente. 
+
+</p>
+			
+<h2>Enaltecendo seu currículo</h2>
+
+<P>Tornando-se um membro ativo em nosso portal, você poderá ser escolhido para fazer parte da equipe de moderadores do JavaFree. A adição desta posição no seu currículo, certamente irá fazer a diferença em uma seleção empresarial.
+</p>
+
+<a name="conTutorial"></a><h2>Contribuir com Tutoriais</h2>
+
+<P>
+Caso você possua um tutorial relacionado a Java e queira publicar aqui no JavaFree, siga as seguintes instruções:<br><bR>
+Formate o seu tutorial usando as tags <a href="http://pt.wikipedia.org/wiki/BBCode">BBCode</a><br>
+Coloque suas informações pessoais e/ou profissionais no rodapé do seu tutorial (informações sobre o autor)<br>
+Grave-o em um arquivo .txt e junto com todas imagens utilizadas neste tutorial, compacte-o.<bR>
+Caso você não tenha login e senha no JavaFree, cadastre-se no portal e envie o arquivo para o seguinte email: info@javafree.org, não esqueça de colocar no corpo do email seu usuário do fórum, ou simplesmente seu id.
+</p>
+
+<a name="conNoticia"></a><h2>Contribuir com Notícias</h2>
+
+<P>
+Para contribuir com uma notícia, você precisa apenas estar logado no portal e ir até o menu do portal e clicar em <a href="$basePath/enviarNoticia">"ENVIAR NOTÍCIA"</a>
+</p>
+
+
+<h2>Notícias na Home do Canal de Tecnologia do UOL</h2>
+
+<P>
+Todas notícias aqui cadastradas, caso aprovadas, serão mostradas automaticamente na <a href="http://tecnologia.uol.com.br" target="_blank">página de Tecnologia do UOL</a>, como mostra a figura abaixo:<br><br>
+<img src="$basePath/home/images/home-noticia-uol.gif">
+</p>
+
+<h2>Artigos e Tutoriais destaques na Sessão Programação do UOL</h2>
+
+<P>
+Todos artigos, entrevistas e tutoriais que são enviados ao JavaFree, após serem publicados em nosso portal, eles são submetidos aos redatores do UOL que selecionam os melhores para serem destaques fixos na capa do seu portal, como mostra a figura abaixo:
+<bR><bR>
+<img src="$basePath/home/images/home-tutorial-uol.gif">
+</p>
+
+
+			
+		
+			
+		</div>
+		
+		<div id="ad">
+			<center>
+				<img src="$basePath/home/images/uol_logo.jpg" border ="0">
+			</center>
+		</div>
+		
+		
+
+		<div id="line"></div>
+		
+		
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+#set($headerTitle = "Palavras do Wiki")
+#parse("home/header.vm")
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+			<h5><a href="$basePath/">Home</a> > <a href="$basePath/wikies/">Wiki</a> > </h5><br>
+			<h2>Bem vindo ao Wiki do JavaFree.</h2>
+			Veja abaixo uma lista de algumas palavras "chaves" que selecionamos para que a comunidade tenha maior conhecimentos sobre elas.<br>
+			<div id="line"></div>
+
+			
+			#foreach($item in $list) 
+				<h3>
+					<a href="${basePath}/wiki/$item.word">$item.word</a>
+				</h3>
+				<p>
+			#end
+			
+			<p align="right"><b>#paging($page "${basePath}/noticias" "")</b></p>
+		
+			
+		</div>
+		
+		
+		<div id="ad">
+			#displayBanner($action.loadLocationBanner(1))
+		</div>
+		
+		
+
+		<div id="line"></div>
+		
+		
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

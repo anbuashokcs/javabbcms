@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.CatArticle" 
+    table="noticias"
+>
+
+   <id
+        name="catId"
+        type="java.lang.Long"
+        column="cat_id"
+    >
+		<generator class="increment"/>
+    </id> 
+
+	<property
+        name="catName"
+        type="java.lang.String"
+        column="cat_name"
+        length="-1"
+    />	
+
+    <!-- Associations -->
+	
+	<bag
+        name="articles"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="cat_id" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Article"
+        />
+    </bag>	
+	
+
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,273 @@
+<html>
+<head>
+<HTML dir=ltr>
+<HEAD>
+<TITLE>${jbbConfig.forumConfig.forumName} :: #message("topics")</TITLE>
+
+#parse("forum/themes/jb2/header.vm")
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align="center" border="0">
+          <TBODY>
+         <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN>
+                <SPAN class=nav>
+                <A class=maintitle href="viewforum.jbb?f=${forum.id}">$!{forum.nome}</A>
+                </SPAN>
+                &nbsp;
+                <a href="${basePath}/rss/viewforum.jbb?f=${forum.id}"><img src="forum/images/rss.gif" border="0"></a>
+                </TD>
+                <td align="right" valign="bottom" class="gensmall">
+				  <p align="right">
+				  
+				  <b>
+				  	#if($topics.size() > 0)
+				    	#paging($page "viewforum.jbb" "f=${forum.id}")
+				    #end
+				  </b>
+				  </p>                  
+                </td>
+            </TR>            
+            
+          </TBODY>
+      </TABLE>
+
+<!-- INÍCIO FÓRUM -->
+
+      <TABLE cellSpacing=2 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=bottom noWrap align=left>
+           <SPAN class=nav>
+                <A href="new_topic.jbb?topic.forum.idForum=${forum.id}">
+                <IMG alt="Novo Tópico" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/post.gif" align=middle border=0>
+                </A>
+                &nbsp;
+                <A class=topictitle href="forum.jbb">#message("index_forum")</A>-&gt;
+              <A class=topictitle href="viewforum.jbb?f=${forum.id}">$!{forum.nome}</A>
+           </SPAN>
+          </TD>
+         </TR>
+       </TBODY>
+      </TABLE>
+
+
+<!-- TABLE DIVISIONS -->
+<table cellSpacing="0" cellPadding="0" border="0" width="100%">
+	 <tr>
+   <td>
+
+#if($topics.size() > 0)
+  <TABLE class=forumline cellSpacing=1 cellPadding=4 width="100%" border=0>
+        <TBODY>
+
+        <TR>
+          <TH class=titleGenmed noWrap align=middle colSpan="2" height="25">&nbsp;#message("topics")&nbsp;</TH>
+          <TH class=titleGenmed noWrap align=middle width=50>&nbsp;#message("answers")&nbsp;</TH>
+          <TH class=titleGenmed noWrap align=middle width=100>&nbsp;#message("author")&nbsp;</TH>
+          <TH class=titleGenmed noWrap align=middle width=50>&nbsp;#message("displays")&nbsp;</TH>
+          <TH class=titleGenmed noWrap align=middle width=150>&nbsp;#message("last_message")&nbsp;</TH>
+          #if (${jbbuser.admin} == 1)
+            <TH class=titleGenmed noWrap align=middle width=50>&nbsp;#message("adm")&nbsp;</TH>
+          #end
+        
+        #foreach ($topic in $topics)
+        	#if (${topic.topicModel} == 1 || ${topic.topicModel} == 2)
+	        	#set($cssRow = "row2")
+	        #else
+	        	#set($cssRow = "row1")
+        	#end
+          <TR>
+            <TD class=$cssRow vAlign=center align=middle width=20>
+
+            ##Normal topic
+			#if (${topic.topicModel} == 0)
+	            #if (${topic.topicStatus} == 1)
+	              <IMG height=18 src="forum/themes/jb2/images/folder_lock.gif">
+	            #else
+	              #if($action.isTopicRead($topic))
+	              	<img src="forum/themes/jb2/images/folder.gif" border="0" />
+	              #else
+	                  <img src="forum/themes/jb2/images/folder_new.gif" border="0" />
+	              #end
+	          	#end
+            ##Fixed topic
+			#elseif(${topic.topicModel} == 1)
+	            #if($action.isTopicRead($topic))
+	            	<img src="forum/themes/jb2/images/folder_sticky.gif" border="0" />
+				#else
+	            	<img src="forum/themes/jb2/images/folder_sticky_new.gif" border="0" />
+				#end
+		        #set($cssRow2 = "row2")
+            ##Stick topic			
+			#elseif(${topic.topicModel} == 2)
+	            #if($action.isTopicRead($topic))
+	            	<img src="forum/themes/jb2/images/folder_announce.gif" border="0" />
+				#else
+	            	<img src="forum/themes/jb2/images/folder_announce_new.gif" border="0" />
+				#end
+			#end
+
+            </TD>
+            <TD class=$cssRow width="100%">
+              <SPAN class=topictitle>
+              #if(${topic.topicModel} == 1)
+              	<b>#message("topic.fixed"):</b>
+              #elseif(${topic.topicModel} == 2)
+ 	             <b>#message("topic.stick"):</b>
+              #end
+
+              <A class=topictitle href="viewtopic.jbb?t=${topic.id}">${topic.titleTopic}</A>
+              </SPAN>
+              #quickPaging(${topic.pagesPerTopic} "viewtopic.jbb?t=${topic.id}" "${jbbConfig.forumConfig.theme}")
+            </TD>
+            <TD class=row2 vAlign=center align=middle width="100%">
+              <SPAN class=postdetails>$vh.formatDigitValue(${topic.respostas.toString()})</SPAN>
+            </TD>
+            <TD class=$cssRow vAlign=center align=middle width="100%">
+              <SPAN class=name>
+              <A class=topictitle href="viewprofile.jbb?u=${topic.user.id}">
+				${topic.user.user}
+              </A>
+              </SPAN>
+            </TD>
+            <TD class=row2 vAlign=center align=middle width="100%">
+              <SPAN class=postdetails> $vh.formatDigitValue(${topic.visualizacoes.toString()}) </SPAN>
+            </TD>
+			<TD class=row2 vAlign=center noWrap align=middle>
+				<SPAN class=postdetails>$vh.dateMinuteFormat($!{topic.lastPostDate})<BR>
+					<A href="viewprofile.jbb?u=$!{topic.lastPostUserId}">
+						$!{topic.lastPostUserName}
+					</A>
+					<A href="viewtopic.jbb?t=${topic.id}&page=${topic.pageLastPost}#lastPost">
+						<IMG title="#message("show_last_message")" alt="#message("show_last_message")" src="forum/themes/jb2/images/icon_latest_reply.gif" border=0>
+					</A>
+				</SPAN>
+			</TD>
+
+  		#if (${jbbuser.admin} == 1)
+            <td class=row1>
+              <center>
+                <a href="admin/prepare_move_topic.jbb?topic.idTopic=${topic.id}">
+                <img src="forum/themes/jb2/images/topic_move.gif" alt="#message("move_topic")" title="#message("move_topic")" border="0" /></a>
+
+                #if (${topic.topicStatus} == 1)
+                	<a href="javascript:unlockTopic(${topic.id}, ${topic.forum.id},'#message("unlock_topic")')">
+                  		<img src="forum/themes/jb2/images/topic_unlock.gif" alt="#message("unlock_topic")" title="#message("unlock_topic")" border="0" />
+                  	</a>
+              	#else
+                	<a href="javascript:lockTopic(${topic.id}, ${topic.forum.id},'#message("lock_topic")')">
+                  		<img src="forum/themes/jb2/images/topic_lock.gif" alt="#message("lock_topic")" title="#message("lock_topic")" border="0" />
+                  	</a>
+                #end
+          </td>
+        #end
+     </center>
+       </TR>
+  #end
+      </TBODY>
+
+  </table>
+
+ </td>
+  <td valign="top">
+  #if(${forum.forumTopUsers.size()} > 0)
+	     #if($topics.size() >= 7)
+        ##parse("forum/include/top_users.vm")
+        <br>
+     #end
+     #if($topics.size() > 10)
+		<center>
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-9439984557405450";
+			google_ad_width = 200;
+			google_ad_height = 200;
+			google_ad_format = "200x200_as";
+			google_ad_type = "text_image";
+			//2007-08-25: javafreeforumlateraltopics
+			google_ad_channel = "7544913938";
+			google_color_border = ["FFFFFF","336699","000000","6699CC"];
+			google_color_bg = ["FFFFFF","FFFFFF","F0F0F0","003366"];
+			google_color_link = ["0000FF","0000FF","0000FF","FFFFFF"];
+			google_color_text = ["000000","000000","000000","AECCEB"];
+			google_color_url = ["008000","008000","008000","AECCEB"];
+			//-->
+			</script>
+			<script type="text/javascript"
+			  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</center>
+         <br>
+     #end
+     <center>
+     <!--a href="http://www.mozilla.com/firefox/" target="_blank"><img src="forum/images/misc/firefox.jpg" border="0"></a-->
+     </center>
+     
+  #end
+  </td>
+  </tr>
+</table>
+
+  
+ 
+ #else
+																																																	       #parse("forum/themes/jb2/no_messages.vm")
+ #end
+
+      <TABLE cellSpacing=2 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=bottom noWrap align=left>
+          <SPAN class=nav>
+     <A href="new_topic.jbb?topic.forum.idForum=${forum.id}">
+     <IMG alt="#message("new_topic")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/post.gif" align=middle border=0>
+     </A>
+     &nbsp;
+     <A class=topictitle href="forum.jbb">#message("index_forum")</A>-&gt;
+  	 <A class=topictitle href="viewforum.jbb?f=${forum.id}">$!{forum.nome}</A>
+          </SPAN>
+          </TD>
+
+         </TR>
+       </TBODY>
+      </TABLE>
+
+  <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+  <tr>
+    <td align="right" valign="bottom" nowrap="nowrap">
+    <span class="gensmall">
+    <b>
+	  	#if($topics.size() > 0)
+	    	#paging($page "viewforum.jbb" "f=${forum.id}")
+	    #end
+    </b>
+    <br><br>
+    
+    #message("forum_index"):
+    <select id="forum" name="forum" onchange="changeForumByCombo(this.value);">
+	    #foreach($category in $lstCategory)
+	    	<optgroup label="$category.nameCategory">
+	    	#foreach($forumItem in $category.foruns)
+	    		<option value="$forumItem.idForum" #if($forumId.intValue() == $forumItem.idForum.intValue()) selected  #end >$forumItem.nome</option>
+	    	#end
+			</optgroup>
+		#end
+     </select>    
+    
+    
+    
+    </span>
+  </td>
+  </tr>
+  
+  </table>
+
+
+<!-- FIM FÓRUM -->
+#parse("forum/themes/jb2/footer.vm")

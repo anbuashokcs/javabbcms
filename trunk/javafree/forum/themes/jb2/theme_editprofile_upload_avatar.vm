@@ -1,0 +1,95 @@
+<html>
+<head>
+<HEAD>
+<TITLE>${jbbConfig.forumConfig.forumName} :: #message("profile")</TITLE>
+
+#parse("forum/themes/jb2/header.vm")
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN><SPAN class=nav>
+                <A class=nav href="show_edit_profile.jbb">${jbbConfig.forumConfig.forumName} - #message("avatar_back_profile")</A></SPAN></TD>
+            </TR>
+          </TBODY>
+      </TABLE>
+      
+      
+	#if($req.getParameter("param") == "justcreated")
+		<br><br>
+		<div style="padding:5px; background:#E2FFE4;" class="rtl-safe-align-left">
+		<span style="font-size:1em; font-weight:bold; display:inline; color:green">#message("avatar_contratulations")</span>
+		<p style="display: inline; padding-left: 10px; padding-right: 10px;">#message("avatar_contratulation_phrase")</p></div> <br>
+	#end
+      
+#if($msgErrors.size() > 0)
+		<table class="forumline" width="100%" cellspacing="1" cellpadding="4" border="0">
+		  <tr>
+		    <td><table width="100%" cellspacing="0" cellpadding="1" border="0">
+		  <tr>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td align="center">
+		     <div class="warning">
+				#foreach($msg in $msgErrors)
+					<span class="error">$msg</span>			
+				#end
+			</div>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td>&nbsp;</td>
+		  </tr>
+		  </table>
+		</td>
+		</tr>
+		</table>
+#end
+
+	<form action="doAvatar.jbb" method="post" enctype="multipart/form-data">
+<table border="0" cellpadding="3" cellspacing="1" width="100%" class="forumline">
+  <tr> 
+      <td class="cat" width="80%" colspan="2" height="28" align="center">#message("avatar")</td>
+    </tr>
+    <tr> 
+      <td class="row1" width="20%"><span class="gen">#message("user"):</span></td>
+      <td class="row2">
+        $!{jbbuser.user}
+      </td>
+    </tr>
+
+   		  #if($jbbuser.user_avatar.toString() != "")
+      <tr> 
+        <td class="row1"><span class="gen">Imagem Atual</span></td>
+		#if("$!jbbuser.avatarExibition" == "")
+			#set($avatarURL = "$basePath/files/$jbbuser.user_avatar")
+		#else
+			#set($avatarURL = "$basePath/$jbbuser.avatarExibition")
+		#end
+        <td class="row2"><img src="$avatarURL"></td>
+      </tr>
+	     #end
+	
+      <tr> 
+        <td class="row1"><span class="gen">Selecione uma Nova Imagem</span></td>
+        <td class="row2"><input type="file" name="fileSend-2" size="50"/></td>
+      </tr>
+
+    <tr> 
+      <td class="cat" colspan="2" align="center" height="28">
+	        <input type="submit" name="submit" value="#message("send")" class="mainoption" />&nbsp;&nbsp;
+				        <input type="button" value="#message("go_back")" name="back" class="liteoption" onclick="location.href='show_edit_profile.jbb';" />
+        </td>
+    </tr>
+  </table>
+</form>
+
+#parse("forum/themes/jb2/footer.vm")

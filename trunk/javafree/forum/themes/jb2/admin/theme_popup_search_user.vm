@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>${jbbConfig.forumConfig.forumName} :: #message("member_list")</title>
+
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+<script src="forum/include/forum.js" type="text/javascript"></script>
+</HEAD>
+
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+<span class="gen"><a name="top"></a></span>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+function refresh_username(){
+  selected_username = document.getElementById("search_username").value;
+  if(selected_username == ""){
+  alert("#message("fields.required")");
+  return false;
+  } else {
+  opener.document.location.href="user_management.jbb?user.user="+selected_username;
+  window.close();
+  }
+}
+//-->
+</script>
+
+<form method="post" name="search" onsubmit="return refresh_username();">
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+  <td><table width="100%" class="forumline" cellpadding="4" cellspacing="1" border="0">
+  <tr>
+  <th class="thHead" height="25">#message("adm.search_user")</th>
+  </tr>
+  <tr>
+  <td valign="top" class="row1">
+  <span class="genmed"><br />
+  <input type="text" id="search_username" name="search_username" value="" class="post" />&nbsp; <input type="button" name="search" value="Pesquisar" class="liteoption" onclick="refresh_username();" /></span><br /><br />
+  <br /><span class="genmed"><a href="javascript:window.close();" class="genmed">Fechar Janela</a></span></td>
+  </tr>
+  </table></td>
+  </tr>
+</table>
+</form>
+
+
+#parse("forum/themes/jb2/admin/theme_footer.vm")

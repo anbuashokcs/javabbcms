@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.PrivMsgSent" 
+    table="jbb_privmsg_outbox"
+>
+    <cache usage="read-write"/>
+
+    <id
+        name="id"
+        type="java.lang.Long"
+        column="id_privmsg"
+    >
+		<generator class="increment"/>
+    </id>
+	
+   <property
+        name="topic"
+        type="java.lang.String"
+        column="privmsg_topic" 
+		length="255"
+    />
+	
+    <property
+        name="text"
+        type="java.lang.String"
+        column="privmsg_text"
+		length="-1"		
+    />
+
+    <property
+        name="data"
+        type="java.util.Date"
+        column="privmsg_date"
+        length="20"
+    />	
+		
+    <property
+        name="allowBBCode"
+        type="java.lang.Integer"
+        column="allow_bbcode"
+        length="1"
+    />
+	
+    <property
+        name="allowSmiles"
+        type="java.lang.Integer"
+        column="allow_smiles"
+        length="1"
+    />
+			
+	<property
+        name="attachSign"
+        type="java.lang.Integer"
+        column="attach_sign"
+        length="255"
+    />
+	
+	<property 
+		name="read"
+		type="java.lang.Integer"
+		column="flag_read"
+		length="1"
+	/>
+
+	<many-to-one
+        name="userFrom"
+        class="org.javabb.vo.User"
+        not-null="true"
+    >
+        <column name="id_user_from" />
+    </many-to-one>
+	
+	<many-to-one
+        name="userTo"
+        class="org.javabb.vo.User"
+        not-null="true"
+    >
+        <column name="id_user_to" />
+    </many-to-one>	
+
+</class>
+</hibernate-mapping>

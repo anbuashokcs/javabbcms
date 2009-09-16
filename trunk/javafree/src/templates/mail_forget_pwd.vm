@@ -1,0 +1,5 @@
+<p>${user.user}, $password_request_complete: <a href="${conf.domain}${url}">${conf.domain}${url}</a> 
+</p>
+<br><bR>
+$siteName<br>
+$siteDomain

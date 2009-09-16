@@ -1,0 +1,8 @@
+<script> 
+  #foreach ($itemForum in $forums)
+    #if($forum.getIdForum() != $itemForum.getIdForum())
+      tamanho = parent.document.getElementById("frmForuns").removeForum.options.length;
+      parent.document.getElementById("frmForuns").removeForum.options[tamanho] = new Option('$itemForum.getNome()','$itemForum.getIdForum()');
+    #end
+  #end            
+</script>

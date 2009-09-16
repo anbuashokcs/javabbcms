@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.Forum" 
+    table="jbb_forum"
+>
+
+    <id
+        name="idForum"
+        type="java.lang.Long"
+        column="id_forum"
+    >
+		<generator class="sequence">
+			<param name="sequence">SEQ_FORUM</param>
+        </generator>
+    </id>
+
+    <property
+        name="nome"
+        type="java.lang.String"
+        column="nome"
+        length="-1"
+    />
+    <property
+        name="descricao"
+        type="java.lang.String"
+        column="descricao"
+        length="-1"
+    />
+    <property
+        name="forumStatus"
+        type="java.lang.Integer"
+        column="forum_status"
+        length="-1"
+    />
+
+    <property
+        name="forumOrder"
+        type="java.lang.Integer"
+        column="forum_order"
+        length="-1"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to Topic -->
+    <set
+        name="topics"
+        lazy="false"
+        inverse="true"
+    >
+        <key>
+            <column name="id_forum" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Topic"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

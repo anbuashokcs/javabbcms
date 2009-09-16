@@ -1,0 +1,175 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "search")
+<html>
+<head>
+<title>$jbbConfig.getForumConfig().getForumName() :: #message("search")</title>
+</head>
+
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+
+#parse("forum/themes/jb2/header.vm")
+
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR>
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN><SPAN class=nav>
+                <A class=nav href="forum.jbb">${jbbConfig.forumConfig.forumName} - #message("index_forum")</A></SPAN></TD>
+            </TR>
+          </TBODY>
+      </TABLE>
+
+	
+
+	<table width="100%" cellpadding="0" cellspacing="0" border="1" class="forumline" align="center">
+	<tr>
+		<th height="25" class="thHead" nowrap="nowrap">#message("message_search_page")</th>
+	</tr>
+	<tr>
+		<td class="row1" align="center">
+		<div id="simple">
+
+	
+		
+<form action="doSearch.jbb" method="get" name="form">
+	<input type="hidden" name="page" size="40" maxlength="40" value="1" />
+
+	<table width="100%" border="0" align="center">
+
+	  <tr> 
+	    <td width="30%" rowspan="3" align="center">#message("keywords_search")</td>
+	    <td width="70%"><input type="text" name="query" size="30" maxlength="40" class="formsearchforum" value="$!query" /></td>
+	  </tr>
+	  <tr> 
+	    <td></td>
+	  </tr>
+	  <tr> 
+	    <td></td>
+	  </tr>
+	  <tr> 
+	    <td colspan="5" class="cat"><div align="center">#message("serch_in"):</div></td>
+	  </tr>
+	  <tr> 
+	    <td width="30%" rowspan="2" align="center">#message("serch_in_forum"):</td>
+	    <td width="70%">
+	    <select name="f" id="f" class="formsearchforumcombo">
+	    	<option value="">#message("all")</option>
+		    #foreach($category in $lstCategory)
+		    	<optgroup label="$category.nameCategory">
+		    	#foreach($forumItem in $category.foruns)
+		    		<option value="$forumItem.idForum" #if($forumId.intValue() == $forumItem.idForum.intValue()) selected  #end >$forumItem.nome</option>
+		    	#end
+				</optgroup>
+			#end
+	     </select>  
+		</td>
+	  </tr>
+	  <tr> 
+	    <td>&nbsp;</td>
+	  </tr>
+	  <tr> 
+	    <td colspan="2"><div align="center">
+	        <input type="submit" name="search" class="mainoption" value="#message("search")" />
+	        &nbsp; 
+	        <input type="reset" name="resetar" value="#message("clean")">
+	      </div></td>
+	  </tr>
+	</table>
+	
+		</form>
+		</div>
+		</td>
+	</tr>
+
+  </table>
+
+
+	#if($posts.isEmpty() == false)
+
+	<h2 style="font-size:20px" align="left">#message("ui.search.message") <span class="highlight">$query</span> #message("ui.search.found") ${totalRowsFound} #message("ui.search.results")</h2>
+	<table border="0" cellpadding="3" cellspacing="1 width="100%" class="forumline" align="center">
+		<tr>
+			<th width="150" height="25" class="thCornerL" nowrap="nowrap">#message("author")</th>
+			<th width="100%" class="thCornerR" nowrap="nowrap">#message("message")</th>
+		</tr>
+
+		<p align="right">
+			<b>
+				#if($posts.size() > 0)
+					#paging($page "doSearch.jbb" "query=$query&f=$!forumId")
+				#end
+			</b>
+		</p>  
+
+		#foreach ($post in $posts)
+		<tr>
+			<td class="row2" colspan="2" height="28">
+			<span class="topictitle">
+			<img src="forum/themes/jb2/images/folder.gif" align="absmiddle">&nbsp;#message("topic"):&nbsp;<a href="viewtopic.jbb?t=${post.topic.id}&page=${post.topic.pageLastPost}&h=${query}#${post.id}" class="topictitle">${post.topic.titleTopic}</a> &nbsp; #message("forum"): <a href="viewforum.jbb?f=${post.topic.forum.id}" class="postdetails">$post.topic.forum.nome</a></span> 
+			&nbsp;#message("posted"): $vh.dateMinuteFormat($post.postDate)</td>
+		</tr>
+		<tr>
+			<td width="150" align="left" valign="top" class="row1" rowspan="2">
+				<span class="name">
+					<b><a href="viewprofile.jbb?u=$post.user.id">$post.user.user</a></b>
+				</span>
+				<br />
+				<br />
+				<span class="postdetails">#message("answers"): <b>${post.topic.respostas}</b><br>
+				#message("displays"): <b>${post.topic.visualizacoes}</b>
+				</span>
+				<br />
+			</td>
+
+		</tr>
+		<tr>
+			<td valign="top" class="row1">
+				<span class="postbody">$highlighter.highlight($action.formatPost($post), $query, "... ...", 200, 4, false)</span>
+				##<span class="postbody">$action.formatPost($post)</span>
+			</td>
+		</tr>
+				<tr>
+			<td valign="top" class="row1">
+			</td>
+					<td valign="top" class="row1">
+			</td>
+		</tr>
+						<tr>
+			<td valign="top" class="row1">
+			</td>
+				<td valign="top" class="row1">
+			</td>
+		</tr>
+		
+		#end
+	</table>
+	 <p align="right">
+	<b>
+	#if($posts.size() > 0)
+		#paging($page "doSearch.jbb" "query=$query&f=$!forumId")
+	#end
+	</b>
+	</p>  
+
+	#end
+
+	 <p align="left">
+	 			<span class="topictitle">
+	 				 powered by 
+	 			<br>
+	 		<a href="http://lucene.apache.org/java/docs/index.html" target="_blank">
+		 	<img src="forum/images/powered_logos/lucene-logo.gif" border="0">
+		 	</a>
+	 </span>
+	 </p>
+<script class="javascript">
+		dp.SyntaxHighlighter.HighlightAll('code');	
+</script>
+
+#parse("forum/themes/jb2/footer.vm")

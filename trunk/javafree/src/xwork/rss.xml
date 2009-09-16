@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="rss" extends="default" namespace="/rss">
+
+        <action name="findLastTenPosts" class="postAction" method="findLastTenPosts">
+            <result name="success" type="velocity">
+                <param name="location">/forum/rss/lastTenPosts.vm</param>
+            </result>
+        </action>
+
+        <action name="newPosts" class="topicAction" method="findAllLastTopics">
+            <result name="success" type="velocity">
+                <param name="location">/forum/rss/all_last_posts.vm</param>
+            </result>
+        </action>
+
+        <action name="viewforum" class="topicAction" method="listaTopics">
+            <result name="success" type="velocity">
+                <param name="location">/forum/rss/view_forum.vm</param>
+            </result>
+        </action>
+        
+        <action name="rssNoticias" class="noticiasAction" method="rssNoticias">
+            <result name="success" type="velocity">
+                <param name="location">/forum/rss/noticias.vm</param>
+            </result>
+        </action>
+		
+        <action name="uolintegration" class="noticiasAction" method="rssNoticias">
+            <result name="success" type="velocity">
+                <param name="location">/forum/rss/uolintegration.vm</param>
+            </result>
+        </action>
+        
+        
+	</package>
+</xwork>

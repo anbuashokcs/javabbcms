@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE rss [<!ENTITY % HTMLlat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent">]>
+
+${res.setContentType("text/xml")}
+
+#parse("forum/include/imports.vm")
+
+<rss version="2.0" xml:base="http://www.javafree.org/news/rss.jf">
+   <channel>
+	<title>${jbbConfig.forumConfig.forumName}</title>
+	<link>${jbbConfig.forumConfig.domain}</link>
+	<description>${jbbConfig.forumConfig.forumName}</description>
+	<language>${jbbConfig.forumConfig.lang}</language>
+	<copyright>Copyright © ${jbbConfig.forumConfig.forumName}</copyright>
+	<category>#message("topics")</category>
+	<generator>JavaBB</generator>
+	<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+	<image>
+		<url>http://www.javafree.org/interface/images/iconeJavaFree.png</url>
+		<title>${jbbConfig.forumConfig.forumName} -  #message("topics")</title>
+		<link>${jbbConfig.forumConfig.domain}</link>
+	</image>
+		
+#foreach ($topic in $topics) 
+     <item>
+	 	<title>${topic.titleTopic}</title>
+		 <link>${jbbConfig.forumConfig.domain}viewtopic.jbb?p=${topic.lastPostId}&amp;page=${topic.pageLastPost}#${topic.lastPostId}</link>
+		 <description>
+		 #message("topic"): $topic.titleTopic
+		 &lt;br&gt;&lt;br&gt;
+		 #message("author"): $!{topic.user.user}&lt;br&gt;
+		 #message("answers"): $!{topic.respostas} &lt;br&gt;
+		 #message("last_message"): $!{topic.lastPostUserName}
+		 </description>
+		 <pubDate>$vh.dateRFCFormat($!{topic.lastPostDate})</pubDate>
+     </item>
+#end
+
+   </channel>
+
+</rss>

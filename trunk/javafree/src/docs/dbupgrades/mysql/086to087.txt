@@ -1,0 +1,1 @@
+ALTER TABLE `jbb_posts_files` ADD COLUMN `downloads` INTEGER(11) DEFAULT '0'

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+<hibernate-mapping>
+    <class 
+        name="org.javabb.vo.Banners" 
+        table="banners"
+    >   
+        <id
+            name="bannerId"
+            type="java.lang.Long"
+            column="banner_id"
+        >
+            <generator class="increment"/>
+        </id>
+    
+        <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            length="255"
+        />
+		<property
+            name="initialDate"
+            type="java.util.Date"
+            column="initial_date"
+            length="-1"
+        />
+		<property
+            name="expirationDate"
+            type="java.util.Date"
+            column="expiration_date"
+            length="-1"
+        />		
+        <property
+            name="clicks"
+            type="java.lang.Integer"
+            column="clicks"
+            length="-1"
+        />		
+        <property
+            name="url"
+            type="java.lang.String"
+            column="url"
+            length="-1"
+        />  		
+        <property
+            name="imagem"
+            type="java.lang.String"
+            column="imagem"
+            length="-1"
+        />			
+        <property
+            name="alt"
+            type="java.lang.String"
+            column="alt"
+            length="-1"
+        />  
+        <property
+            name="html"
+            type="java.lang.String"
+            column="html"
+            length="-1"
+        />		
+        <property
+            name="bannerLocation"
+            type="java.lang.Integer"
+            column="banner_location"
+            length="-1"
+        />
+        <property
+            name="views"
+            type="java.lang.Integer"
+            column="views"
+            length="-1"
+        />
+		
+		
+				
+    </class>
+</hibernate-mapping>

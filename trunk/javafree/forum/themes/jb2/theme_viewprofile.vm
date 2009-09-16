@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>$jbbConfig.getForumConfig().getForumName() :: #message("profile")</title>
+
+#parse("forum/themes/jb2/header.vm")
+#bean("org.javabb.infra.Utils" $beanUtils)
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN><SPAN class=nav>
+                <A class=nav href="forum.jbb">$jbbConfig.getForumConfig().getForumName() - #message("index_forum")</A></SPAN></TD>
+            </TR>
+          </TBODY>
+      </TABLE>
+
+<table class="forumline" width="100%" cellspacing="1" cellpadding="3" border="0" align="center">
+  <tr>
+  <th class="thHead" colspan="2" height="25" nowrap="nowrap">#message("show_profile") :: $user.getUser()</th>
+  </tr>
+  <tr>
+  <td class="cat" width="40%" height="28" align="center"><b><span class="gen">#message("avatar"):&nbsp;</span></b></td>
+
+  <td class="cat" width="60%"><b><span class="gen">#message("all_about") $user.getUser()</span></b></td>
+  </tr>
+  <tr>
+  <td class="row1" height="6" valign="top" align="center">
+  #if ($user.user_avatar != "")
+	#if("$!user.avatarExibition" == "")
+		#set($avatarURL = "$basePath/files/$user.user_avatar")
+	#else
+		#set($avatarURL = "$basePath/$user.avatarExibition")
+	#end
+	<img src="$avatarURL" alt="" border="0" /><br />
+  #else
+	<table><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table>
+  #end
+  </td>
+  <td class="row1" rowspan="3" valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="3">
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("registered_in"):&nbsp;</span></td>
+
+    <td width="100%"><b><span class="gen">$vh.dateMinuteFormat($!user.dataRegistro)</span></b></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" nowrap="nowrap"><span class="gen">#message("messages"):&nbsp;</span></td>
+    <td valign="top"><b><span class="gen">$user.getUser_posts()</span></b><br /><span class="genmed">
+      [$!vh.getPercentage($user.getUser_posts().doubleValue(), ${stats.totalPostCount}) % #message("from_total")]
+    </span> <br /><span class="genmed"><a href="search_author.jbb?u=$user.idUser" class="genmed">#message("all_posts_from_author")</a></span></td>
+  </tr>
+
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("locality"):&nbsp;</span></td>
+    <td><b><span class="gen">$!user.getLocalizacao()</span></b></td>
+  </tr>
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("web_site"):&nbsp;</span></td>
+    <td><span class="gen"><a class="topictitle" href="$user.getWebsite()" target="_blank">$!user.getWebsite()</a></SPAN></span></td>
+  </tr>
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("occupation"):&nbsp;</span></td>
+    <td><b><span class="gen">$!user.getOccupation()</span></b></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" nowrap="nowrap"><span class="gen">#message("interest"):&nbsp;</span></td>
+
+    <td> <b><span class="gen">$!user.getUser_interests()</span></b></td>
+  </tr>
+    </table>
+  </td>
+  </tr>
+  <tr>
+  <td class="cat" align="center" height="28"><b><span class="gen">#message("contact") $user.getUser()</span></b></td>
+
+  </tr>
+  <tr>
+  <td class="row1" valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="3">
+  
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("email"):&nbsp;</span></td>
+    <td class="row1" valign="middle" width="100%"><span class="gen">
+    #if($user.getShow_mail() == 1) 
+      $user.getEmail()
+    #else
+      #message("hidden")
+    #end    
+    </span></td>
+  </tr>
+
+
+  <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">#message("pms"):&nbsp;</span></td>
+    <td class="row1" valign="middle" width="100%"><span class="gen">
+		<a href="pm.externalSend.jbb?userId=$user.idUser&username=${user.user}">
+        	<img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_pm.gif" border="0">
+		</a>
+    </span></td>
+  </tr>
+
+
+  <tr>
+    <td valign="middle" nowrap="nowrap" align="right"><span class="gen">#message("msnm"):&nbsp;</span></td>
+    <td class="row1" valign="middle"><span class="gen">$!user.getUser_msnm()</span></td>
+  </tr>
+
+  <tr>
+    <td valign="middle" nowrap="nowrap" align="right"><span class="gen">#message("yahoo"):&nbsp;</span></td>
+    <td class="row1" valign="middle"><span class="gen">$!user.getUser_yim()</span></td>
+  </tr>
+
+  <tr>
+    <td valign="middle" nowrap="nowrap" align="right"><span class="gen">#message("icq"):&nbsp;</span></td>
+    <td class="row1">$!user.getUser_icq()</td>
+  </tr>
+  
+    <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">&nbsp; </span></td>
+    <td class="row1" valign="middle" width="100%"><span class="gen">
+		<a href="javascript:viewWatchTopicsByUser('$user.idUser');">
+        	<img src="forum/themes/jb2/images/icon_watch_topic.gif" border="0" title="#message("watch_topic_watching_topics")" alt="#message("watch_topic_watching_topics")"> #message("watch_topic_watching_topics")
+		</a>
+    </span></td>
+  </tr>  
+
+    <tr>
+    <td valign="middle" align="right" nowrap="nowrap"><span class="gen">&nbsp; </span></td>
+    <td class="row1" valign="middle" width="100%"><span class="gen">
+		<a href="javascript:viewFavoriteTopicsByUser('$user.idUser');">
+        	<img src="forum/themes/jb2/images/star.gif" border="0" title="#message("forum_fav_favorites")" alt="#message("forum_fav_favorites")">&nbsp; #message("forum_fav_favorites")
+		</a>
+    </span></td>
+  </tr>  
+
+  
+    </table>
+  </td>
+  </tr>
+  
+  
+
+  
+  
+</table>
+<table><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table>
+
+<!-- FIM F�RUM -->
+#parse("forum/themes/jb2/footer.vm")

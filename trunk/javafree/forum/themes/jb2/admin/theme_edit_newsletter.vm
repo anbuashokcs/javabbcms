@@ -1,0 +1,64 @@
+<HTML><HEAD>
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+</head>
+<script src="$basePath/forum/include/gen_validatorv2.js" type="text/javascript"></script>
+<BODY text=#000000 vLink=#5493b4 link=#006699 bgColor=#ffffff><A name=top></A>
+<H1>#message("adm_newsletter")</H1>
+<P>
+#message("adm_newsletter")
+</P>
+
+#if($newsletter.id.toString() != "")
+	<form name="frmConfig" id="frmConfig" action="DoEditNewsletter.jbb" method="post" >
+	<input type="hidden" name="newsletter.id" id="newsletter.id" value="$newsletter.id">
+#else
+	<form name="frmConfig" id="frmConfig" action="DoInsertNewsletter.jbb" method="post" >
+#end	
+
+  <TABLE class=forumline cellSpacing=1 cellPadding=4 width="100%" align=center border=0>
+    <TBODY>
+      <TR>
+      	#if($newsletter.id.toString() != "")
+	        <TH class=thHead colSpan=7>#message("adm_news_edit")</TH>
+        #else 
+    	    <TH class=thHead colSpan=7>#message("adm_news_insert")</TH>
+      
+        #end
+      </TR>
+      <tr>
+        <td class="row1">#message("subject")</td>
+        <td class="row2"><input id="newsletter.name" name="newsletter.name" value="$!newsletter.name" class="post" style="width: 300px" /></td>        
+      </tr>
+
+      <tr>
+        <td class="row1">#message("adm_newsletter_html")</td>
+        <td class="row2"><textarea id="newsletter.htmlText" name="newsletter.htmlText" style="width: 500px" cols="50" rows="20" class="post">$!newsletter.htmlText</textarea></td>
+      </tr> 
+
+      <TR> 
+        <TD class=cat colspan=2>
+          <center>
+            <input class=mainoption type=submit value="#message("send")" />
+            <input class=liteoption type=button value="#message("cancel")" onclick="history.back()" />
+          <center>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</FORM>
+
+
+<script language="JavaScript" type="text/javascript">
+ var frmvalidator  = new Validator("frmConfig");
+ frmvalidator.addValidation("newsletter.name","req","#message("field_mandatory")");
+ frmvalidator.addValidation("newsletter.name","minlen=2","#message("value_too_short")");
+ 
+ frmvalidator.addValidation("newsletter.htmlText","req","#message("field_mandatory")");
+ frmvalidator.addValidation("newsletter.htmlText","minlen=10","#message("value_too_short")");
+
+</script> 
+
+
+#parse("forum/themes/jb2/admin/theme_footer.vm")
+
+</BODY></HTML>

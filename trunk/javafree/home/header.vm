@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+#parse("forum/include/misc.vm")
+#parse("/forum/include/imports.vm")
+<head>
+	<title>$!headerTitle - Java Free.org</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
+	
+	<meta name="description" content="javafree, jdk, o que é java, java free, apostila netbeans, eclipse, tutorial java, aplicativos para celular, postgresql, mysql, ireport, comandos java, java para iniciantes, dao, java swing, livro java, java heap space, o que é java, split java, ejb, java, jframe, uml, exercicios java, programar java para celular, enum java, java tutorial, spring, arquivos jar, jar, $!metaDesjava" />
+	<meta name="keywords" content="javafree, jdk, o que é java, java free, apostila netbeans, eclipse, tutorial java, aplicativos para celular, postgresql, mysql, ireport, comandos java, java para iniciantes, dao, java swing, livro java, java heap space, o que é java, split java, ejb, java, jframe, uml, exercicios java, programar java para celular, enum java, java tutorial, spring, arquivos jar, jar" />
+	
+
+    <META NAME="RESOURCE-TYPE" CONTENT="DOCUMENT" >
+    <META NAME="DISTRIBUTION" CONTENT="GLOBAL" >
+    <META NAME="AUTHOR" CONTENT="JavaFree :: O Melhor conteúdo Java" >
+    <META NAME="COPYRIGHT" CONTENT="Copyright (c) by JavaFree :: O Melhor conteúdo Java" >
+
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW" >
+
+    <META NAME="REVISIT-AFTER" CONTENT="1 DAYS" >
+    <META NAME="RATING" CONTENT="GENERAL" >
+    <META NAME="GENERATOR" CONTENT="JavaBB.org By Dalton Camargo" >
+	
+	
+	<link rel="stylesheet" href="${baseImages}/home/css/style4.css" type="text/css" />
+	<link rel="stylesheet" href="${baseImages}/home/css/forms.css" type="text/css" />
+	
+	<link rel="stylesheet" href="${baseImages}/home/css/syntax/shCore.css" type="text/css" />
+	<link rel="stylesheet" href="${baseImages}/home/css/syntax/shThemeDefault.css" type="text/css" />
+
+	<link type="text/css" href="${baseImages}/home/theme/ui.all.css" rel="Stylesheet" />	
+	
+	
+	<script type="text/javascript" src="${baseImages}/home/js/jquery/jquery-1.3.1.js"></script>
+	<script type="text/javascript" src="${baseImages}/home/js/jquery-1.2.3.pack.js"></script>
+	<script type="text/javascript" src="${baseImages}/home/js/jquery/jquery.easynews.js"></script>
+	
+
+	<script type="text/javascript" src="${baseImages}/home/js/syntax/shCore.js"></script>
+	<script type="text/javascript" src="${baseImages}/home/js/syntax/shBrushBash.js"></script>
+	<script type="text/javascript" src="${baseImages}/home/js/syntax/shBrushJava.js"></script>
+
+
+	
+	
+	<link rel="shortcut icon" href="$baseImages/home/images/mini.gif" type="image/x-icon" />
+	<link rel="alternate" type="application/rss+xml" title="JF News" href="http://feeds2.feedburner.com/JavaFreeorg" />
+	
+
+	
+
+</head>
+<script>
+	function excluir(url) {
+		if(confirm("Confirma a exclusão?")){
+			document.location.href=url;
+		}
+	}
+</script>
+
+<script type="text/javascript">
+window.google_analytics_uacct = "UA-634369-10";
+</script>
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = '$baseImages/home/js/syntax/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+
+<div id="uol">
+<script type="text/javascript" src="http://barra.uol.com.br/b/scripts/1024/bpv1.js?ref=javafree&auto=true"></script>
+</div>

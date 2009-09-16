@@ -1,0 +1,16 @@
+		<script>
+		var DEaff="parjavafree";
+		var DEchan="";
+		var DEsubc="outros";
+		var Expble=1;
+		var DEcmpng=1;
+		var DEGroup=7;
+
+		d=document; var DEt=new Date(); DEt=DEt.getTime(); DErand=Math.floor(DEt*1000*Math.random());
+
+		var DEconn=d.body; DEconn.style.behavior='url(#default#clientCaps)'; DEconn=(DEconn.connectionType=='lan')?1:0;
+		var scw=0,sch=0; if(screen.height){scw=screen.width;sch=screen.height;}
+		function DEshow(ad,pos){
+			d.write('<scr'+'ipt language="JavaScript1.1" src="http://bn.uol.com.br/js.ng/site=par&chan='+DEchan+'&subchan='+DEsubc+'&affiliate='+DEaff+'&size='+ad+'&page='+pos+'&conntype='+DEconn+'&expble='+Expble+'&reso='+scw+'x'+sch+'&cmpng='+DEcmpng+'&group='+DEGroup+'&tile='+DErand+'?"></scr'+'ipt>');
+		}
+		</script>

@@ -1,0 +1,8 @@
+<p>Ola ${partner.partnerName}, <br>um novo topico foi criado no seu grupo.</p><br>
+  $titleTopic:<br>
+  <a href="${conf.domain}${url}">${conf.domain}${url}</a> 
+
+<hr>
+<br>
+<font size="2">${conf.forumName}<br>
+<a href="mailto:${conf.adminMail}">${conf.adminMail}</a></font>

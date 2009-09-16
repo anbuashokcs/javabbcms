@@ -1,0 +1,200 @@
+#set($headerTitle = "Wallpapers")
+#parse("home/header.vm")
+
+<style>
+#main img { float: none; border: 0px; padding: none; margin: none none 5none none; }
+</style>
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+			<h5><a href="$basePath/">Home</a> > <a href="$basePath/wallpapers.jbb">Wallpapers</a> > </h5><br>
+			<h2>Tenha seu Wallpaper publicado no JavaFree</h2><br>
+			Você tem talento com Design? Pois então deixe a comunidade Java saber do seu talento. Fazendo um wallpaper para o JavaFree, 
+			nós permitimos que você coloque seu logo ou seu nome no Wallpaper que será pré avaliado antes de ir ao ar.<br>
+			Para que seu wallpaper seja publicado, ele deve conter pelo menos as seguintes dimensões: 1280 x 1024, 1024 x 768, 800 x 600<br>
+			Email de publicação: info(arroba)javafree.org
+			<div id="line"></div>
+
+			<table width="100%" border="0" cellspacing="1" cellpadding="8" bgcolor="#FFFFFF">
+<tr>
+  <td width="33%">
+	<div class="center">
+    <b>Descrição:</b> Garota JavaFree <br>By Pregador<br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/28102004/girlpqna.gif" alt="Wallpaper JF"> <br>		
+	<Br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/28102004/1024x768.gif">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/28102004/girl800x600.gif">800 x 600</a><br>
+	</div>		
+  </td><td width="33%">
+	<div class="center">
+    <b>Descrição: </b> Azulão <br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/28102004/rodrigo_wallpaperpqno.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/28102004/rodrigo_wallpaper1024768.gif">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/28102004/rodrigo_wallpaper800600.lgif.gif">800 x 600</a><br>
+	</div>		
+  </td><td width="33%">
+	<div class="center">
+    <b>Descrição: </b> Matrix. <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=2071">Jesus</a> <br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/maintrix_javafree/javafree_150x113_maintrix.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/maintrix_javafree/javafree_1280x1024_maintrix.gif">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/maintrix_javafree/javafree_1024x768_maintrix.gif">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/maintrix_javafree/javafree_800x600_maintrix.gif">800 x 600</a><br>
+	</div>		
+  </td>
+
+</tr><tr>
+  </td><td width="33%">
+  	<div class="center">
+    <b>Descrição: </b> Vermelhão <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=323">Rodrigo Cansian</a> <br>
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/rodrigo/javafree_matrix_amostra.jpg" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/rodrigo/javafree_matrix_1024x768.zip">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/rodrigo/javafree_matrix_800x600.zip">800 x 600</a><br>
+	</div>		
+  </td><td width="33%">
+	<div class="center">
+    <b>Descrição: </b> Xícara. <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=2447">PDQ</a> <br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/pdq/pqno.jpg" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/pdq/javafree_wllpp_1280x1024.jpg">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/pdq/javafree_wllpp_1024x768.jpg">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/pdq/javafree_wllpp_800x600.jpg">800 x 600</a><br>
+	</div>
+  </td><td width="33%">
+
+	<div class="center">
+    <b>Descrição: </b>Blue Show <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=2071">Jesus</a> <br>
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/black_wpjavafree_150x113.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/black_javafree_1280x1024.zip">1280 x 1024</a> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/black_javafree_1024x768.zip">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/black_javafree_800x600.zip">800 x 600</a><br>
+	</div>
+  </td>	
+</tr><tr>
+  <td width="33%">
+  	<div class="center">
+    <b>Descrição: </b>Black Show <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=2071">Jesus</a> <br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/javafree_150x113_black.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_1280x1024_black.zip">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_1024x768_black.zip">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_800x600_black.zip">800 x 600</a><br>
+	</div>		
+  </td>
+
+  <td width="33%">
+	<div class="center">
+    <b>Descrição: Natal </b> <br>By <a href="http://www.javafree.org/javabb/viewprofile.jbb?u=2071">Jesus</a> <br>
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/javafree_natal_150x113.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_natal1280x1024.zip">1280 x 1024</a> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_natal_1024x768.zip">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/javafree_natal_800x600.zip">800 x 600</a><br>
+	</div>		
+  </td><td width="33%">
+	<div class="center">
+    <b>Descrição: Cadê a sua Xícara? </b> <br>By <a href="http://www.nonoandar.com.br">Tiago</a> <br>
+
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/mjcsx/miniatura.jpg" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/mjcsx/1280x1024.jpg">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/mjcsx/1024x768.jpg">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/mjcsx/800x600.jpg">800 x 600</a><br>
+	</div>				
+  </td>	
+
+</tr><tr>
+  <td width="33%">
+	<div class="center">
+    <b>Descrição: Oficial </b> <br>By Caco Vaccaro <br>
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/cacowp.gif" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/caco_1024_768.zip">1024 x 768</a><br>
+
+	</div>				
+	
+</td>
+
+
+  <td width="33%">
+	<div class="center">
+    <b>Descrição: Árvore </b><br> By Dalton Camargo <br>
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/wallpaper_javafree/jf_pqno.jpg" width="160" height="123" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/wallpaper_javafree/1280x960.jpg">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/wallpaper_javafree/1024x768.jpg">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/wallpaper_javafree/800x600.jpg">800 x 600</a><br>
+	</div>		
+  </td>
+  
+  <td width="33%">
+	<div class="center">
+
+    <b>Descrição: Anoitecer </b><br> By Carlos Eduardo (<a href="http://www.egenial.com.br" target="_blank">e-Genial</a>)
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/final_de_tarde/final_de_tarde_pqno.jpg" width="160" height="123" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/final_de_tarde/final_de_tarde_1280X1024.jpg">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/final_de_tarde/final_de_tarde_1024X768.jpg">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/final_de_tarde/final_de_tarde_800X600.jpg">800 x 600</a><br>
+
+	</div>		
+  </td>  
+
+</tr><tr>
+
+  <td width="33%">
+  	<div class="center">
+    <b>Descrição: Hexa Brasil </b><br> By Carlos Eduardo (<a href="http://www.egenial.com.br" target="_blank">e-Genial</a>)
+    <img src="http://www.javafree.org/dependencias/misc/wallpapers/hexa_brasil/javafree_HexaBrasil_pqno.jpg" width="160" height="123" alt="Wallpaper JF"> <br>
+
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/hexa_brasil/javafree_HexaBrasil_1280X1024.jpg">1280 x 1024</a> <br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/hexa_brasil/javafree_HexaBrasil_1024X768.jpg">1024 x 768</a><br>
+		<a href="http://www.javafree.org/dependencias/misc/wallpapers/hexa_brasil/javafree_HexaBrasil_800X600.jpg">800 x 600</a><br>
+	</div>		
+  </td>  
+
+    <td width="33%">
+  	<div class="center">
+
+    <b>Descrição: Feliz Natal 2006</b><br> by Jesus<br>
+	    <img src="http://www.javafree.org/dependencias/misc/wallpapers/Javafree_FelizNatal_2006_Pequeno.jpg" alt="Wallpaper JF"> <br>
+        <a href="http://www.javafree.org/dependencias/misc/wallpapers/Javafree_FelizNatal_2006_1280x1024.zip">1280 x 1024</a> <br>
+        <a href="http://www.javafree.org/dependencias/misc/wallpapers/Javafree_FelizNatal_2006_1024x768.zip">1024 x 768</a><br>
+        <a href="http://www.javafree.org/dependencias/misc/wallpapers/Javafree_FelizNatal_2006_800x60.zip">800 x 600</a>    
+    </div>		
+  </td>  
+  <td></td>
+
+</tr></table>
+
+		
+			
+		
+			
+		</div>
+		
+		
+		#parse("home/adsenselateral.vm")
+		
+		
+
+		<div id="line"></div>
+		
+		
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

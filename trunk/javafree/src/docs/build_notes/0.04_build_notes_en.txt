@@ -1,0 +1,8 @@
+New Features:
+- Search engine - Lucene
+- Private Messages (beta)
+
+Fixed Bugs:
+- Date configuration by manager
+- Date incorrect in reply view!
+- Login/Logout (User remains logged after logout click)

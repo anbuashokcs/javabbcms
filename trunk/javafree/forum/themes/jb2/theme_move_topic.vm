@@ -1,0 +1,84 @@
+<html>
+<head>
+  <title>$jbbConfig.getForumConfig().getForumName() :: #message("move_topic")</title>
+
+</head>
+<script language="javascript">
+	function validateSendMailMoveTopic(){
+		if(quick==false && document.getElementById("message").value != ""){
+			document.getElementById("message").value == "";
+		}
+	}
+</script>
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+
+
+  #parse("forum/themes/jb2/header.vm")
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN><SPAN class=nav>
+                <A class=nav href="forum.jbb">$jbbConfig.getForumConfig().getForumName() - #message("index_forum")</A></SPAN></TD>
+            </TR>
+          </TBODY>
+      </TABLE>
+
+<table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline">
+  <tr>
+    <th height="25" class="thHead"><b>#message("move_topic")</b></th>
+  </tr>
+  <tr>
+    <td class="row1">
+<form action="move_topic.jbb" method="post" onsubmit="validateSendMailMoveTopic();">
+    <table width="100%" border="0" cellspacing="0" cellpadding="1">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+        <tr>
+    <td align="center"><span class="gen">#message("move_to_forum")&nbsp;
+      <select name="moveToForum">
+              #foreach ($forum in $forums)
+          <option value="$forum.idForum">$forum.nome</option>
+        #end
+      </select>
+      <input type="hidden" name="topic.idTopic" value="$req.getParameter("topic.idTopic")" />
+      <input type="hidden" name="post.topic.idTopic" value="$req.getParameter("topic.idTopic")" />      
+    <br /><br /><br />#message("sure_move_topic")</span><br /><br />
+        <input class="mainoption" type="submit" value="#message("yes")" /> &nbsp; <input class="liteoption" type="button" value="#message("no")" onclick="history.back()" />
+        </td>
+  </tr>
+      </table>
+  </td>
+	<tr>
+		<td colspan="3" class="row1">
+			<table width="100%">
+				<tr>
+					<td align="center">
+						<span class="nav"><a href="javascript:activateQuickReply()">#message("send_mail_to_author_topic")</a></span>
+					</td>
+				</td>
+				<tr style="display: none;" id="trQuickBody">
+					<td align="center">
+						<textarea class="post" style="width: 420px" id="message" name="message" rows="5" wrap="virtual" cols="35""></textarea>
+					</td>
+				</tr>
+				<tr style="display: none;" id="trQuickSubmit">
+					<td align="center">
+						<div name="qsel" id="qsel"></div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</form>
+  
+  </tr>
+</table>
+
+#parse("forum/themes/jb2/footer.vm")

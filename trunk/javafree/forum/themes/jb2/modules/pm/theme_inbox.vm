@@ -1,0 +1,91 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "pm")
+<html>
+<head>
+<HEAD>
+<TITLE>$jbbConfig.getForumConfig().getForumName() :: #message("pms")</TITLE>
+<script language="Javascript" type="text/javascript">
+  function confirmDelete(method){
+  	if(confirm("#message("confirm_delete")")){
+  		if(method == 1){
+			document.getElementById("frmDeleteInbox").submit();
+  		}else{
+  			document.location.href="deleteInbox.jbb";
+  		}
+ 	 }
+  }
+</script>
+#parse("forum/themes/jb2/header.vm")
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      
+<table width="100%" cellspacing="1" cellpadding="3" border="0" align="center">      
+  <tr>
+	<td valign="top" align="center" width="100%">
+	  <table height="40" cellspacing="2" cellpadding="2" border="0">
+		<tr valign="middle">
+		  <td><a href="inbox.jbb"><img src="forum/themes/jb2/images/msg_inbox.gif" border="0" alt='#message("inbox")' /></td>
+		  <td><span class="cat"><a href="inbox.jbb">#message("inbox") &nbsp;</a></span></td>
+
+		  <td><a href="outbox.jbb"><img src="$basePath/forum/themes/jb2/images/msg_sentbox.gif" border="0" alt='#message("outbox")' /></a></td>
+		  <td><span class="cat"><a href="outbox.jbb">#message("outbox")</a> &nbsp;</span></td>
+		</tr>
+	  </table>
+	</td>
+
+	<td align="right">
+	</td>
+  </tr>
+</table>
+
+<br clear="all" />
+<form name="frmDeleteInbox" id="frmDeleteInbox" action="deleteSelectedInbox.jbb" method="post">
+  <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+	<tr>
+	  <td align="left" valign="middle"><a href="new.jbb"><img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/msg_newpost.gif" border="0" /></a></td>
+	  <td align="left" width="100%">&nbsp;<span class="nav"><a href="forum.jbb" class="nav">$jbbConfig.getForumConfig().getForumName() :: #message("forum_index")</a></span></td>
+	</tr>
+  </table>
+
+  <table border="0" cellpadding="3" cellspacing="1" width="100%" class="forumline">
+	<tr>
+	  <th width="5%" height="25" class="thTop" nowrap="nowrap">&nbsp;#message("pm.read")&nbsp;</th>
+	  <th width="55%" class="thTop" nowrap="nowrap">&nbsp;#message("pm.subject")&nbsp;</th>
+	  <th width="20%" class="thTop" nowrap="nowrap">&nbsp;#message("pm.from")&nbsp;</th>
+	  <th width="15%" class="thTop" nowrap="nowrap">&nbsp;#message("pm.date")&nbsp;</th>
+	  <th width="5%" class="thTop" nowrap="nowrap">&nbsp;#message("pm.select")&nbsp;</th>
+	</tr>
+#set ($row = "row1")
+#foreach($pm in $lstMsgs)
+	<tr>
+	  <td class="$row" width="5%" align="center" valign="middle">
+	  #if ($pm.read.toString() == "1")
+	  	<img src="forum/themes/jb2/images/folder.gif" width="19" height="18" />
+	  #else
+        <img src="forum/themes/jb2/images/folder_new.gif" width="19" height="18"  />
+	  #end
+	  </td>
+	  <td width="55%" valign="middle" class="$row"><span class="topictitle">&nbsp;<a href="readIn.jbb?pm.id=$!pm.id" class="topictitle">$!pm.topic</a></span></td>
+	  <td width="20%" valign="middle" align="center" class="$row"><span class="name">&nbsp;<a href="viewprofile.jbb?u=$!pm.userFrom.id" class="name">$!pm.userFrom.user</a></span></td>
+	  <td width="15%" align="center" valign="middle" class="$row"><span class="postdetails">$vh.dateMinuteFormat($!{pm.data})</span></td>
+	  <td width="5%" align="center" valign="middle" class="$row"><span class="postdetails">
+		<input type="checkbox" name="idPm" value="$pm.id" /></span></td>
+	</tr>
+	#if ($row == "row1") 
+		#set ($row = "row2")
+	#else 
+		#set ($row = "row1") 
+	#end
+#end
+	<tr>
+	  <td class="cat" colspan="5" height="28" align="right"> 
+		<input type="button" name="delete" value='#message("pm.removeSelected")' class="mainoption" onclick="confirmDelete(1);" />
+	  </td>
+	</tr>
+  </table>
+</form>
+  
+#parse("forum/themes/jb2/footer.vm")

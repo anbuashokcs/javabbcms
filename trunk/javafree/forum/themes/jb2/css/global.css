@@ -1,0 +1,184 @@
+/****************************************/
+/***** Global Settings ******************/
+/****************************************/
+/*font global, line height*/
+BODY									{ font:11px/1.25 Verdana, Arial, Helvetica, sans-serif;color:#000;background:#89817d;text-align:center }
+/*heading*/ 
+H1, H2, H3, H4, H5, H6					{ font-weight:normal }
+H1										{ font-size:24px }
+H2										{ font-size:20px }
+H3										{ font-size:16px;font-weight:bold }
+H4										{ font-size:14px;font-weight:bold }
+/*link*/
+A										{ color:#236bad; text-decoration:none }
+A:hover									{ color:#000 }
+A:link, A:visited						{  }
+
+/*P, UL, OL								{ padding:0 0 1.25em 0 }
+UL, OL  								{ padding:0 0 1.25em 2.5em }
+BLOCKQUOTE								{ margin:1.25em;padding:1.25em 1.25em 0 1.25em }*/
+SMALL									{ font-size:0.85em }
+SUP										{ position:relative;bottom:0.3em;vertical-align:baseline }
+SUB										{ position:relative;bottom:-0.2em;vertical-align:baseline }
+ACRONYM, ABBR							{ cursor:help;letter-spacing:1px;border-bottom:1px dashed }
+
+FORM									{ display:block }
+INPUT, SELECT, TEXTAREA					{ font:12px Arial, Helvetica, sans-serif; border:1px #666 solid }
+TEXTAREA								{ width:100%;line-height:1.25 }
+LABEL									{ cursor:pointer }
+/*tabele*/
+TABLE									{ border-spacing:0; border-collapse:collapse }
+
+/****************************************/
+/***** Global Classes *******************/
+/****************************************/
+.floatLeft								{ float:left }
+.floatRight								{ float:right }
+.clear									{ clear:both;height:0;line-height:0;font-size:0 }
+
+.red, .error							{ color:#FF0000 }
+
+.textLeft								{ text-align:left }
+.textRight								{ text-align:right }
+.textCenter								{ text-align:center }
+.textJustify							{ text-align:justify }
+
+.bold									{ font-weight:bold }
+.italic									{ font-style:italic }
+.underline								{ border-bottom:1px solid }
+.highlight								{ background:#ffc }
+
+.imgLeft								{ float:left;margin:4px 10px 4px 0 }
+.imgRight								{ float:right;margin:4px 0 4px 10px }
+
+.noPadding								{ padding:0 !important }
+.noMargin								{ margin:0 !important }
+.noIndent								{ margin-left:0;padding-left:0 }
+.noBullet								{ list-style:none;list-style-image:none }
+.noBorder								{ border:none !important }
+
+.hide									{ display:none }
+
+.separator								{ line-height:12px; height:12px }
+
+A.more									{ font-weight:bold; font-size:11px; color:#015ba7 }
+A.more:hover							{ color:#000 }
+
+.feedback								{ text-align:right; padding:15px 0 0 0 }
+.feedback A								{ font-family:Arial, Helvetica, sans-serif; font-size:9px; text-transform:uppercase; color:#000 }
+
+A.border			{ background:url(../imgs/_efect/shadow-bottom.gif) no-repeat left bottom; padding-bottom:10px; position:relative }
+A.border SPAN		{ display:block; background:url(../imgs/_efect/shadow-right.gif) no-repeat right top; padding-right:10px }
+A.border B			{ position:absolute; right:0; bottom:0; display:block; width:10px; height:10px; font-size:1px; background:url(../imgs/_efect/shadow-rb.gif) no-repeat left top }
+A.border IMG		{ border-style:solid; border-width:1px; border-top-color:#EEE; border-right-color:#DDD; border-bottom-color:#DDD; border-left-color:#EEE }
+
+A.button1			{ background:url(../imgs/_icons/button-1-left.gif) no-repeat left top; font-size:10px; font-weight:bold; color:#FFF; cursor:pointer }
+A.button1 SPAN		{ background:url(../imgs/_icons/button-1-right.gif) no-repeat right top; float:left; padding:4px 10px 8px 10px }
+A.button1:hover		{ color:#EEE }
+
+A.button2			{ background:url(../imgs/_icons/button-2-left.gif) no-repeat left top; font-weight:bold; color:#666; cursor:pointer }
+A.button2 SPAN		{ background:url(../imgs/_icons/button-2-right.gif) no-repeat right top; float:left; padding:2px 10px 6px 10px }
+A.button2:hover		{ color:#015ba7 }
+
+.iconComment		{ background:url(../imgs/_icons/comment.gif) no-repeat left center; padding:2px 0 2px 20px }
+.iconPromote		{ background:url(../imgs/_icons/promote.gif) no-repeat left center; padding:5px 0 5px 25px; color:#81ac42 }
+.iconPromote:hover	{ color:#015ba7 }
+.iconVoteUp			{ background:url(../imgs/_icons/vote-up.gif) no-repeat center; padding:9px }
+.iconVoteDown		{ background:url(../imgs/_icons/vote-down.gif) no-repeat center; padding:9px }
+.iconVoteUpP		{ background:url(../imgs/_icons/vote-points-up.gif) no-repeat center; padding:9px }
+.iconVoteDisabledP	{ background:url(../imgs/_icons/vote-points-disable.gif) no-repeat center; padding:9px }
+.iconPDF			{ background:url(../imgs/_icons/pdf.gif) no-repeat left center; padding:1px 0 1px 20px }
+.iconHOW			{ background:url(../imgs/_icons/how.gif) no-repeat left center; padding:1px 0 1px 20px }
+.iconTOOL			{ background:url(../imgs/_icons/tools.gif) no-repeat left center; padding:1px 0 1px 20px }
+.iconPAPER			{ background:url(../imgs/_icons/papers.gif) no-repeat left center; padding:2px 0 1px 20px }
+.iconRECORD			{ background:url(../imgs/_icons/recordings.gif) no-repeat left center; padding:2px 0 1px 20px }
+.iconRELEASE		{ background:url(../imgs/_icons/release.gif) no-repeat left center; padding:2px 0 1px 20px }
+.iconPREMIUM		{ background:url(../imgs/_icons/premium.gif) no-repeat left center; padding:2px 0 1px 20px }
+.iconPrint			{ background:url(../imgs/_icons/print.gif) no-repeat left center; padding:2px 0 1px 20px }
+
+
+
+
+
+.boxPromote					{ background:url(../imgs/_box/promote.gif) no-repeat left top; width:82px; height:52px; text-align:center; font-size:10px }
+.boxPromote .iconPromote	{ display:block; margin:1px auto 3px auto; width:48px }
+.boxPromote STRONG			{ font-weight:normal; color:#81ac42; text-transform:uppercase }
+.boxPromote STRONG SPAN		{ color:#999 }
+
+/* OpinionLab Sassy */
+
+/* Header Section */
+
+#sassyimgTop {
+background-image: url(imgs/community_opinionlab_sassy.png);
+background-position:left top;
+background-repeat:no-repeat;
+position:absolute;
+margin-left:675px;
+margin-top:56px;
+height:56px;
+width:170px;
+z-index:1;
+}
+
+#sassyimgTop div.linkTop {
+padding-left:10px;
+padding-right:60px;
+padding-top:14px;
+}
+
+#sassyimgTop a.opinionLabTop {
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 10px; 
+font-style: normal; 
+font-weight: bold; 
+color: Gray; 
+text-decoration: none;
+} 
+
+#sassyimgTop a.opinionLabTop:hover {
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 10px; 
+font-style: normal; 
+font-weight: bold; 
+color: #FF0000; 
+text-decoration: none;
+}
+
+ /* Content Section */
+
+#sassyimgCont {
+background-image: url(imgs/community_opinionlab_sassy.png);
+background-position:left top;
+background-repeat:no-repeat;
+position:absolute;
+margin-left:835px;
+margin-top:243px;
+height:56px;
+width:170px;
+z-index:1;
+}
+
+#sassyimgCont div.linkCont {
+padding-left:10px;
+padding-right:60px;
+padding-top:14px;
+}
+
+#sassyimgCont a.opinionLabCont {
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 10px; 
+font-style: normal; 
+font-weight: bold; 
+color: Gray; 
+text-decoration: none;
+}
+
+#sassyimgCont a.opinionLabCont:hover {
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 10px; 
+font-style: normal; 
+font-weight: bold; 
+color: #FF0000; 
+text-decoration: none;
+} 

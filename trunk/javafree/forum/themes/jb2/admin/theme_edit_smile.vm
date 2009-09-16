@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  />
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+<script src="forum/include/forum.js" type="text/javascript"></script>
+<title>JavaBB</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#006699" vlink="#5493B4">
+<script language="javascript">
+    function valida() {
+        arrFields = new Array();
+        arrFields[0] = "word";
+        retValidacao = validateRequiredFieldsByArr(arrFields,'#message("field_mandatory")')
+        if(retValidacao == false){
+            return false;
+        }
+     }
+</script>
+<a name="top"></a>
+<br /><br />
+#if($badWord.idBadWord.toString() != "")
+    <h1>#message("edit_badword")</h1>
+#else
+    <h1>#message("new_badword")</h1>
+#end
+
+#if($badWord.idBadWord.toString() != "")
+  <form name="manage_bw" action="edit_badword.jbb" method="post" onsubmit="return valida();">
+  <input type="hidden" name="id" value="$badWord.idBadWord">
+#else
+  <form "manage_bw" action="add_badword.jbb" method="post" onsubmit="return valida();">
+#end
+
+  <table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline" align="center">
+  <tr>
+    <th class="cat" colspan="2">#message("badword")</th>
+  </tr>
+  <tr>
+    <td class="row1">#message("badword")</td>
+    <td class="row2"><input type="text" size="25" name="smile._emoticon" id="smile._emoticon" value="$!smile._emoticon" class="post" /></td>
+  </tr>
+  <tr>
+    <td class="cat" colspan="2" align="center"><INPUT class=mainoption tabIndex=6 type=button value=#message("cancel") name=preview onclick="history.back();"> &nbsp; <input type="submit" onsubmiy="return javascript:valida();" value="#message("send")" class="mainoption" /></td>
+  </tr>
+  </table>
+</form>
+
+<br clear="all" />
+
+#parse("forum/themes/jb2/admin/theme_footer.vm")
+
+</body>
+</html>

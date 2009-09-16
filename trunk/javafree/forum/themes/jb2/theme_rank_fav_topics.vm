@@ -1,0 +1,118 @@
+<html>
+<head>
+ <TITLE>${jbbConfig.forumConfig.forumName}</TITLE>
+</head>
+
+#parse("forum/themes/jb2/header.vm")
+
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall>
+				<SPAN class=nav>
+                <A class=nav href="forum.jbb">${jbbConfig.forumConfig.forumName} - #message("index_forum")</a>
+                </SPAN>
+               </TD>
+				<td align="right" valign="bottom" class="gensmall"><p align="right"><b><img src="forum/themes/jb2/images/star.gif"> &nbsp;#message("forum_fav_favorites")</b></p>                  
+                </td>
+
+            </TR>
+          </TBODY>
+      </TABLE>
+
+#if($topics.size() > 0)
+	
+	<table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline" align="center">
+	  <tr>
+	  <th width="4%" height="25" class="thCornerL" nowrap="nowrap">&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap" colspan="2">&nbsp;#message("topic")&nbsp;</th>
+
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("author")&nbsp;</th>
+	
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("answers")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("displays")&nbsp;</th>
+	  <th class="thCornerR" nowrap="nowrap">&nbsp;#message("last_message")&nbsp;</th>
+	  </tr>
+	
+	
+		#set($row = "row1")
+
+		#foreach ($topic in $topics)
+			#if($row == "row2")
+    	 		#set($row = "row1")
+	   	  	#else
+    	 		#set($row = "row2")
+	   	  	#end
+			  <tr>
+			  
+			  <td class="$row" align="center" valign="middle">
+			    <A href="viewtopic.jbb?t=${topic.id}#${topic.idLastPost}">
+			      #if($action.isTopicRead($topic))
+			      <img src="forum/themes/jb2/images/folder.gif" width="19" height="18" border="0" />
+			      #else
+			          <img src="forum/themes/jb2/images/folder_new.gif" width="19" height="18" border="0" />
+			      #end
+			    </a>
+			  </td>
+			  
+			  <td class="$row" colspan="2">
+			    <span class="topictitle">
+			      <a href="viewtopic.jbb?t=${topic.id}" class="topictitle">$!{topic.titleTopic}</a>
+			    </span>
+			    #quickPaging(${topic.pagesPerTopic} "viewtopic.jbb?t=${topic.id}" "${jbbConfig.forumConfig.theme}")
+			  </td>
+
+
+			  
+			  <td class="$row" align="center" valign="middle">
+			      <a href="viewprofile.jbb?u=${topic.user.id}">$!{topic.user.user}</a>
+			  </td>
+			  
+			  <td class="$row" align="center" valign="middle">
+			    <span class="postdetails">$!{topic.respostas}</span>
+			  </td>
+			  
+			  <td class="$row" align="center" valign="middle">
+			    <span class="postdetails">$!{topic.visualizacoes}</span>
+			  </td>
+			  
+				<TD class=$row vAlign=center noWrap align=middle>
+					<SPAN class=postdetails>$vh.dateMinuteFormat($!{topic.lastPostDate})<BR>
+						<A href="viewprofile.jbb?u=$!{topic.lastPostUserId}">
+							$!{topic.lastPostUserName}
+						</A>
+						<A href="viewtopic.jbb?t=${topic.id}&page=${topic.pageLastPost}#lastPost">
+							<IMG title="#message("show_last_message")" alt="#message("show_last_message")" src="forum/themes/jb2/images/icon_latest_reply.gif" border=0>
+						</A>
+					</SPAN>
+				</TD>
+			
+			  </tr>
+			  
+				<tr>
+					<td class="$row" align="center"></td>
+					<td class="$row" colspan="6">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #message("forum_fav_this_topic"):
+						#foreach ($usr in ${topic.favUserTopics})
+							<a href="viewprofile.jbb?u=${usr.user.id}">$!{usr.user.user}</a>#if($velocityCount != ${topic.favUserTopics.size()}),#end
+						#end
+					</td>
+				</tr>              	  	
+		#end  
+	  
+	  <tr>
+	  <th class="catBottom" colspan="7" height="28" valign="middle">&nbsp; </td>
+	  </tr>
+	</table>
+
+ #else
+ 	#parse("forum/themes/jb2/no_messages.vm")
+ #end
+
+#parse("forum/themes/jb2/footer.vm")

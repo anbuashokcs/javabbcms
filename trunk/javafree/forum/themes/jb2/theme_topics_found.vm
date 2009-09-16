@@ -1,0 +1,154 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "recent_topics")
+<html>
+<head>
+ <TITLE>#if("$!message" == "recent") #message("recent_topics") -  #end ${jbbConfig.forumConfig.forumName}</TITLE>
+</head>
+
+#parse("forum/themes/jb2/header.vm")
+
+<script>
+	function changeCmb(partnerId) {
+		document.location.href="recentTopics.jbb?message=recent&partnerId="+partnerId+"&page=1";
+	}
+</script>
+
+
+
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall>
+				<SPAN class=nav>
+				#if("$!message" == "recent")
+					#message("learn_partner"):
+					<select name="partnerId" id="partnerId" onchange="changeCmb(this.value);">
+						<option value="0" #if("$!{partnerId}" == "0") selected #end>Nenhuma</option>
+						#foreach($pt in $partners)
+							<option value="$pt.partnerId" #if("$!{partnerId}" == "$pt.partnerId") selected #end>$pt.partnerName</option>
+						#end
+					</select>
+				#else
+					<A class=nav href="forum.jbb">${jbbConfig.forumConfig.forumName} - #message("index_forum")</A> 
+					- <a href="${basePath}/rss/newPosts.jbb"><img src="forum/images/rss.gif" border="0"></a>
+				#end
+				</SPAN>
+				
+				
+				
+               </TD>
+                <td align="right" valign="bottom" class="gensmall">
+				  <p align="right">
+				  <b>
+					#if($topics.size() > 0)
+						#if("$!message" == "recent")
+							#paging($page "recentTopics.jbb" "message=recent&partnerId=$partnerId")
+						#else
+							#paging($page "newPosts.jbb" "")
+						#end
+					#end
+				  </b>
+				  </p>                  
+                </td>
+            </TR>
+          </TBODY>
+      </TABLE>
+
+
+#if($topics.size() > 0)
+	
+	<table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline" align="center">
+	  <tr>
+	  <th width="4%" height="25" class="thCornerL" nowrap="nowrap">&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("forum")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("topic")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("author")&nbsp;</th>
+	
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("answers")&nbsp;</th>
+	  <th class="thTop" nowrap="nowrap">&nbsp;#message("displays")&nbsp;</th>
+	  <th class="thCornerR" nowrap="nowrap">&nbsp;#message("last_message")&nbsp;</th>
+	  </tr>
+	
+	  #foreach ($topic in $topics)
+		  <tr>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <A href="viewtopic.jbb?t=${topic.id}#${topic.idLastPost}">
+		      #if($action.isTopicRead($topic))
+		      <img src="forum/themes/jb2/images/folder.gif" width="19" height="18" border="0" />
+		      #else
+		          <img src="forum/themes/jb2/images/folder_new.gif" width="19" height="18" border="0" />
+		      #end
+		    </a>
+		  </td>
+		  
+		  <td class="row1">
+		    <span class="forumlink">
+		      <a href="$basePath/f-${topic.forum.id}-$vh.parseStringTitle($!{topic.forum.nome})" class="forumlink">$!{topic.forum.nome}</a>
+		    </span>
+		  </td>
+		  
+		  <td class="row2">
+		    <span class="topictitle">
+		      <a href="$basePath/topic-${topic.id}-${vh.parseStringTitle($topic.titleTopic)}" class="topictitle">$!{topic.titleTopic}</a>
+		    </span>
+		    #quickPaging(${topic.pagesPerTopic} "viewtopic.jbb?t=${topic.id}" "${jbbConfig.forumConfig.theme}")
+		  </td>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <span class="name">
+		    </span>
+		      <a href="viewprofile.jbb?u=${topic.user.id}">$!{topic.user.user}</a>
+		  </td>
+		  
+		  <td class="row2" align="center" valign="middle">
+		    <span class="postdetails">$!{topic.respostas}</span>
+		  </td>
+		  
+		  <td class="row1" align="center" valign="middle">
+		    <span class="postdetails">$!{topic.visualizacoes}</span>
+		  </td>
+		  
+			<TD class=row2 vAlign=center noWrap align=middle>
+				<SPAN class=postdetails>$vh.dateMinuteFormat($!{topic.lastPostDate})<BR>
+					<A href="viewprofile.jbb?u=$!{topic.lastPostUserId}">
+						$!{topic.lastPostUserName}
+					</A>
+					<A href="$basePath/viewtopic.jbb?t=${topic.id}&page=${topic.pageLastPost}&${vh.parseStringTitle($topic.titleTopic)}#lastPost">
+						<IMG title="#message("show_last_message")" alt="#message("show_last_message")" src="forum/themes/jb2/images/icon_latest_reply.gif" border=0>
+					</A>
+				</SPAN>
+			</TD>
+		
+		  </tr>
+	  #end
+	  
+	  <tr>
+	  <th class="catBottom" colspan="7" height="28" valign="middle">&nbsp; </td>
+	  </tr>
+	</table>
+
+ #else
+ 	#parse("forum/themes/jb2/no_messages.vm")
+ #end
+
+<p align="right">  
+	<b>
+	#if($topics.size() > 0)
+		#if("$!message" == "recent")
+			#paging($page "recentTopics.jbb" "message=recent&partnerId=$partnerId")
+		#else
+			#paging($page "newPosts.jbb" "")
+		#end
+	#end
+	</b>
+</p>
+
+
+
+#parse("forum/themes/jb2/footer.vm")

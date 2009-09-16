@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+    <class 
+        name="org.javabb.vo.PostFile" 
+        table="jbb_posts_files"
+    >
+      <cache usage="read-write"/>
+    
+        <id
+            name="fileId"
+            type="java.lang.Long"
+            column="file_id"
+        >
+            <generator class="increment"/>
+        </id>
+    
+        <property
+            name="fileName"
+            type="java.lang.String"
+            column="file_name"
+            length="255"
+        />
+        <property
+            name="filePath"
+            type="java.lang.String"
+            column="file_path"
+            length="255"
+        />
+        <property
+            name="fileSize"
+            type="java.lang.String"
+            column="file_size"
+            length="255"
+        />
+
+        <property
+            name="userFileName"
+            type="java.lang.String"
+            column="user_file_name"
+            length="255"
+        />
+    
+    <many-to-one
+        name="post"
+        class="org.javabb.vo.Post"
+        not-null="true"
+    >
+        <column name="post_id" />
+    </many-to-one>		
+		
+		
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,66 @@
+#set($headerTitle = $wiki.word)
+#set($metaDes = "")
+
+#parse("home/header.vm")
+
+<style>
+#main img { float: none; border: 0px; padding: none; margin: none none 5none none; }
+</style>
+
+
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+		<h5><a href="$basePath/">Home</a> > <a href="$basePath/wikies/">Wiki</a> > <a href="${basePath}/wiki/$wiki.word">$wiki.word</a></h5><br>
+		
+			<div>
+
+				<h2>
+					<a href="${basePath}/wiki/$wiki.word">$wiki.word</a>
+					<div id="line"></div>
+				</h2>
+			
+				$wiki.body.replaceAll("\n","<br>").replaceAll("http://www.javafree.org", $basePath)
+				
+
+				#if($userLogged.admin == 1)
+					<br><br>
+					<a href="${basePath}/loadEditWikiWord.jbb?wiki.id=${wiki.id}">Editar</a> 
+					<br><br>
+				#end
+				
+				</p>	
+			
+			
+			
+			
+				<h3>Palavras Relacionadas</h3>
+				<div id="line"></div>
+				#foreach($related in $list)
+					<h3><img src="$basePath/home/images/orange_bullet.png"> 
+					<a href="${basePath}/wiki/$related.word">$related.word</a></h3><br>
+				#end
+			
+
+			</div>
+			<br>
+			
+		</div>
+
+	
+		<div id="ad">
+			#displayBanner($action.loadLocationBanner(1))
+		</div>
+
+
+		<div id="line"></div>
+		
+	
+			
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

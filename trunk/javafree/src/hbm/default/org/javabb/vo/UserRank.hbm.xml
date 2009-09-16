@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+    <class 
+        name="org.javabb.vo.UserRank" 
+        table="jbb_rank"
+    >
+        <cache usage="read-only"/>		
+
+        <id
+            name="rankId"
+            type="java.lang.Long"
+            column="rank_id"
+        >
+            <generator class="increment"/>
+        </id>
+    
+        <property
+            name="rankName"
+            type="java.lang.String"
+            column="rank_name"
+            length="255"
+        />
+        <property
+            name="rankMin"
+            type="java.lang.Integer"
+            column="rank_min"
+            length="-1"
+        />
+        <property
+            name="rankMax"
+            type="java.lang.Integer"
+            column="rank_max"
+            length="-1"
+        />
+        <property
+            name="rankImage"
+            type="java.lang.String"
+            column="rank_image"
+            length="255"
+        />
+    
+    </class>
+</hibernate-mapping>

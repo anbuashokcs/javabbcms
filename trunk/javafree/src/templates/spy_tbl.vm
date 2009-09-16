@@ -1,0 +1,15 @@
+<div class="spy-story">
+	<a href="topic-${topicId}-${vh.parseStringTitle($topicTitle)}" class="spy-url">
+	<strong><img src="forum/themes/jb2/images/icon_watch_topic.gif" border="0"> $!{topicTitle}</strong>
+	</a>
+    <a href="f-${forumId}-$vh.parseStringTitle(${forumName})" class="spy-location">$forumName</a>
+    #if($userId.toString() != "")
+		<a href="viewprofile.jbb?u=$userId" class="spy-user">$userName</a>
+	#else
+		#if("$!admin" == "1")
+			<a href="#" class="spy-user">$userName</a><br>
+				&nbsp; $!url
+			<br>
+		#end
+	#end
+</div>

@@ -1,0 +1,322 @@
+#macro(message $key)$action.getText($key)#end
+
+##Create links to pagination
+#macro(pagination $pagedResult_ $link_ $params_)
+  #if($params_ != "")
+    #set($paramPrefix_ = "?$params_&")
+  #else
+    #set($paramPrefix_ = "?")
+  #end
+
+  #if($pagedResult_.isFirstPage())
+    #message("go_to_page")
+  #else
+    <a href="${link_}$!{paramPrefix_}page=1">&lt;&lt;</a> -   <a href="${link_}$!{paramPrefix_}page=${pagedResult_.pageNumber-1}">#message("previous")</a>
+  #end
+
+  #set($pages_ = [1..${pagedResult_.totalPageCount}])
+  #foreach($page_ in $pages_)
+    #if($page_.toString() == "$pagedResult_.pageNumber")
+        <b>$page_  #if(!$pagedResult_.isLastPage($velocityCount)),#end</b>
+      #else
+        <a href="${link_}$!{paramPrefix_}page=$page_">$page_</a>#if(!$pagedResult_.isLastPage($velocityCount)),#end
+      #end
+  #end
+
+  #if($pagedResult_.isLastPage())
+    #set($nextPage_ = ${pagedResult_.pageNumber} + 1)
+    <a href="${link_}$!{paramPrefix_}page=$nextPage_">#message("next")</a> -
+    <a href="${link_}$!{paramPrefix_}page=$$pagedResult_.totalPageCount">&gt;&gt;</a>
+  #end
+#end
+
+##Create links to paging
+#macro(paging $page $link $params)
+  #if($params != "")
+    #set($paramPrefix = "?$params&")
+  #else
+    #set($paramPrefix = "?")
+  #end
+
+  #if($page.toString() == "1")
+    #message("go_to_page")
+  #else
+    <a href="$link$!{paramPrefix}page=1">&lt;&lt;</a> -
+    <a href="$link$!{paramPrefix}page=${page-1}">#message("previous")</a>
+  #end
+
+  #foreach($itemPage in $pages)
+    #if($page.toString() == $itemPage.toString())
+      <b>$itemPage  #if($pages.size() != $velocityCount),#end </b>
+    #else
+      <a href="$link$!{paramPrefix}page=$itemPage">$itemPage</a>#if($pages.size() != $velocityCount),#end&nbsp;
+    #end
+    #set($lastPage = $itemPage)
+  #end
+    
+  #if($lastPage.toString() != $page.toString())
+    #set($proximo = $page+1)
+    <a href="$link$!{paramPrefix}page=$proximo">#message("next")</a> -
+    <a href="$link$!{paramPrefix}page=$lastPage">&gt;&gt;</a>
+  #end
+#end
+
+##Quick Paging at list of topics
+#macro(quickPaging $lstPages $link $theme)
+  #if($lstPages.size() > 1)
+    <span class="gensmall"><br />
+    [ <img src="forum/themes/$theme/images/icon_minipost.gif" alt="#message("go_to_page")" title="#message("go_to_page")" />
+    #message("go_to_page"):
+    #foreach($itemPage in $lstPages)
+      #if($itemPage.toString() == "...")
+        ...&nbsp;
+      #else
+        #if($lstPages.size() == $velocityCount)
+          <a href="$link&page=$itemPage">$itemPage</a>&nbsp;
+        #else
+          <a href="$link&page=$itemPage">$itemPage</a>,&nbsp;
+        #end
+      #end
+    #end
+    ]</span>
+  #end
+#end
+
+#macro(printQuickAnswerForm $inputText)
+	<script language="javascript">
+	
+		function quoteSelection() {
+		    theSelection = false;
+		    theSelection = document.selection.createRange().text; // Get text selection
+		
+			if (theSelection) {
+		// 		Add tags around selection
+		        emoticon('[quote]\n' + theSelection + '\n[/quote]\n');
+		        document.getElementById("quoteselected").focus();
+		        theSelection = '';
+		        return;
+			}else{
+		    	alert('#message("quick_answer_select_an_text")');
+			}
+		}	
+	
+		function validateQuickPostForm(){
+			if(trim(document.getElementById("message").value) == ""){
+				alert("#message("field_mandatory")");
+				document.getElementById("message").focus();
+		        return false;
+			}
+			//changeBtnValue();
+			return true;
+		}
+	</script>
+
+	  <form action="insertmessage.jbb" method="post" name="post" id="post" onsubmit="return validateQuickPostForm();">
+		 <input type="hidden" name="subject" value="--">
+		 <input type="hidden" name="post.topic.id" value="$topicId">
+		 <input type="hidden" name="checkSign" value="1">
+		 <input type="hidden" name="page" value="$page">
+		 <input type="hidden" name="temp" value="quick">
+
+			<tr>
+				<td colspan="3">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<span class="nav"><a href="javascript:activateQuickReply()">#message("quick_answer")</a></span>
+							</td>
+						</td>
+						<tr style="display: none;" id="trQuickBody">
+							<td align="center">
+								<textarea class="post" style="width: 420px" id="message" name="message" rows="10" wrap="virtual" cols="35""></textarea>
+							</td>
+						</tr>
+						<tr style="display: none;" id="trQuickSubmit">
+							<td align="center">
+								<div name="divOthers" id="divOthers"><input type='submit' id="btnSubmit" name="btnSubmit" value='#message("send")' class='mainoption'></div>
+								<div name="divIE" id="divIE"><input type='button' id='quoteselected' name='quoteselected' class='liteoption' value='#message("quote_answer_selected")' onclick='javascript:quoteSelection();'> <input type='submit' name='btnSubmit' id='btnSubmit' value='#message("send")' class='mainoption'></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</form>
+		
+	<script language="javascript">
+		if ((navigator.appName=="Microsoft Internet Explorer")&&(parseInt(navigator.appVersion)>=4)) {
+			document.getElementById("divOthers").style.display = "none";
+		} else {
+			document.getElementById("divIE").style.display = "none";
+		}
+	</script>		
+	
+
+#end
+
+
+#macro(announcePosts $key $row)
+          <TR>
+            <TD class=$row vAlign=top align=left width=100%>
+			<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                <TBODY>
+                <TR>
+                  <TD width="100%"></TD>
+                  <TD vAlign=top noWrap align=right></TD></TR>
+                <TR>
+                  <TD colSpan=2>#message("configuration_forum_announce")
+                    <HR>
+                  </TD></TR>
+                <TR>
+                  <TD colSpan=2>
+				  <SPAN class=postbody align=center>$key</SPAN>
+				  <SPAN class=gensmall></SPAN>
+				  </TD>
+				  </TR>
+				</TBODY>
+			</TABLE>
+			</TD>
+            <TD class=$row vAlign=top width="150" height=28>
+              </TD></TR>
+	  <TR>
+    <TD class=$row vAlign=center align=left width=100%></TD>
+    <TD class=$row vAlign=bottom noWrap width="150" height=28></TD>
+   </TR>
+   <Tr>
+    <TD class=spaceRow colSpan=2 height=1><IMG height=1 alt="" src="forum/themes/jb2/images/spacer.gif"></TD>
+    </tr>
+#end
+
+
+#macro(bbcodeButtons $formName $areaName)
+<script type="text/javascript">
+// <![CDATA[
+	var form_name = '$formName';
+	var text_name = '$areaName';
+	var load_draft = false;
+	var upload = false;
+
+	// Define the bbCode tags
+	var bbcode = new Array();
+	var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]');
+	var imageTag = false;
+
+	// Helpline messages
+	var help_line = {
+		b: 'Bold text: [b]text[/b]',
+		i: 'Italic text: [i]text[/i]',
+		u: 'Underline text: [u]text[/u]',
+		q: 'Quote text: [quote]text[/quote]',
+		c: 'Code display: [code]code[/code]',
+		l: 'List: [list]text[/list]',
+		o: 'Ordered list: [list=]text[/list]',
+		p: 'Insert image: [img]http://image_url[/img]',
+		w: 'Insert URL: [url]http://url[/url] or [url=http://url]URL text[/url]',
+		a: 'Inline uploaded attachment: [attachment=]filename.ext[/attachment]',
+		s: 'Font colour: [color=red]text[/color]  Tip: you can also use color=#FF0000',
+		f: 'Font size: [size=85]small text[/size]',
+		e: 'List: Add list element',
+		d: 'Flash: [flash=width,height]http://url[/flash]'
+			}
+
+	var panels = new Array('options-panel', 'attach-panel', 'poll-panel');
+	var show_panel = 'options-panel';
+
+
+// ]]>
+
+</script>
+	<script src="$basePath/forum/include/editor.js" type="text/javascript"></script>
+
+							
+	<div id="format-buttons">
+		<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px;" onclick="bbstyle(0)" title="Bold text: [b]text[/b]" />
+		<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" title="Italic text: [i]text[/i]" />
+		<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle(4)" title="Underline text: [u]text[/u]" />
+		<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 60px" onclick="bbstyle(6)" title="Quote text: [quote]text[/quote]" />
+		<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 60px" onclick="bbstyle(8)" title="Code display: [code]code[/code]" />
+		<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 60px" onclick="bbstyle(10)" title="List: [list]text[/list]" />
+
+		<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 60px" onclick="bbstyle(12)" title="Ordered list: [list=]text[/list]" />
+		<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle(-1)" title="List item: [*]text[/*]" />
+		<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle(14)" title="Insert image: [img]http://image_url[/img]" />
+		<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 60px" onclick="bbstyle(16)" title="Insert URL: [url]http://url[/url] or [url=http://url]URL text[/url]" />
+	</div>
+	
+#end
+
+#macro(sintaxHighlight $key)
+	<script class="javascript" src="$basePath/forum/include/shCore.js"></script>
+	<script class="javascript" src="$basePath/forum/include/shBrushJava.js"></script>
+	<link href="$basePath/forum/themes/jb2/css/SyntaxHighlighter.css" type=text/css rel=stylesheet>
+
+
+	<script class="javascript">
+		dp.SyntaxHighlighter.HighlightAll('code');	
+	</script>
+#end
+
+
+#macro(escondeArtigo $row)
+			<TR>
+			<TD class=$row vAlign=top align=left width=100%>
+			<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+				<TBODY>
+				<TR>
+				  <TD width="100%"></TD>
+				  <TD vAlign=top noWrap align=right></TD></TR>
+				<TR>
+				  <TD colSpan=2>Sessão de Comentários
+					<HR>
+				  </TD></TR>
+				<TR>
+				  <TD colSpan=2>
+				  <SPAN class=postbody align=center><br>
+					<img src="$basePath/forum/themes/jb2/images/icon_faq.gif"> 
+					&nbsp; Esta é a página de perguntas e comentários do tutorial: <b>$post.subject</b><br>
+					Para ler o artigo: <a href="$basePath/artigo/$topic.id/$vh.parseStringTitle($post.subject)">Clique aqui</a>.
+					
+				  </SPAN>
+				  <SPAN class=gensmall></SPAN>
+				  </TD>
+				  </TR>
+				</TBODY>
+			</TABLE>
+			</TD>
+			<TD class=$row vAlign=top width="150" height=28>
+			  </TD></TR>
+	  <TR>
+<TD class=$row vAlign=center align=left width=100%></TD>
+<TD class=$row vAlign=bottom noWrap width="150" height=28></TD>
+</TR>
+<Tr>
+<TD class=spaceRow colSpan=2 height=1><IMG height=1 alt="" src="forum/themes/jb2/images/spacer.gif"></TD>
+</tr>
+#end
+
+#macro(showNewsComment $cnt $link)
+	<p>
+		<img src="$basePath/forum/themes/jb2/images/icon_faq.gif" style="border: 0px; padding: 0px; margin: 0 10px 0px 0;">
+		<a href=$basePath/$link>comentários: $cnt</a>
+	</p>
+#end
+
+#macro(showEnvieSeuArtigo $key)
+	<div id="related" style="height: 100px;">
+		<ul>
+			<h3>
+			<img src="$basePath/forum/themes/jb2/images/icon_home.gif" style="border: 0px; padding: 0px; margin: 0 10px 0px 0;">
+			Envie seu artigo<Br></h3>
+			Para teu seu artigo publicado em um dos maiores portais sobre Java do Mundo, você precisa formatá-lo em HTML ou 
+			<a href="http://pt.wikipedia.org/wiki/BBCode" target="_blank">BBCODE</a> e enviar para
+			<b>info(arroba)javafree.org</b> no formato txt com as imagens em anexo. 
+		</ul>
+	</div>
+#end
+
+#macro(displayBanner $banner)
+	#if("$!banner.html" == "")
+		<a href="url" target="_blank"><img src="$!banner.imagem" title="$!banner.alt" alt="$!banner.alt" border="0"></a>
+	#else
+		$!banner.html
+	#end
+#end

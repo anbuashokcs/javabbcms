@@ -1,0 +1,49 @@
+    <TR>
+          <TD class=row1 vAlign=top>
+          	<SPAN class=gen><b>#message("files_attach_files"):</b></SPAN>
+          </TD>
+          <TD class="row2">
+          	#foreach($pFile in $post.postFiles)
+          		<span id="spanImgDeleteAttach${velocityCount}">
+          		<a href="javascript:deleteAttach($pFile.fileId,'spanImgDeleteAttach${velocityCount}');" title="Delete">
+          		<img src="${basePath}/forum/themes/jb2/images/icon_delete.gif" border="0">
+          		</a>
+          		</span>
+				<span class="gen">
+				 - 
+				$vh.formatFileName($pFile.fileName)
+				</span><bR>
+			#end
+          	#if($post.postFiles.size() == 0)
+          		<span id="spanAttach1"><input type="file" name="fileSend-1" size="50"/><br></span>
+          		<span id="spanAttach2"><input type="file" name="fileSend-2" size="50"/><br></span>	
+          		<span id="spanAttach3"><input type="file" name="fileSend-3" size="50"/><br></span>	
+          		<span id="spanAttach4"><input type="file" name="fileSend-4" size="50"/><br></span>	
+          		<span id="spanAttach5"><input type="file" name="fileSend-5" size="50"/><br></span>
+	        #end
+
+          	#if($post.postFiles.size() == 1)
+          		<span id="spanAttach2"><input type="file" name="fileSend-2" size="50"/><br></span>	
+          		<span id="spanAttach3"><input type="file" name="fileSend-3" size="50"/><br></span>	
+          		<span id="spanAttach4"><input type="file" name="fileSend-4" size="50"/><br></span>	
+          		<span id="spanAttach5"><input type="file" name="fileSend-5" size="50"/><br></span>
+	        #end
+	        
+          	#if($post.postFiles.size() == 2)
+          		<span id="spanAttach3"><input type="file" name="fileSend-3" size="50"/><br></span>	
+          		<span id="spanAttach4"><input type="file" name="fileSend-4" size="50"/><br></span>	
+          		<span id="spanAttach5"><input type="file" name="fileSend-5" size="50"/><br></span>
+
+	        #end
+	        
+          	#if($post.postFiles.size() == 3)
+          		<span id="spanAttach4"><input type="file" name="fileSend-4" size="50"/><br></span>	
+          		<span id="spanAttach5"><input type="file" name="fileSend-5" size="50"/><br></span>
+	        #end
+	        
+          	#if($post.postFiles.size() == 4)
+          		<span id="spanAttach5"><input type="file" name="fileSend-5" size="50"/><br></span>
+	        #end
+
+          </TD>
+ 	 	</TR>

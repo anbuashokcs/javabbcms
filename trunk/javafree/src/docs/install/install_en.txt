@@ -1,0 +1,16 @@
+Installation instructions 
+
+1 - Download the zip file at www.javabb.org
+2 - Create a scheme in your database
+3 - Execute the SQL script src/sql/<database>/createdb.sql
+4 - Copy the javabb.war file into $TOMCAT_HOME$/webapps/
+5 - Start Tomcat
+6 - Open the file $TOMCAT_HOME$/webapps/javabb/WEB-INF/jdbc.properties
+7 - Change it in accord to you database configuration
+8 - Restart TOMCAT
+9 - Type in you browser (http://localhost:8080/javabb)
+
+
+Dalton Camargo
+dalton@javabb.org
+JavaBB Lead

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+
+<class 
+    name="org.javabb.vo.Topic" 
+    table="jbb_topics"
+>
+
+    <id
+        name="idTopic"
+        type="java.lang.Long"
+        column="id_topic"
+    >
+		<generator class="sequence">
+                <param name="sequence">SEQ_TOPIC</param>
+        </generator>
+    </id>
+
+    <property
+        name="titleTopic"
+        type="java.lang.String"
+        column="title_topic"
+        length="-1"
+    />
+
+    <property
+        name="dataTopico"
+        type="java.util.Date"
+        column="data_topico"
+        length="20"
+    />
+    <property
+        name="dateLastPost"
+        type="java.util.Date"
+        column="date_last_post"
+        length="20"
+    />
+
+    <property
+        name="visualizacoes"
+        type="java.lang.Integer"
+        column="visualizacoes"
+        length="-1"
+    />
+
+    <property
+        name="topicStatus"
+        type="java.lang.Integer"
+        column="topic_status"
+        length="-1"
+    />
+
+    <property
+        name="respostas"
+        type="java.lang.Integer"
+        column="respostas"
+        length="-1"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to UsersPortal -->
+    <many-to-one
+        name="usersPortal"
+        class="org.javabb.vo.User"
+        not-null="true"
+    >
+        <column name="id_user" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Forum -->
+    <many-to-one
+        name="forum"
+        class="org.javabb.vo.Forum"
+        not-null="true"
+    >
+        <column name="id_forum" />
+    </many-to-one>
+
+    <!-- bi-directional one-to-many association to Post -->
+    <!-- set
+        name="posts"
+		table="posts"
+		order-by="data_post asc"
+        inverse="true"
+    >
+        <key>
+            <column name="id_topic" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Post"
+        />
+    </set -->
+
+</class>
+</hibernate-mapping>

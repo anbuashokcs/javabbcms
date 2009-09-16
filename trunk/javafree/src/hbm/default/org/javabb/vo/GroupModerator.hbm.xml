@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+	@author: Dalton Camargo
+	dalton@javabb.org
+	$Id: GroupModerator.hbm.xml,v 1.1 2009/05/11 20:26:53 daltoncamargo Exp $
+-->
+
+<class 
+    name="org.javabb.vo.GroupModerator" 
+    table="jbb_group_moderator"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="jbb_group_moderator"
+    </meta>
+
+    <composite-id name="comp_id" class="org.javabb.vo.GroupModeratorPK">
+        <meta attribute="field-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="groupId" 
+            column="group_id" 
+            type="java.lang.Long"
+            length="8"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="group_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idForum" 
+            column="id_forum" 
+            type="java.lang.Long"
+            length="8"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="id_forum"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to JbbForum -->
+    <many-to-one
+        name="forum"
+	    class="org.javabb.vo.Forum"
+	    update="false"
+	    insert="false"
+	>
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            update="false"
+            insert="false"
+        </meta>
+        <meta attribute="field-description">
+           @hibernate.column
+            name="id_forum"
+        </meta>
+    	<column name="id_forum" />
+	</many-to-one>
+	
+    <!-- bi-directional many-to-one association to JbbGroup -->
+    <many-to-one
+        name="group"
+	    class="org.javabb.vo.Group"
+	    update="false"
+	    insert="false"
+	>
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            update="false"
+            insert="false"
+        </meta>
+        <meta attribute="field-description">
+           @hibernate.column
+            name="group_id"
+        </meta>
+    	<column name="group_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

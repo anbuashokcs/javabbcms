@@ -1,0 +1,48 @@
+#set($headerTitle = "Wiki Words")
+#parse("home/header.vm")
+<body>
+	<div id="content">
+		
+		#parse("home/menu_topo.vm")
+		
+		<div id="main">
+
+		
+			<fieldset style="width: 550px;">
+
+			
+			
+			
+				<legend>Wiki Word</legend>
+			
+					<form action="${basePath}/saveWikiWord.jbb" id="f2" name="f2" method="post" class="form-large">
+					<input type="hidden" name="wiki.id" value="$!wiki.id">
+
+					<div>
+						<label for="name">Palavra</label>
+						<input type="text" name="wiki.word" size="" tabindex="1" id="wiki.word" class="form-text" value="$!wiki.word" />
+					</div>
+
+					<div>
+						<label for="name">Texto</label>
+						<textarea name="wiki.body" id="wiki.body">$!wiki.body</textarea>
+					</div>
+					<div class="fieldset-footer">
+						<input type="submit" value="Continuar" class="button1" tabindex="4" /> 
+						<input type="button" value="Cancel" onclick="window.location='${basePath}/'"class="button2" />
+					</div>					
+				</form>
+				
+			</fieldset>
+			
+		</div>
+		
+		
+		<div id="line"></div>
+		
+		
+			
+		#parse("home/rodape.vm")
+	</div>
+</body>
+</html>

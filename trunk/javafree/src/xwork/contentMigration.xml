@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="contentMigrationAction" extends="default" namespace="/content">
+
+	<!-- Migracao de artigos e noticias -->
+		
+		
+		<action name="view" class="migrationAction" method="redirectMigratedArticles">
+            <result name="success" type="velocity">
+				<param name="location">/home/redir.vm</param>
+            </result>
+        </action>
+        
+		<action name="javabbMigrationRedir" class="migrationAction" method="getJavaBBRequests">
+            <result name="success" type="velocity">
+				<param name="location">/home/redir.vm</param>
+            </result>
+        </action>
+        
+        
+        <!-- //Migracao de artigos e noticias -->
+		
+	</package>
+</xwork>

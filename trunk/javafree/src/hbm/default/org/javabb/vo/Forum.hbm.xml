@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.Forum" 
+    table="jbb_forum"
+>
+
+      <!-- cache usage="read-write" /-->
+
+    <id
+        name="idForum"
+        type="java.lang.Long"
+        column="id_forum"
+    >
+		<generator class="increment"/>
+    </id>
+
+    <property
+        name="nome"
+        type="java.lang.String"
+        column="nome"
+        length="-1"
+    />
+    <property
+        name="descricao"
+        type="java.lang.String"
+        column="descricao"
+        length="-1"
+    />
+    <property
+        name="forumStatus"
+        type="java.lang.Integer"
+        column="forum_status"
+        length="-1"
+    />
+
+    <property
+        name="forumOrder"
+        type="java.lang.Integer"
+        column="forum_order"
+        length="-1"
+    />
+
+    <!--many-to-one
+        name="lastPost"
+        class="org.javabb.vo.Post"
+        not-null="true"
+    >
+        <column name="last_post_id" />
+    </many-to-one-->
+
+    <property
+        name="topicCount"
+        type="java.lang.Long"
+        column="topic_count"
+        length="-1"
+    />
+
+    <property
+        name="postCount"
+        type="java.lang.Long"
+        column="post_count"
+        length="-1"
+    />
+
+    <property
+        name="lastPagePost"
+        type="java.lang.Long"
+        column="last_page_post"
+        length="-1"
+    />
+    
+    <property
+        name="lastPostUserName"
+        type="java.lang.String"
+        column="last_post_user_name"
+        length="-1"
+    />
+    
+	<property
+        name="lastPostUserId"
+        type="java.lang.Long"
+        column="last_post_user_id"
+        length="-1"
+    />     
+
+	<property
+        name="lastPostId"
+        type="java.lang.Long"
+        column="last_post_id"
+        length="-1"
+    />  
+
+	<property
+        name="lastTopicId"
+        type="java.lang.Long"
+        column="last_topic_id"
+        length="-1"
+    /> 
+
+	<property
+        name="lastPostDate"
+        type="java.util.Date"
+        column="last_post_date"
+        length="-1"
+    /> 
+    
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to Topic -->
+    <set
+        name="topics"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="id_forum" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Topic"
+        />
+    </set>
+    
+    <many-to-one
+        name="category"
+        class="org.javabb.vo.Category"
+        not-null="true"
+    >
+        <column name="id_category" />
+    </many-to-one>
+	
+    <set
+        name="forumTopUsers"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+		order-by="post_count desc"
+    >
+        <key>
+            <column name="id_forum" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.ForumTopUser"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,236 @@
+<html>
+<head>
+<HTML dir=ltr><HEAD><TITLE>$jbbConfig.getForumConfig().getForumName() :: #message("edit")</TITLE>
+
+<script language="javascript">
+	var i18nWait = '#message("wait")';
+	var i18nTopicRequired = '#message("topic.subject.required")';
+	var i18nMessageRequired = '#message("topic.message.required")';
+	var layerName = "spanImgDeleteAttach";
+	var imageNameAndPath = "";
+	var imageRolling = "forum/themes/jb2/images/loading.gif";
+	var imageDone = "forum/themes/jb2/images/done.gif";
+	
+	
+	
+	varMessageWatchTopicDelete = "#message("watch_topic_stop_watch")";
+	varMessageWatchTopicAdd = "#message("watch_topic")";
+	var varWatchTopic = "$watchTopic";
+	var topicId = "$post.topic.id";
+	var layerName = "spanLoadingWatch";
+	
+</script>
+
+#parse("forum/themes/jb2/header.vm")
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+          <TBODY>
+            <TR> 
+              <TD align=left vAlign=bottom><SPAN class=gensmall><BR>
+                </SPAN><SPAN class=nav>
+                <A class=nav href="forum.jbb">$jbbConfig.getForumConfig().getForumName() - #message("index_forum")</A></SPAN></TD>
+            </TR>
+          </TBODY>
+      </TABLE>
+
+<!-- INÍCIO FÓRUM -->
+ 
+<TABLE class=forumline cellSpacing=1 cellPadding=3 width="100%" border=0>
+<TBODY>
+#if($url == "topic")
+    ##editar tópico
+    <FORM name="post" action="edit_topic.jbb" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="post.topic.idTopic" value="$topic.getIdTopic()">
+	<input type="hidden" name="url" id="url" value="topic">
+     
+
+        <TR>
+          <TH class=thHead colSpan=2 height=25><B>#message("edit")</B></TH></TR>
+        <TR>
+          <TD class=row1 width="22%"><SPAN class=gen><B>#message("title")</B></SPAN></TD>
+          <TD class=row2 width="78%">
+          <SPAN class=gen>
+            <INPUT class=post style="WIDTH: 450px" value="$!topic.getTitleTopic()" tabIndex=2 maxLength=60 size=45 name="subject" id="subject"> 
+          </SPAN>
+          </TD>
+        </TR>
+
+
+#else
+  ##editar post
+  <FORM name="post" action="edit_post.jbb" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="post.topic.idTopic" value="$post.getTopic().getIdTopic()">
+	<input type="hidden" name="url" id="url" value="post">
+	<input type="hidden" name="page" id="page" value="$page">
+
+
+        <TR>
+          <TH class=thHead colSpan=2 height=25><B>#message("edit")</B></TH></TR>
+        <TR>
+          <TD class=row1 width="22%"><SPAN class=gen><B>#message("subject")</B></SPAN></TD>
+          <TD class=row2 width="78%">
+          <SPAN class=gen>
+            <INPUT class=post style="WIDTH: 450px" value="$post.subject" tabIndex=2 maxLength=60 size=45 id="subject" name="subject"> 
+          </SPAN>
+          </TD>
+        </TR>
+#end
+
+ <input type="hidden" id="post.idPost" name="post.idPost" value="$post.getIdPost()">
+
+        <TR>
+          <TD class=row1 vAlign=top>
+            <TABLE cellSpacing=0 cellPadding=1 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD><SPAN class=gen><B>#message("body_message")</B></SPAN> </TD></TR>
+              <TR>
+                <TD vAlign=center align=middle><BR>
+                  ##parse("/forum/themes/jb2/theme_emoticons.vm")
+                   <iframe id="ifrSmiles" name="ifrSmiles" width="100%" height="250" src="listSmiles.jbb" frameborder="0"></iframe>
+                </TD>
+              </TR>
+              </TBODY>
+            </TABLE>
+          </TD>
+          <TD class=row2 vAlign=top><SPAN class=gen><SPAN class=genmed></SPAN>
+            <TABLE cellSpacing=0 cellPadding=2 width=450 border=0>
+              <TBODY>
+              <TR vAlign=center align=middle>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('b')" style="FONT-WEIGHT: bold; WIDTH: 30px" accessKey=b onclick=bbstyle(0) type=button value=" B " name=addbbcode0> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('i')" style="WIDTH: 30px; FONT-STYLE: italic" accessKey=i onclick=bbstyle(2) type=button value=" i " name=addbbcode2> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('u')" style="WIDTH: 30px; TEXT-DECORATION: underline" accessKey=u onclick=bbstyle(4) type=button value=" u " name=addbbcode4> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('q')" style="WIDTH: 50px" accessKey=q onclick=bbstyle(6) type=button value=Quote name=addbbcode6> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('c')" style="WIDTH: 40px" accessKey=c onclick=bbstyle(8) type=button value=Code name=addbbcode8> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('l')" style="WIDTH: 40px" accessKey=l onclick=bbstyle(10) type=button value=List name=addbbcode10> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('o')" style="WIDTH: 40px" accessKey=o onclick=bbstyle(12) type=button value=List= name=addbbcode12> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('p')" style="WIDTH: 40px" accessKey=p onclick=bbstyle(14) type=button value=Img name=addbbcode14> 
+                  </SPAN></TD>
+                <TD><SPAN class=genmed><INPUT class=button onmouseover="helpline('w')" style="WIDTH: 40px; TEXT-DECORATION: underline" accessKey=w onclick=bbstyle(16) type=button value=URL name=addbbcode16> 
+                  </SPAN></TD></TR>
+              <TR>
+                <TD colSpan=9>
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><SPAN class=genmed>&nbsp;#message("text_color"): 
+                      <SELECT onmouseover="helpline('s')" onchange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]')" name=addbbcode18> 
+                        <OPTION class=genmed style="COLOR: black; BACKGROUND-COLOR: #fafafa"   value=#444444 selected>#message("default")</OPTION> 
+                        <OPTION class=genmed style="COLOR: darkred; BACKGROUND-COLOR: #fafafa" value=darkred>#message("dark_red")o</OPTION> 
+                        <OPTION class=genmed style="COLOR: red; BACKGROUND-COLOR: #fafafa" value=red>#message("red")</OPTION> 
+                        <OPTION class=genmed style="COLOR: orange; BACKGROUND-COLOR: #fafafa" value=orange>#message("orange")</OPTION> 
+                        <OPTION class=genmed style="COLOR: brown; BACKGROUND-COLOR: #fafafa" value=brown>#message("brown")</OPTION> 
+                        <OPTION class=genmed style="COLOR: yellow; BACKGROUND-COLOR: #fafafa" value=yellow>#message("yellow")</OPTION> 
+                        <OPTION class=genmed style="COLOR: green; BACKGROUND-COLOR: #fafafa" value=green>#message("green")</OPTION> 
+                        <OPTION class=genmed style="COLOR: olive; BACKGROUND-COLOR: #fafafa" value=olive>#message("olive")</OPTION> 
+                        <OPTION class=genmed style="COLOR: cyan; BACKGROUND-COLOR: #fafafa" value=cyan>#message("cyan")</OPTION> 
+                        <OPTION class=genmed style="COLOR: blue; BACKGROUND-COLOR: #fafafa" value=blue>#message("blue")</OPTION> 
+                        <OPTION class=genmed style="COLOR: darkblue; BACKGROUND-COLOR: #fafafa" value=darkblue>#message("dark_blue")</OPTION> 
+                        <OPTION class=genmed style="COLOR: indigo; BACKGROUND-COLOR: #fafafa" value=indigo>#message("indigo")</OPTION> 
+                        <OPTION class=genmed style="COLOR: violet; BACKGROUND-COLOR: #fafafa" value=violet>#message("purple")</OPTION> 
+                        <OPTION class=genmed style="COLOR: white; BACKGROUND-COLOR: #fafafa" value=white>#message("white")</OPTION> 
+                        <OPTION class=genmed style="COLOR: black; BACKGROUND-COLOR: #fafafa" value=black>#message("back")</OPTION>
+                      </SELECT>
+                      &nbsp;#message("font"):
+                      <SELECT onmouseover="helpline('f')" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" name=addbbcode20>
+                        <OPTION class=genmed value=7>#message("smallest")</OPTION> 
+                          <OPTION class=genmed value=9>#message("small")</OPTION> 
+                          <OPTION class=genmed value=12 selected>#message("normal")</OPTION> 
+                          <OPTION class=genmed value=18>#message("big")</OPTION> 
+                          <OPTION class=genmed value=24>#message("biggest")</OPTION>
+                        </SELECT>
+                      </SPAN></TD>
+                      <TD noWrap align=right><SPAN class=gensmall><A 
+                        class=genmed onmouseover="helpline('a')" 
+                        href="javascript:bbstyle(-1)">#message("close_marks")</A></SPAN></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD colSpan=9><SPAN class=gensmall><INPUT class=helpline 
+                  style="FONT-SIZE: 10px; WIDTH: 450px" maxLength=100 size=45 
+                  value="#message("tip_style")" 
+                  name=helpbox> </SPAN></TD></TR>
+              <TR>
+                <TD colSpan=9><SPAN class=gen>
+                <TEXTAREA class=post onkeyup=storeCaret(this); style="WIDTH: 450px" onclick=storeCaret(this); tabIndex=3 id="message" name="message" rows=15 wrap=virtual cols=35 onselect=storeCaret(this);>$action.htmlEscape(${post.postBody})</TEXTAREA>
+                  </SPAN></TD></TR></TBODY></TABLE></SPAN></TD></TR>
+        <TR>
+          <TD class=row1 vAlign=top><SPAN 
+            class=gen>&nbsp;</SPAN></TD>
+            <TD class=row2>
+            <span class="gen">
+            <input type="checkbox" value="1" name="checkSign" #if($post.getSig() == 1) checked="checked" #end />
+            #message("add_signature")
+			
+			#if("$!url" != "topic")
+				<br>
+				<input type="checkbox" name="replyMail" value="1" #if("$!post.mailReply" == "1") checked="checked" #end  />
+				#message("notify_me_when_answered")
+			#end
+           <br>
+			
+            </span>
+            
+            
+	        #if($url != "topic")
+	        	##Load watch topic only in edit Post (not in watch topic)
+	            <bR>
+	            <IMG alt="" src="forum/themes/jb2/images/icon_watch_topic.gif" border="0">
+				<a href="javascript:watchTopic();">
+		          	<span id="spanWatchTopic">
+		          	#if($watchTopic == 0)
+		    	      	#message("watch_topic")</a>
+		          	#else
+			          	#message("watch_topic_stop_watch")
+		          	#end
+		          	</span>
+	          	</a>
+	             <span id="spanLoadingWatch"></span>
+			#end
+			
+            </TD>
+          </TR>
+          
+          #if($url == "topic")
+	        <TR>
+	          <TD class=row1 vAlign=top>
+	          	<SPAN class=gen>&nbsp;</SPAN>
+	          </TD>
+	          <TD class=row2>
+		          <span class="gen">
+		           <input type="checkbox" value="1" name="post.topic.notifyMe" id="post.topic.notifyMe" #if($!topic.notifyMe.intValue() == 1) checked="checked" #end/>
+		           #message("notify_user_by_mail")
+		          </span>
+	          </TD>
+	 	 	</TR>
+	 	 	
+  		  <tr>
+			<td class=row1></td>
+			<td class=row2><span class="gen">#message("topic.style"): <input type="radio" id="post.topic.topicModel" name="post.topic.topicModel" value="0" #if($topic.topicModel == 0) checked="checked" #end /> #message("topic.normal")&nbsp;&nbsp; #if (${jbbuser.admin} == 1) <input type="radio" id="post.topic.topicModel" name="post.topic.topicModel" value="1" #if($topic.topicModel == 1) checked="checked" #end /> #message("topic.fixed")&nbsp;&nbsp;<input type="radio" id="post.topic.topicModel" name="post.topic.topicModel" value="2" #if($topic.topicModel == 2) checked="checked" #end /> #message("topic.stick")&nbsp;&nbsp; #end</span></td>
+		  </tr>
+		  #end
+		#parse("forum/themes/jb2/nodes/attachfilesedit.vm")		  
+		  
+        <TR>
+          <TD class=cat align=middle colSpan=2 height=28><INPUT type=hidden 
+            value=reply name=mode>
+            <INPUT type=hidden value=8397 name=t>
+            <INPUT class=mainoption tabIndex=6 type=button value=#message("cancel") name=preview onclick="history.back();">
+            &nbsp;
+            <INPUT class=mainoption  name="btnSubmit" id="btnSubmit" accessKey=s tabIndex=5 type=submit onclick="javascript:bbstyle(-1);" value=#message("send") name=post>
+            </TD>
+         </TR>
+        </TBODY></TABLE>
+       </FORM>
+
+<!-- FIM FÓRUM -->                
+#parse("forum/themes/jb2/footer.vm")

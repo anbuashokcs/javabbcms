@@ -1,0 +1,7 @@
+${pm_message}<br>
+Link : <a href="${conf.domain}readIn.jbb?pm.id=${pmId}">${conf.domain}readIn.jbb?pm.id=${pmId}</a>
+  <br>
+  <br>
+  <font size="2">${conf.forumName}<br>
+  <a href="mailto:${conf.adminMail}">${conf.adminMail}</a></font></p>
+<p>&nbsp; </p> 

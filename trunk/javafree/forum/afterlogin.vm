@@ -1,0 +1,2 @@
+#parse("forum/include/misc.vm")
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=$jbbUrlBeforeLogin">

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="admin" extends="default" namespace="/admin">
+		
+    <!-- ADMINISTRATION FORUM -->
+	
+       <action name="deletetopic" class="topicAction" method="deleteTopic">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+	
+        <action name="admin" class="forumAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/index.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="center" class="categoryAction" method="listCategory">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/center.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="menu" class="forumAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/menu.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="show_insert_category" class="categoryAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_category.vm</param>
+            </result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="save_insert_category" class="categoryAction" method="insertCategory">
+			<result name="success" type="redirect">center.jbb</result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="show_update_category" class="categoryAction" method="showEditCategory">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_category.vm</param>
+            </result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="save_update_category" class="categoryAction" method="updateCategory">
+			<result name="success" type="redirect">center.jbb</result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="delete_category" class="categoryAction" method="deleteCategory">
+			<result name="success" type="redirect">center.jbb</result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="sort_forum" class="forumAction" method="sortForum">
+			<result name="success" type="redirect">center.jbb</result>
+			<interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="edit_forum" class="forumAction" method="loadForum">
+            <result name="success" type="chain">
+                <param name="actionName">edit_forum_list_cat</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="edit_forum_list_cat" class="categoryAction" method="listAllCategory">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_forum.vm</param>
+            </result>
+        </action>
+
+        <action name="edit_save_forum" class="forumAction" method="updateForum">
+            <result name="success" type="chain">
+                <param name="actionName">center</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="insert_forum" class="categoryAction" method="listAllCategory">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_forum.vm</param>
+            </result>
+        </action>
+
+        <action name="insert_forum_list_cat" class="categoryAction" method="listAllCategory">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_forum.vm</param>
+            </result>
+        </action>
+
+        <action name="insert_save_forum" class="forumAction" method="insertForum">
+            <result name="success" type="chain">
+                <param name="actionName">center</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="prepare_delete_forum" class="forumAction" method="loadForum">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/remove_forum.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="prepare_delete_forum_lista_foruns" class="forumAction" method="listaForum">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/remove_forum_iframe.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="delete_forum" class="forumAction" method="deleteForum">
+            <result name="success" type="chain">
+                <param name="actionName">center</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="user_management" class="userAction" method="listUsersByWhere">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/user_management.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="quick_search_user" class="userAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/popup_search_user.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="manage_admin_rights" class="userAction" method="manageAdmRights">
+			<result name="success" type="redirect">user_management.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="delete_user" class="userAction" method="deleteUsersPortal">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="user_management_profile" class="userAction" method="loadUsersPortal">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/user_management_profile.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="save_edit_profile_adm" class="userAction" method="updateUserByAdmin">
+			<result name="success" type="redirect">user_management.jbb</result>
+            <result name="REG_ERROR" type="velocity">
+                <param name="location">/forum/admin/user_management_profile.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="forum_config" class="forumAction" method="forumConfig">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/forum_config.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="save_forum_config" class="forumAction" method="saveForumConfig">
+			<result name="success" type="redirect">center.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="locktopic" class="topicAction" method="lockTopic">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="unlocktopic" class="topicAction" method="unlockTopic">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="prepare_move_topic" class="forumAction" method="listaForum">
+            <result name="success" type="velocity">
+                <param name="location">/forum/move_topic.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="move_topic" class="topicAction" method="moveTopic">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="list_badwords" class="badWordAction" method="listBadWords">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/list_badwords.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="edit_badword" class="badWordAction" method="editBadWord">
+			<result name="success" type="redirect">list_badwords.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="load_badword" class="badWordAction" method="loadBadWord">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_badword.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="del_badword" class="badWordAction" method="delBadWord">
+			<result name="success" type="redirect">list_badwords.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="add_badword" class="badWordAction" method="addBadWord">
+			<result name="success" type="redirect">list_badwords.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="prepare_badword" class="badWordAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_badword.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+<!-- -->
+        <action name="list_smiles" class="smileAction" method="listSmiles">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/list_smiles.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="edit_smile" class="smileAction" method="editSmile">
+            <result name="success" type="chain">
+                <param name="actionName">list_smiles</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="load_smile" class="smileAction" method="loadSmile">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_smile.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="del_smile" class="smileAction" method="delSmile">
+            <result name="success" type="chain">
+                <param name="actionName">list_smiles</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="add_smile" class="smileAction" method="addSmile">
+            <result name="success" type="chain">
+                <param name="actionName">list_smiles</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="prepare_smile" class="smileAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_smile.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="sorte_user_rank" class="forumAction" method="sortUserRankByForum">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/index.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+		
+        <action name="newsletters" class="newsAction" method="getNews">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/list_newsletter.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="insertNewsletter" class="newsAction">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_newsletter.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="DoInsertNewsletter" class="newsAction" method="insert">
+			<result name="success" type="redirect">newsletters.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="DoDeleteNewsletter" class="newsAction" method="delete">
+			<result name="success" type="redirect">newsletters.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="editNewsletter" class="newsAction" method="loadNews">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/edit_newsletter.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+        <action name="DoEditNewsletter" class="newsAction" method="edit">
+			<result name="success" type="redirect">newsletters.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+
+		<action name="previewNewsletter" class="newsAction" method="loadNews">
+            <result name="success" type="velocity">
+                <param name="location">/forum/admin/preview_news.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="activeNewsletter" class="newsAction" method="activeNews">
+			<result name="success" type="redirect">newsletters.jbb</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="showMessageWarn" class="postAction">
+			<result name="success" type="velocity">
+                <param name="location">/forum/tips/advice_to_user.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+        <action name="addMessageWarn" class="postAction" method="addMessageWarn">
+			<result name="success" type="redirect">showMessageWarn.jbb?message=ok</result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+       <action name="deleteMessageWarn" class="postAction" method="deleteMessageWarn">
+            <result name="success" type="velocity">
+                <param name="location">/forum/redirect.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
+		
+		
+
+        <!-- // ADMINISTRATION FORUM -->
+
+
+	</package>
+</xwork>

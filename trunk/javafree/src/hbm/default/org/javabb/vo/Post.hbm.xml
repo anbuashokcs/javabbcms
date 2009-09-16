@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="org.javabb.vo.Post" 
+    table="jbb_posts"
+>
+
+    <id
+        name="idPost"
+        type="java.lang.Long"
+        column="id_post"
+    >
+		<generator class="increment"/>
+    </id>
+
+    <property
+        name="postDate"
+        type="java.util.Date"
+        column="data_post"
+        length="20"
+    />
+    <property
+        name="subject"
+        type="java.lang.String"
+        column="assunto"
+        length="-1"
+    />
+    <!--property
+        name="postBody"
+        type="java.lang.String"
+        column="post_body"
+        length="-1"
+    /-->
+
+    <property
+        name="ip"
+        type="java.lang.String"
+        column="ip"
+        length="-1"
+    />
+
+    <property
+        name="sig"
+        type="java.lang.Integer"
+        column="sig"
+        length="1"
+    />
+
+    <property
+        name="post_state"
+        type="java.lang.Integer"
+        column="post_state"
+        length="1"
+    />
+
+	<property
+        name="mailReply"
+        type="java.lang.Integer"
+        column="mail_reply"
+        length="1"
+    />
+	
+    <!-- associations -->
+	
+	<set
+        name="postFiles"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+    >
+        <key>
+            <column name="post_id" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.PostFile"
+        />
+    </set>
+	
+	<set
+        name="warnings"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+    >
+        <key>
+            <column name="post_id" />
+        </key>
+        <one-to-many 
+            class="org.javabb.vo.Warning"
+        />
+    </set>
+	
+    <!-- bi-directional many-to-one association to user -->
+    <many-to-one
+        name="user"
+        class="org.javabb.vo.User"
+        not-null="true"
+    >
+        <column name="id_user" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Topic -->
+    <many-to-one
+        name="topic"
+        class="org.javabb.vo.Topic"
+        not-null="true"
+    >
+        <column name="id_topic" />
+    </many-to-one>
+
+	<!-- PostText -->
+    <joined-subclass name="org.javabb.vo.PostText" table="jbb_posts_text">
+		<key column="id_post"/>
+        <property 
+			name="postBody" 
+			column="post_body" 
+			type="java.lang.String"
+		/>
+    </joined-subclass>
+
+</class>
+</hibernate-mapping>

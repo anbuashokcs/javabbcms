@@ -1,0 +1,934 @@
+##Menu Staff
+$action.setSessionAttribute("menu", "topic:${topic.titleTopic}")
+<html>
+<head>
+<HTML dir=ltr><HEAD><TITLE>${topic.titleTopic} :: ${jbbConfig.forumConfig.forumName}</TITLE>
+
+<script language="javascript">
+	var i18nWait = '#message("wait")';
+	var topicId = "$topic.idTopic";
+	var favoriteTopic = "$favoriteTopic";
+	var varWatchTopic = "$watchTopic";
+	var layerName = "spanLoadingPosts";
+	var imageNameAndPath = "";
+	var imageRolling = "forum/themes/jb2/images/loading.gif";
+	var imageDone = "forum/themes/jb2/images/done.gif";
+	var messageDeleteFavorite = "#message("forum_fav_delete")";
+	var messageAddFavorite = "#message("forum_fav_add")";
+	
+	varMessageWatchTopicDelete = "#message("watch_topic_stop_watch")";
+	varMessageWatchTopicAdd = "#message("watch_topic")";	
+</script>
+	
+	#set($metaDes = "$topic.titleTopic")
+	#parse("forum/themes/jb2/header.vm")
+
+<style>
+
+/* Resets */
+div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+}
+.clear {
+	clear: both;
+}
+
+/* Content */
+#content {
+	float:left;
+	padding:15px 4px 40px;
+	width:1050px;
+}
+
+#content p {
+	font-size: 1.5em;
+	line-height: 1.7em;
+	margin: -8px 0 15px 0;
+}
+#content ol, #content ul {
+	margin: 0 0 0 20px;
+	font-size: 1.5em;
+	line-height: 1.7em;
+}
+#content ol ol, #content ul ul {
+	font-size: 1.0em;
+}
+#content ol li {
+	list-style: decimal;
+}
+
+#content .post_nav {
+	width: 13em;
+}
+
+#content .entry {
+	border-bottom: 1px solid #dbdbdb;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+}
+#content .single_entry {
+	padding-bottom: 10px;
+}
+#content .entry_meta ul {
+	margin: 0;
+	padding: 0;
+	font-size: 1.0em;
+	line-height: 1.0em;
+	display: inline;
+}
+
+
+#content .single_meta li {
+	display: inline;
+	background: none;
+	padding-left: 0;
+}
+#content .single_author {
+	float: left;
+	width: 200px;
+	margin-left: 10px;
+}
+
+
+#content #comments {
+	background: #f1f3f3;
+	padding: 30px;
+	border-top: 1px solid #dde0e0;
+	border-bottom: 1px solid #dde0e0;
+}
+#content #comments ol.comment_list {
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	font-size: 100%;
+}
+#content #comments ol.comment_list li {
+	list-style: none;
+}
+
+#content #comments .comment_author {
+	float: left;
+	padding-top: 1px;
+	width: 100px;
+	margin-bottom: 30px;
+}
+#content #comments .comment_author p {
+	font-size: 1.3em;
+	margin-bottom: 0px;
+	margin-top: 10px;
+	line-height: 1.0em;
+	color: #5f6565;
+}
+#content #comments .single_comment {
+	position: relative;
+	padding: 10px 20px;
+	background: #fff;
+	border: 1px solid #e0e5e5;
+	width: 780px;
+	float: right;
+	margin-bottom: 30px;
+}
+#content .comment_list { 
+	padding-bottom: 40px;
+}
+#content .comment_arrow {
+	position: absolute;
+	top: 10px;
+	left: -32px;
+}
+#content #comments .single_comment p {
+	font-size: 1.3em;
+	line-height: 1.5em;
+	margin-bottom: 10px;
+	text-align: left;
+}
+#content #comments .comment_author span {
+
+}
+
+#content .aligncenter, #content div.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#content .alignleft {
+	float: left;
+	padding: 10px 20px 20px 0;
+}
+#content .alignright {
+	float: right;
+	padding: 10px 0 20px 20px;
+}
+
+.codeprettyprint {
+	border-bottom: 1px solid #dbdbdb;
+}
+
+</style>
+	
+ <TR>
+    <TD background="forum/themes/jb2/images/_fadetop.gif" colSpan=2 height=12></TD>
+ </TR>
+  <TR align=middle bgColor=#ffffff>
+    <TD class=mainbody colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" align=center border=0>
+        <TBODY>
+         <TR>
+			<TD align="left" valign="bottom">
+                <SPAN class="nav">
+				<A class=maintitle href="${basePath}/topic-${topic.id}-${vh.parseStringTitle($topic.titleTopic)}"><h1>${topic.titleTopic}</h1></A>
+				</SPAN>
+				
+			</TD>
+            <td align="right" valign="bottom" class="gensmall">
+				<p align="right"><b>#paging($page "viewtopic.jbb" "t=$topic.idTopic")</b></p>
+			</td>
+		</TR>
+		</TBODY>
+      </TABLE>
+
+
+<!-- INÍCIO FÓRUM -->
+  <a name="top">
+
+	<TABLE cellSpacing=2 cellPadding=2 width="100%" border=0>
+      <TBODY>
+        <TR>
+          <TD vAlign=bottom noWrap align=left>
+          <SPAN class=nav>
+          <A href="new_topic.jbb?topic.forum.id=${topic.forum.id}"><IMG alt="#message("new_topic")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/post.gif" align=middle border=0></A>&nbsp;&nbsp;&nbsp;
+          #if ($topic.topicStatus == 1)
+            <IMG src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply-locked.gif" align="middle" border="0">
+          #else
+            <A href="reply.jbb?post.topic.id=${topic.id}&post.topic.forum.id=${topic.forum.id}&page=$page&post.topic.forum.nome=${topic.forum.nome}"><IMG alt="#message("answer_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply.gif" align=middle border=0></A>
+          #end
+          </SPAN>
+          </TD>
+          <TD vAlign=center align="left" width="50%">
+	          <SPAN class=nav>&nbsp;&nbsp;&nbsp;<A class=topictitle href="${basePath}/index">#message("index_forum")</A> -&gt;<A class=topictitle href="f-${topic.forum.id}-$vh.parseStringTitle($!{topic.forum.nome})">${topic.forum.nome}</A>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  	<!-- AddThis Button BEGIN -->
+					<script type="text/javascript">var addthis_pub="daltondecamargo";</script>
+					<a href="http://www.addthis.com/bookmark.php?v=20" class="tool" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="$basePath/home/images/add_this.png" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
+				<!-- AddThis Button END -->
+			  
+			  </SPAN>
+          </TD>
+          <TD vAlign="middle" align="right" width="50%">
+          	#if($jbbuser.getIdUser().toString() != "")
+	          <IMG alt="" src="forum/themes/jb2/images/icon_watch_topic.gif" border="0">
+	          <a href="javascript:watchTopic();">
+	          	<span id="spanWatchTopic">
+	          	#if($watchTopic == 0)
+	    	      	#message("watch_topic")</a>
+	          	#else
+		          	#message("watch_topic_stop_watch")
+	          	#end
+	          	</span>
+	          	</a>
+	          	&nbsp;&nbsp;
+	          	<IMG alt="" src="forum/themes/jb2/images/star.gif" border="0">
+	          	<a href="javascript:doFavTopic();">
+	          	<span id="spanLinkFavorite">
+		       		#if($favoriteTopic == 1)
+			          	#message("forum_fav_delete")
+			         #else
+			       		#message("forum_fav_add")
+		         	#end
+	         	</span>
+	         	</a>
+	          	<span id="spanLoadingPosts"></span>
+	         #end
+          </TD>
+          </TR>
+       </TBODY>
+      </TABLE>
+      
+
+
+<div id="HOTWordsTxt" name="HOTWordsTxt">
+	
+	
+	
+<div id="wrapper">
+
+	<div id="content">
+
+
+
+
+	  <div id="comments">
+	  
+	  #foreach ($post in $posts)
+		<ol class="comment_list">
+			<li id="comment-264">
+				<div class="comment_author">
+				#if (${post.user.user_avatar} != "")
+					#if("$!post.user.avatarExibition" == "")
+						#set($avatarURL = "$basePath/files/${post.user.user_avatar}")
+					#else
+						#set($avatarURL = "$basePath/$post.user.avatarExibition")
+					#end
+					<img src="$avatarURL" border="0" class='avatar avatar-80 photo' /><BR><BR>
+				#else
+					<img src="$basePath/forum/themes/jb2/images/nopic.jpg" border="0" class='avatar avatar-80 photo' /><BR><BR>
+				#end
+
+					
+					<p> <A name=46400></A><p>
+					<b><a href="#">${post.user.user}</a></b></br>
+
+					##set($userRank = $action.userFormatter.getUserRank($post.user.user_posts))
+					#set($userOnLine = $action.userFormatter.getUserStatus($post.user))
+		            #if($userOnLine == 1)
+		                <font class="online" size="1">#message("online")</font>
+		            #else
+		                <font class="offline" size="1">#message("offline")</font>
+		            #end
+					<br>
+					<font size="1">Posts: ${post.user.user_posts}</font><BR>
+					#*
+					#if (${post.user.localizacao} != "")
+		            	#message("locality"): ${post.user.localizacao}
+		           	#end
+					
+					#message("registered_in"): $vh.dateFormat(${post.user.dataRegistro})<BR>
+					*#
+					
+					</p>
+				</div>
+				<div class="single_comment"><img src="http://valums.com/wp-content/themes/sharp_blue/images/comment_arrow.png" width="32" height="31" alt="Comment Arrow" class="comment_arrow" />
+					<p>
+						<b><font size="1">Publicado em: $vh.dateMinuteFormat(${post.postDate})</font></b>
+						<!-- toolbar de controles do post -->
+						<span style="float: right;">
+							<A href="javascript:quoteMsg(${post.id},'${post.user.user}', '$page');"><IMG title="#message("answer_with_quote")" title="#message("answer_with_quote")"  src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_quote.gif" border="0"></A>
+							#if(${post.user.id} == ${jbbuser.id})
+								#if($velocityCount == 1)
+									#if($page.toString() == "1")
+										<A  href="show_edit_topic.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=topic">
+									#else
+										<A  href="show_edit_post.jbb?post.idPost=${post.id}&post.topic.idTopic=${topic.id}&url=post&page=$page">
+									#end
+								#else
+									<A  href="show_edit_post.jbb?post.idPost=${post.id}&post.topic.idTopic=${topic.id}&url=post&page=$page">
+							    #end
+								<IMG title="#message("edit_message")" alt="#message("edit_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_edit.gif" border="0"></A>
+								<A href="javascript:deleteMsg(${post.id},${post.user.id},'${topic.id}','${topic.forum.id}','#message("confirm_delete")');"><IMG title="#message("delete_message")" alt="#message("delete_message")" src="forum/themes/jb2/images/icon_delete.gif" border="0"></A>
+							#else
+								#if(${jbbuser.admin} == 1)
+									#if($velocityCount == 1)
+										#if($page.toString() == "1")
+											<A  href="show_edit_topic.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=topic">
+										#else
+											<A  href="show_edit_post.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=post&page=$page">
+										#end
+							        #else
+									<A  href="show_edit_post.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=post&page=$page">
+									#end
+									<IMG title="#message("edit_message")" alt="#message("edit_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_edit.gif" border="0"></A>
+									<A href="javascript:deleteMsg(${post.id},${post.user.id},'${topic.id}','${topic.forum.id}','#message("confirm_delete")');"><IMG title="#message("delete_message")" alt="#message("delete_message")" src="forum/themes/jb2/images/icon_delete.gif" border="0"></A>
+								#end
+							#end
+
+							#if(${jbbuser.admin} == 1)
+								<IMG alt="${post.ip}" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_ip.gif">
+							#end
+						</span>
+						<br><br>
+
+						#if($req.getParameter("h") != "")
+							$highlighter.highlight($action.formatPost($post), $req.getParameter("h"), "...", 200, 4, true)
+						#else
+							$action.formatPost($post)
+						#end
+
+						#if($post.postFiles.size() > 0)
+							<br><br><br>
+							#foreach($pFile in $post.postFiles)
+								 <br>
+								<table width="39%" border="1" cellpadding="2" cellspacing="2" bordercolor="#FFFFFF">
+								  <tr>
+								    <td width="32%"><b>#message("download"):</b></td>
+								    <td width="68%">&nbsp;<a href="${basePath}/file/d.jbb?fileId=$pFile.fileId" target="_blank">$vh.formatFileName($pFile.fileName)</a></td>
+								  </tr>
+								  <tr>
+								    <td><b>#message("size"):</b></td>
+								    <td>&nbsp;$pFile.fileSize</td>
+								  </tr>
+								  	#*<tr>
+								    <td><b>#message("downloads"):</b></td>
+								    <td>&nbsp;#if($pFile.downloads.toString() != "") $pFile.downloads #else 0 #end</td>
+								  </tr>
+								  *#
+								</table>				
+							#end
+							
+						#end
+					
+						#if(${post.sig} == 1)
+							#if(${post.user.userSig} != "")
+								<BR>_________________<BR>
+								${post.user.userSig_formated}
+							#end
+						#end
+					
+					
+					</p>
+				</div>
+				<br class="clear" />
+			</li>
+		</ol>
+	  #end
+
+	      <br class="clear" />
+	      </div>
+	      <br />
+
+
+
+		</div>
+	</div>
+<!-- end content -->
+
+  <div id="advert_div">
+	<br>
+	Adsense
+  </div>
+ 
+</div>
+
+<br class="clear" />
+</div>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+      <TABLE class=forumline cellSpacing=1 cellPadding=3 width="100%" border=0>
+      	
+      <TBODY>
+	  <br>
+		#if($jbbuser.getIdUser().toString() != "")
+			  <script type="text/javascript"><!--
+				google_ad_client = "pub-9439984557405450";
+				/* 728x15, criado 07/04/08 */
+				google_ad_slot = "8067512493";
+				google_ad_width = 728;
+				google_ad_height = 15;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+		#else
+				<script type="text/javascript"><!--
+				google_ad_client = "pub-9439984557405450";
+				/* 728x90, criado 02/06/08 */
+				google_ad_slot = "1984420004";
+				google_ad_width = 728;
+				google_ad_height = 90;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>			
+		#end
+	  
+        <TR>
+          <TH class=titleGenmed noWrap>#message("message")</TH>
+          <TH class=titleGenmed noWrap width=150 height=26>#message("author")</TH>
+         </TR>
+  #set($row = "row1")
+  #foreach ($post in $posts)
+		#if($row == "row2")
+			#set($row = "row1")
+		#else
+			#set($row = "row2")
+		#end
+
+		#set($catId = ${topic.forum.category.id})
+	
+		#if("$catId" == "4" && $velocityCount == 1 && "$message" == "")
+			#escondeArtigo($row)
+			#if(${jbbuser.admin} == 1)
+				<br><br>
+				Admin: 
+				<a href="$basePath/topic-${topic.id}-${vh.parseStringTitle($topic.titleTopic)}?message=adm">Abrir Artigo</a>
+				<br><br>
+			#end
+		#else  ##Mostra os comentarios do tutorial
+  
+	 
+
+          <TR>
+            <TD class=$row vAlign=top width="100%" height=28>
+              <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                <TBODY>
+                <TR>
+                  <TD width="100%">
+  <SPAN class=postdetails>
+    #if(${page} > 1)
+  		#set($showPage = "page=$!{page}&")
+  	#end
+	
+	<a href="$basePath/topic-${topic.id}-${vh.parseStringTitle($topic.titleTopic)}?page=$!{page}#${post.id}"><img src="forum/themes/jb2/images/icon_minipost.gif" border="0"></a>
+  
+	#message("posted"): $vh.dateMinuteFormat(${post.postDate})
+	  </SPAN>
+	  &nbsp; &nbsp;#message("subject"): $post.subject
+	  </TD>
+                  <TD vAlign=top noWrap align=right>
+                  <A href="javascript:quoteMsg(${post.id},'${post.user.user}', '$page');"><IMG title="#message("answer_with_quote")" alt="#message("answer_with_quote")"  src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_quote.gif" border=0></A>
+
+			  ##Post modification control
+			  #if(${post.user.id} == ${jbbuser.id})
+				##this user is owner of this message
+				#if($velocityCount == 1)
+				#if($page.toString() == "1")
+				##Editar tópico
+                    <A  href="show_edit_topic.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=topic">
+                  #else
+                      ##Editar post
+                    <A  href="show_edit_post.jbb?post.idPost=${post.id}&post.topic.idTopic=${topic.id}&url=post&page=$page">
+                  #end
+                 #else
+                    ##Editar post
+                    <A  href="show_edit_post.jbb?post.idPost=${post.id}&post.topic.idTopic=${topic.id}&url=post&page=$page">
+                      #end
+                  <IMG title="#message("edit_message")" alt="#message("edit_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_edit.gif" border=0></A>
+  <A href="javascript:deleteMsg(${post.id},${post.user.id},'${topic.id}','${topic.forum.id}','#message("confirm_delete")');"><IMG title="#message("delete_message")" alt="#message("delete_message")" src="forum/themes/jb2/images/icon_delete.gif" border=0></A>
+  #else
+  #if(${jbbuser.admin} == 1)
+  ##if this users are Administrator
+  #if($velocityCount == 1)
+  #if($page.toString() == "1")
+  ##Editar tópico
+                    <A  href="show_edit_topic.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=topic">
+                    #else
+                    ##Editar post
+                    <A  href="show_edit_post.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=post&page=$page">
+                    #end
+                    #else
+                    ##Editar post
+                    <A  href="show_edit_post.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=post&page=$page">
+                      #end
+                  <IMG title="#message("edit_message")" alt="#message("edit_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_edit.gif" border=0></A>
+  <A href="javascript:deleteMsg(${post.id},${post.user.id},'${topic.id}','${topic.forum.id}','#message("confirm_delete")');"><IMG title="#message("delete_message")" alt="#message("delete_message")" src="forum/themes/jb2/images/icon_delete.gif" border=0></A>
+  #end
+  #end
+
+  #if(${jbbuser.admin} == 1)
+  ##Show ip of user
+  <IMG alt="${post.ip}" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_ip.gif">
+  #end
+  </TD>
+    </TR>
+                <TR>
+                  <TD colSpan=2>
+                    <HR>
+                  </TD></TR>
+                <TR>
+                  <TD colSpan=2>
+  <SPAN class=postbody>
+	  	#if($req.getParameter("h") != "")
+			$highlighter.highlight($action.formatPost($post), $req.getParameter("h"), "...", 200, 4, true)
+		#else
+			$action.formatPost($post)
+		#end
+
+		#if($post.postFiles.size() > 0)
+			<br><br><br>
+			#foreach($pFile in $post.postFiles)
+				 <br>
+				<table width="39%" border="1" cellpadding="2" cellspacing="2" bordercolor="#FFFFFF">
+				  <tr>
+				    <td width="32%"><b>#message("download"):</b></td>
+				    <td width="68%">&nbsp;<a href="${basePath}/file/d.jbb?fileId=$pFile.fileId" target="_blank">$vh.formatFileName($pFile.fileName)</a></td>
+				  </tr>
+				  <tr>
+				    <td><b>#message("size"):</b></td>
+				    <td>&nbsp;$pFile.fileSize</td>
+				  </tr>
+				  	#*<tr>
+				    <td><b>#message("downloads"):</b></td>
+				    <td>&nbsp;#if($pFile.downloads.toString() != "") $pFile.downloads #else 0 #end</td>
+				  </tr>
+				  *#
+				</table>				
+			#end
+			
+		#end
+
+		#if(${post.sig} == 1)
+			#if(${post.user.userSig} != "")
+				<BR>_________________<BR>
+				${post.user.userSig_formated}
+			#end
+		#end
+  </SPAN>
+  </TD>
+
+  </TR>
+  </TBODY>
+  </TABLE>
+    </TD>
+
+	
+    ##PROFILE DATA COLUMN
+	<TD class=$row vAlign=top align=right width=150>
+            #if($velocityCount == $posts.size()) <a name="lastPost"> #end
+            <a name="${post.id}">
+            <A name=46400></A><SPAN class="name"><B>${post.user.user}</B></SPAN><BR>
+            #set($userRank = $action.userFormatter.getUserRank($post.user.user_posts))
+            <a href="javascript:viewLegend();"><img src="forum/images/${userRank.rankImage}" border="0" title="${userRank.rankName}" alt="" border="0" /></a>
+            <br>
+            	
+            #set($userOnLine = $action.userFormatter.getUserStatus($post.user))
+            #if($userOnLine == 1)
+                <font class="online">#message("online")</font>
+            #else
+                <font class="offline">#message("offline")</font>
+            #end
+            
+            <bR>
+            <SPAN class=postdetails><BR>
+
+            #if (${post.user.user_avatar} != "")
+				#if("$!post.user.avatarExibition" == "")
+					#set($avatarURL = "$basePath/files/${post.user.user_avatar}")
+				#else
+					#set($avatarURL = "$basePath/$post.user.avatarExibition")
+				#end
+              <img src="$avatarURL" border="0" /><BR><BR>
+            #else
+              <img src="$basePath/forum/themes/jb2/images/nopic.jpg" border="0" /><BR><BR>
+            #end
+			
+			
+            #message("registered_in"): $vh.dateFormat(${post.user.dataRegistro})<BR>
+            #message("messages"): ${post.user.user_posts}<BR>
+ 
+            #set($favByUser = ${post.user.favUserTopics.size()} )
+           	#if(${favByUser} != 0)
+	           	<bR>
+	            <a href="javascript:viewFavoriteTopicsByUser('$post.user.idUser');" style="color:#000000;">
+		        	<img src="forum/themes/jb2/images/star.gif" border="0" title="#message("forum_fav_favorites")" alt="#message("forum_fav_favorites")">&nbsp; #message("forum_fav_favorites") (${favByUser})
+				</a>
+			#end
+
+			<br>
+				
+            #if (${post.user.localizacao} != "")
+            	#message("locality"): ${post.user.localizacao}
+           	#end
+           	<BR>
+            </SPAN><BR>
+        </TD>
+    
+    </TR>
+	
+	
+     <TR>
+		 <TD class=$row vAlign=bottom noWrap width="100%" height=28>
+              <a href="viewprofile.jbb?u=${post.user.id}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_profile.gif" border="0">
+              </a>
+              
+              <a href="pm.externalSend.jbb?userId=${post.user.id}&username=${post.user.user}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_pm.gif" border="0">
+              </a>
+              
+              
+          #if(${post.user.show_mail} == 1)
+              <a href="mailto:${post.user.email}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_email.gif" border="0">
+              </a>
+          #end
+
+              #if(${post.user.website} != "")
+              <a href="${post.user.website}" target="_blank">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_www.gif" border="0">
+              </a>
+          #end
+
+              #if(${post.user.user_yim} != "")
+              <a href="http://edit.yahoo.com/config/send_webmesg?.target=${post.user.user_yim}&.src=pg" target="_blank">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_yim.gif" border="0">
+              </a>
+          #end
+
+          #if(${post.user.user_msnm} != "")
+             <a href="viewprofile.jbb?u=${post.user.id}">
+              <img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_msnm.gif" border="0">
+              </a>
+          #end
+
+          	#if(${post.user.user_icq} != "")
+            	<a href="http://wwp.icq.com/scripts/search.dll?to=${post.user.user_icq}">
+              	<img src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/icon_icq_add.gif" border="0">
+              	</a>
+           	#end
+
+            </TD>
+            <TD class=$row vAlign=center align=left width=150>
+            <SPAN class=nav>
+            <A class=topictitle href="#top">#message("back_top")</A>
+            </SPAN>
+            </TD>
+            </TR>
+            <Tr>
+            <TD class=spaceRow colSpan=2 height=1><IMG height=1 alt="" src="forum/themes/jb2/images/spacer.gif"></TD>
+            </tr>
+	
+  #end
+ #end    ###final do tratamento de tutoriais
+	
+	
+  #if($!jbbConfig.forumConfig.forumAnnounceText != "")
+    	  #if($row == "row2")
+    	  	 #announcePosts($!jbbConfig.forumConfig.forumAnnounceText "row1")
+    	  #else
+    		 #announcePosts($!jbbConfig.forumConfig.forumAnnounceText "row1")
+    	  #end
+  #end
+    </tr>
+	</TBODY>
+	</TABLE>
+</div>
+
+
+      <TABLE cellSpacing=2 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=bottom noWrap align=left>
+          <SPAN class=nav>
+          <A href="new_topic.jbb?topic.forum.idForum=${topic.forum.id}"><IMG alt="#message("new_topic")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/post.gif" align=middle border=0></A>&nbsp;&nbsp;&nbsp;
+          #if ($topic.topicStatus == 1)
+            <IMG src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply-locked.gif" align="middle" border="0">
+          #else
+            <A href="reply.jbb?post.topic.idTopic=${topic.id}&post.topic.forum.idForum=${topic.forum.id}&page=$page&post.topic.forum.nome=${topic.forum.nome}"><IMG alt="#message("answer_message")" src="forum/images/buttons/$jbbConfig.forumConfig.buttonLang/reply.gif" align=middle border=0></A>
+          #end
+
+          </SPAN>
+          </TD>
+          <TD vAlign=center align=left width="50%">
+	          <SPAN class=nav>&nbsp;&nbsp;&nbsp;
+	          <A class=topictitle href="${basePath}/index">#message("index_forum")</A> -&gt;
+	          <A class=topictitle href="${basePath}/f-${topic.forum.id}-$vh.parseStringTitle($!{topic.forum.nome})">
+	            ${topic.forum.nome}
+	          </A>
+	          </SPAN>
+          </TD>
+          <TD vAlign="middle" align="right" width="50%">
+			#if($jbbuser.getIdUser().toString() != "")
+	          <SPAN>
+	          <a href="javascript:viewWatchTopicsByTopic();">#message("watch_topic_users_watching")</a><bR>
+	          <a href="javascript:viewFavoriteTopicsByTopic();">#message("forum_fav_this_topic")</a>
+	          </SPAN>
+			#end
+          </TD>          
+		</TR>
+
+		#if($vh.isNull(${userLogged}) == 0)          
+			   #printQuickAnswerForm("")
+		#end
+       </TBODY>
+      </TABLE>
+
+      <br /><br />
+      
+        
+      
+
+      #if(${jbbuser.admin} == 1)
+
+        <table width="100%" cellspacing="2" border="0" align="center">
+          <tr>
+          <td width="40%" valign="top" nowrap="nowrap" align="left">
+            <span class="gensmall">
+
+              <a href="javascript:deleteTopic(${topic.id}, ${topic.forum.id},'#message("confirm_delete")')">
+                <img src="forum/themes/jb2/images/topic_delete.gif" alt="#message("delete_topic")" title="#message("delete_topic")" border="0" /></a>
+
+                <a href="admin/prepare_move_topic.jbb?topic.idTopic=$topic.idTopic">
+                <img src="forum/themes/jb2/images/topic_move.gif" alt="#message("move_topic")" title="#message("move_topic")" border="0" /></a>
+
+              #if ($topic.topicStatus == 1)
+                <a href="javascript:unlockTopic(${topic.id}, ${topic.forum.id},'#message("unlock_topic")')">
+                  <img src="forum/themes/jb2/images/topic_unlock.gif" alt="#message("unlock_topic")" title="#message("unlock_topic")" border="0" /></a>
+              #else
+                <a href="javascript:lockTopic(${topic.id}, ${topic.forum.id},'#message("lock_topic")')">
+                  <img src="forum/themes/jb2/images/topic_lock.gif" alt="#message("lock_topic")" title="#message("lock_topic")" border="0" /></a>
+              #end
+
+            </td>
+        <td align="right" valign="top" nowrap="nowrap">
+        </table>
+
+      #end
+
+  <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+  <tr>
+    <td align="right" valign="bottom" nowrap="nowrap">
+    <span class="gensmall">
+    <b>
+      #paging($page "viewtopic.jbb" "t=${topic.id}")
+  </b>
+  </span>
+  </td>
+  </tr>
+  </table>
+<a name="#quick"></a>
+
+#*
+OLD
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = '${basePath}/home/js/syntax/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+*#
+####################FOOTER#############################
+
+
+#if($topics.size() > 0 )
+	<div><a name="related">
+	      <div>
+	         <div class="box-conteudo-caetano">
+	            <h2>
+	               <strong>#message("related_topics") &nbsp;&nbsp;  <img src="forum/themes/jb2/images/reload.png"></strong>
+	            </h2>
+	            <ul class="lista-caetano">
+				<h2>
+				#foreach($related in $topics)
+					#set($relatedColor = "")
+					#if($velocityCount%2==1)
+						#set($relatedColor = "style='COLOR: #000'")
+					#end
+					<a href="${basePath}/topic-${related.id}-${vh.parseStringTitle($related.titleTopic)}" $relatedColor >$related.titleTopic</a> &nbsp;
+				#end
+				</h2>
+	            </ul>
+	         </div>
+	      </div>
+	      <hr class="off"/>
+	   </div>
+#end
+
+
+
+<div id="footer">
+	
+ <div class="footer-contents"><div class="footer-contents2">
+ 	
+
+  <dl>
+   <dt>Links Úteis</dt>
+   <dd><a href="/">Home</a></dd>
+   <dd><a href="http://www.javafree.org/content/list.jf">Artigos</a></dd>
+   <dd><a href="http://www.javafree.org/javabb/loadCategory.jbb?c=4">Tutoriais</a></dd>
+   <dd><a href="http://www.javafree.org/javabb/search.jbb">Busca</a></dd>
+	#if($jbbuser.getIdUser().toString() != "")
+	#else   
+	   <dd><a href="http://localhost:8080/javabb/new_member.jbb">Registrar-se</a></dd>
+	#end
+   <dd><a href="http://www.infoblogs.com.br" target="_blank">Blogs</a></dd>
+  </dl>
+  
+ 
+  
+  
+    <dl>
+   <dt class="gensmall">O que é o JavaFree?</dt>
+   <dd>
+		O JavaFree é uma comunidade virtual java sem fins lucrativos fundada em 19 de março de 2003. 
+		O objetivo principal é ajudar a desenvolver o Java e o Software Livre nos países de língua 
+		portuguesa com artigos, tutoriais, entrevistas, ofertas de empregos e um grande fórum.<bR><bR>
+		contato: info@javafree.org<br><br>
+		<a href="http://www.javafree.org/about.jf">para saber mais...</a>
+   	</dd>
+    </dl>
+  	<dl> 
+  
+   	<dt class="gensmall">Últimos Empregos</dt>
+   	<dd>
+   		#foreach($feed in $feedEmpregos)
+			#if($feed.feedTitle.length() > 30)
+				<li class="gensmall"><a href="$feed.feedURL" target="_blank">$vh.captalizeTitle($feed.feedTitle.substring(0, 29)) ..</a></li>
+			#else
+				<li class="gensmall"><a href="$feed.feedURL" target="_blank">$vh.captalizeTitle($feed.feedTitle)</a></li>
+			#end	
+		#end
+   	</dd>
+      </dl>
+    
+<dl>
+   	<dt class="gensmall">Últimos Posts em Blogs</dt>
+   	<dd>
+   		#foreach($feed in $feedInfoBlogs)
+			#if($velocityCount < 16)
+				#if($feed.feedTitle.length() > 30)
+					<li class="gensmall"><a href="$feed.feedURL&${vh.parseStringTitle($feed.feedTitle)}" target="_blank">$vh.captalizeTitle($feed.feedTitle.substring(0, 29)) ..</a></li>
+				#else
+					<li class="gensmall"><a href="$feed.feedURL&${vh.parseStringTitle($feed.feedTitle)}" target="_blank">$vh.captalizeTitle($feed.feedTitle)</a></li>
+				#end
+			#end
+		#end
+   	</dd>
+
+      </dl>      
+      
+      </div>
+
+     </div>
+     <br style="clear: both;" />
+    </div>
+
+####################FOOTER#############################
+
+
+<script type="text/javascript" src="${basePath}/home/js/syntax/shCore.js"></script>
+<script type="text/javascript" src="${basePath}/home/js/syntax/shBrushJava.js"></script>
+
+
+<script type="text/javascript">
+<!--
+dp.sh.ClipboardSwf = '${basePath}/home/css/syntax/clipboard.swf';
+dp.sh.HighlightAll('code');
+-->
+</script>
+
+
+<script src='http://ads6192.hotwords.com.br/show.jsp?id=6192'></script>
+
+
+
+<!-- FIM FÓRUM -->
+#parse("forum/themes/jb2/footer.vm")
+

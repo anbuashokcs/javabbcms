@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>${jbbConfig.forumConfig.forumName} :: #message("member_list")</title>
+
+#parse("forum/themes/${jbbConfig.forumConfig.theme}/css/css.vm")
+<script src="forum/include/forum.js" type="text/javascript"></script>
+</HEAD>
+
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4" onload="javascript: load();">
+<span class="gen"><a name="top"></a></span>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+function verify(){
+  selected_username = document.form.username.value;
+  if(selected_username == ""){
+    alert("#message("fields.required")");
+    return false;
+  }
+}
+
+function loadUser(){
+	window.opener.document.post.username.value=document.form.cmbUsers[document.form.cmbUsers.selectedIndex].text;
+	window.opener.document.post.userId.value=document.form.cmbUsers.value;
+	window.close();
+}
+
+//-->
+</script>
+
+<form method="post" name="form" onsubmit="return verify();" action="$basePath/pm/find.jbb">
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+  <td><table width="100%" class="forumline" cellpadding="4" cellspacing="1" border="0">
+  <tr>
+  <th class="thHead" height="25">#message("adm.search_user")</th>
+  </tr>
+  <tr>
+  <td valign="top" class="row1">
+  <span class="genmed"><br />
+  <input type="text" id="username" name="username" value="$!username" class="post" />&nbsp; <input type="submit" name="search" value='#message("findUser")' class="liteoption"/></span><br /><br />
+	#if($lstUsersPortal.size() > 0)
+	  <select name="cmbUsers" id="cmbUsers">
+	  	#foreach ($u in $lstUsersPortal)
+	  	  <option name="$u.user" value="$u.id">$u.user</option>
+	    #end
+	  </select>
+	  <input type="button" name="send" id="send" value="#message("send")" class="liteoption" onclick="loadUser();">
+	#end
+  <br> <br>
+  <center>
+	  <span class="genmed"><a href="javascript:window.close();" class="genmed">#message("close_window")</a></span>
+  </center>
+  </td>
+  </tr>
+  </table></td>
+  </tr>
+</table>
+<script language="javascript" type="text/javascript">
+	#if($lstUsersPortal.size() == 0 && $!username.toString() != "")
+		alert('#message("user_not_found")');
+	#end
+	document.getElementById("username").focus();
+</script>
+
+</form>
+#parse("forum/themes/jb2/admin/theme_footer.vm")
