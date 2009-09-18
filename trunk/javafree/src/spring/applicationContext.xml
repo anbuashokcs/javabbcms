@@ -110,7 +110,7 @@
                 <value>/org/javabb/vo/Post.hbm.xml</value>
                 <value>/org/javabb/vo/Topic.hbm.xml</value>
                 <value>/org/javabb/vo/User.hbm.xml</value>
-                <value>/org/javabb/vo/BadWord.hbm.xml</value>
+                <value>/org/javabb/vo/BadWord.hbm.xml</value> 
                 <value>/org/javabb/vo/Smile.hbm.xml</value>
                 <value>/org/javabb/vo/SearchLockUp.hbm.xml</value>
                 <value>/org/javabb/vo/PrivMsgSent.hbm.xml</value>				

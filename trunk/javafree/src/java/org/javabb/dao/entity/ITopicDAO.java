@@ -54,10 +54,10 @@ public interface ITopicDAO extends DAOConstants {
 	/**
 	 * Method for lock and unlock some topic
 	 * 
-	 * @param topic -
-	 *            Topic with your id
-	 * @param lock -
-	 *            1 to lock, 0 to unlock
+	 * @param topic
+	 *            - Topic with your id
+	 * @param lock
+	 *            - 1 to lock, 0 to unlock
 	 */
 	public void lockTopic(Topic topic, Integer lock);
 
@@ -80,27 +80,30 @@ public interface ITopicDAO extends DAOConstants {
 
 	/**
 	 * @param forumId
-	 * Integer forumModel - 0 Normal,1 Fixed, 2 Stick
+	 *            Integer forumModel - 0 Normal,1 Fixed, 2 Stick
 	 * @return
 	 */
 	public int countTopicsByForum(Long forumId, Integer forumModel);
 
 	/**
 	 * @param forumId
-	 * @param forumModel - 0 Normal,1 Fixed, 2 Stick
+	 * @param forumModel
+	 *            - 0 Normal,1 Fixed, 2 Stick
 	 * @param pageNumber
 	 * @param itemsPerPage
 	 * @return
 	 */
-	public List findByForum(Long forumId, Integer forumModel, int pageNumber, int itemsPerPage);
+	public List findByForum(Long forumId, Integer forumModel, int pageNumber,
+			int itemsPerPage);
 
 	/**
 	 * @param forumId
-	 * @param forumModel - 0 Normal,1 Fixed, 2 Stick
+	 * @param forumModel
+	 *            - 0 Normal,1 Fixed, 2 Stick
 	 * @return
 	 */
-    public List findByForum(Long forumId, Integer forumModel);
-    
+	public List findByForum(Long forumId, Integer forumModel);
+
 	/**
 	 * @param topicId
 	 */
@@ -117,7 +120,8 @@ public interface ITopicDAO extends DAOConstants {
 	 * @param itemsPerPage
 	 * @return
 	 */
-	public List findPostedAfter(Date date, int pageNumber, int itemsPerPage, Integer partnerId);
+	public List findPostedAfter(Date date, int pageNumber, int itemsPerPage,
+			Integer partnerId);
 
 	/**
 	 * @param date
@@ -129,64 +133,71 @@ public interface ITopicDAO extends DAOConstants {
 	 * @param topic
 	 */
 	public void update(Topic topic);
-	
+
 	/**
 	 * List all watch_topics by userId and topicId
+	 * 
 	 * @param userId
 	 * @param topicId
 	 * @return
 	 */
-    public List wathTopicByTopicUser(Long userId, Long topicId);
-    
-    
-    /**
-     * Insert a new User watch topic
-     * @param topicId
-     * @param userId
-     */
-    public void insertWatchTopicUser(Long topicId, Long userId);
- 
-    /**
-     * Delete user watch topic
-     * @param topicId
-     * @param userId
-     */
-    public void deleteWatchTopicUser(Long topicId, Long userId);
-    
-    /**
-     * List all watch_topics by userId
-     * 
-     * @param userId
-     * @return
-     */
-    public List wathTopicByUser(Long userId);
-    
-    
-    /**
-     * List all watch_topics by topicId
-     * 
-     * @param topicId
-     * @return
-     */
-    public List wathTopicByTopic(Long topicId);
-    
-    
-    public List findLastTopics(int limit);
-    
-    public List favoriteTopicByTopicUser(Long userId, Long topicId);
-    
-    public List favoriteTopicByTopic(Long topicId);
-    public List favoriteTopicByUser(Long userId);
-    public List favoriteTopics();
-    public void persistViews(HashMap cacheViews);
-    /**
-     * Search a list of related topics
-     * @param query
-     * @return
-     */
-    public Set searchRelatedTopics(String query, Long topicId);
-    
-    public List findByForumArticles(Long forumId) throws Exception;
-    
-    public List findLastArticles(Integer nmbArticles) throws Exception ;
+	public List wathTopicByTopicUser(Long userId, Long topicId);
+
+	/**
+	 * Insert a new User watch topic
+	 * 
+	 * @param topicId
+	 * @param userId
+	 */
+	public void insertWatchTopicUser(Long topicId, Long userId);
+
+	/**
+	 * Delete user watch topic
+	 * 
+	 * @param topicId
+	 * @param userId
+	 */
+	public void deleteWatchTopicUser(Long topicId, Long userId);
+
+	/**
+	 * List all watch_topics by userId
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List wathTopicByUser(Long userId);
+
+	/**
+	 * List all watch_topics by topicId
+	 * 
+	 * @param topicId
+	 * @return
+	 */
+	public List wathTopicByTopic(Long topicId);
+
+	public List findLastTopics(int limit);
+
+	public List favoriteTopicByTopicUser(Long userId, Long topicId);
+
+	public List favoriteTopicByTopic(Long topicId);
+
+	public List favoriteTopicByUser(Long userId);
+
+	public List favoriteTopics();
+
+	public void persistViews(HashMap cacheViews);
+
+	/**
+	 * Search a list of related topics
+	 * 
+	 * @param query
+	 * @return
+	 */
+	public Set searchRelatedTopics(String query, Long topicId);
+
+	public List findByForumArticles(Long forumId) throws Exception;
+
+	public List findLastArticles(Integer nmbArticles) throws Exception;
+
+	public List loadLabelsByTopicId(Long topicId) throws Exception;
 }

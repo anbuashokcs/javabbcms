@@ -631,4 +631,10 @@ public class TopicTransaction extends Transaction {
 	public List findLastArticles(int nmb) throws Exception {
 		return _topicDAO.findLastArticles(nmb);
 	}
+	
+	public List loadTopicsByLabel(Long topicId) throws Exception {
+		return _topicDAO.loadLabelsByTopicId(topicId);
+	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package org.javabb.dao.hibernate;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -419,4 +421,30 @@ public class TopicHibernateDAO extends HibernateDAO implements ITopicDAO {
 
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	public List loadLabelsByTopicId(Long topicId) throws Exception {
+		String sql = "select distinct(name) as name from article_tag where id_topic = " + topicId;
+		ResultSet rs = getSession().connection().createStatement().executeQuery(sql);
+		List<String> labels = new ArrayList<String>();
+		while(rs.next()){
+			labels.add(rs.getString("name"));
+		}
+		
+		List topics = null;
+		if(!labels.isEmpty()){
+			String hql = "SELECT DISTINCT(tag.topic) FROM ArticleTag tag WHERE (";
+			for (int i=0; i < labels.size(); i++) {
+				if(i > 0){	hql += " OR "; 
+}	
+				hql += " name = '" + labels.get(i) +"'";
+			}
+			hql += " )";
+			topics = getHibernateTemplate().find(hql);
+		}
+		
+		return topics;
+	}
+	
+	
 }

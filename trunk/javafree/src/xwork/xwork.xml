@@ -424,7 +424,12 @@
             </result>
         </action>        
 			
-			
+        <action name="openLabels" class="topicAction" method="loadLabels">
+			<result name="success" type="velocity">
+                <param name="location">/forum/tips/topicLabels.vm</param>
+            </result>
+            <interceptor-ref name="loginadmin" />
+        </action>
 			
     </package>
 

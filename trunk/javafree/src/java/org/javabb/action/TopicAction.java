@@ -80,6 +80,8 @@ public class TopicAction extends BaseAction {
 	private List _users = new ArrayList();
 
 	private List userRanks = new ArrayList();
+	
+	private List labels = new ArrayList();
 
 	private UserFormatter userFormatter;
 
@@ -185,8 +187,9 @@ public class TopicAction extends BaseAction {
 			// _topic = CacheUtils.fillTopicIfCached(_topic);
 			_posts = _postTransaction.findByTopic(_topicId, _page);
 
-			_topics = topicTransaction.searchRelatedTopicsByTitle(_topic
-					.getTitleTopic(), _topic.getId());
+			_topics = topicTransaction.searchRelatedTopicsByTitle(_topic.getTitleTopic(), _topic.getId());
+			
+			labels = topicTransaction.loadTopicsByLabel(_topic.getId());
 
 			// Mark the topis as read
 			UserContext.getContext().setTopicRead(_topicId);
@@ -243,6 +246,8 @@ public class TopicAction extends BaseAction {
 			log.debug("Message not found:" + e.getMessage());
 			return "no_messages";
 		}
+		
+		
 
 		return SUCCESS;
 	}
@@ -364,6 +369,15 @@ public class TopicAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	
+	public String loadLabels() throws Exception {
+		return SUCCESS;
+	}
+	
+	
+	
+	
+	
 	// ####################################################################
 	// View objects accessors
 	// ####################################################################
@@ -508,6 +522,14 @@ public class TopicAction extends BaseAction {
 
 	public void setPartnerId(String partnerId) {
 		this.partnerId = partnerId;
+	}
+
+	public List getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List labels) {
+		this.labels = labels;
 	}
 
 }
