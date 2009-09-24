@@ -28,14 +28,6 @@
 
 				<h2>
 					<a href="${basePath}/noticia/${noticia.notId}/${vh.parseStringTitle($noticia.title)}">$noticia.title</a>
-<!-- Begin TwitThis (http://twitthis.com/) -->
-<script type="text/javascript" src="http://ajax.twitthis.com/chuug.twitthis.scripts/twitthis.js"></script>
-<script type="text/javascript">
-<!--
-document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http://ajax.twitthis.com/chuug.twitthis.resources/twitthis_grey_72x22.gif" alt="TwitThis" style="border:none;" /></a>');
-//-->
-</script>
-<!-- /End --> 
 				</h2>
 				<p>
 				Publicado há $vh.formatPresentDate($noticia.publishDate) por <a href="$basePath/viewprofile.jbb?u=$noticia.user.id">$noticia.user.user</a> #if($action.hasModeratorPermission()) - $!noticia.views visitas #end </p>
@@ -45,7 +37,7 @@ document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http:
 
 				<br><br>
 				#if("$!noticia.link" != "")
-					Link: <a href="$noticia.link" target="_blank">$noticia.link</a>
+					Link: <a href="$noticia.link" rel="me noflow" target="_blank">$noticia.link</a>
 				#end
 				<br>
 <br>
@@ -233,7 +225,7 @@ document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http:
 		</div>
 		
 		<div id="ad">
-			<p><a href="http://twitter.com/JavaFree" target="_blank"><img src="http://www.javafree.org/home/images/twitterjf.gif" style="border:0" alt="Siga nos" /></a></p>
+			<p><a href="http://twitter.com/JavaFree" target="_blank"><img src="$baseImages/home/images/twitterjf.gif" style="border:0" alt="Siga nos" /></a></p>
 		</div>
 
 

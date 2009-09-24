@@ -15,7 +15,7 @@
 				<h2>
 					<a href="${basePath}/artigo/${topic.id}/$vh.parseStringTitle($topic.titleTopic)">$topic.titleTopic</a>
 				</h2>
-					autor: $topic.user.user | visualizações: $topic.visualizacoes
+					autor: $topic.user.user | visualizações: $vh.formatDigitValue($!topic.visualizacoes.toString())
 				<p>
 				#if($velocityCount != $list.size())
 					<div id="line"></div>

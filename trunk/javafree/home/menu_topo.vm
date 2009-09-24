@@ -29,7 +29,7 @@
 		</div>
 	
 		<div id="logo">
-			<a href="${basePath}/index.jf"><img src="$basePath/home/images/logo.gif"></a>
+			<a href="${basePath}/index.jf"><img src="$baseImages/home/images/logo.gif"></a>
 		</div>
 
 		<ul id="menu">

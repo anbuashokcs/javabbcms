@@ -38,18 +38,14 @@
 				
 			
 			
-			<h5><a href="$basePath/">Home</a> > <a href="$basePath/artigos/">Artigos</a> > <a href="${basePath}/catartigos/$topic.forum.id/${vh.parseStringTitle($topic.forum.nome)}">$action.replaceTut($topic.forum.nome)</a> ></h5>
+				<h5><a href="$basePath/">Home</a> > <a href="$basePath/artigos/">Artigos</a> > <a href="${basePath}/catartigos/$topic.forum.id/${vh.parseStringTitle($topic.forum.nome)}">$action.replaceTut($topic.forum.nome)</a> ></h5>
 				<br>
 				<h2>
 					<a href="${basePath}/artigo/${topic.id}/$vh.parseStringTitle($topic.titleTopic)">$topic.titleTopic</a>
-<!-- Begin TwitThis (http://twitthis.com/) -->
-<script type="text/javascript" src="http://ajax.twitthis.com/chuug.twitthis.scripts/twitthis.js"></script>
-<script type="text/javascript">
-<!--
-document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http://ajax.twitthis.com/chuug.twitthis.resources/twitthis_grey_72x22.gif" alt="TwitThis" style="border:none;" /></a>');
-//-->
-</script>
 				</h2>
+				<p>
+				Publicado em $vh.dateFormat($topic.dataTopico) - $vh.formatDigitValue($!topic.visualizacoes.toString()) visualizações</p>
+				<p>
 				
 				#showNewsComment($cntSize $linkComments)
 
@@ -127,29 +123,7 @@ document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http:
 
 
 				
-				
-				#*
-				<bR><br><br>
-				<fieldset style="width: 550px;">
-					<legend>Procurar</legend>
-				
-					<form action="http://javafree.uol.com.br/customSearch.jbb" id="cse-search-box">
-					  <div>
-					    <input type="hidden" name="cx" value="partner-pub-9439984557405450:f7zor0-i5vx" />
-					    <input type="hidden" name="cof" value="FORID:10" />
-					    <input type="hidden" name="ie" value="ISO-8859-1" />
-					    <input type="text" name="q" value="$!req.getParameter("q")" size="31" />
-					    <input type="submit" name="sa" value="Pesquisar" />
-					  </div>
-					</form>
-
-					<script type="text/javascript" src="http://www.google.com.br/coop/cse/brand?form=cse-search-box&amp;lang=pt"></script>
-				</fieldset>	
-				*#
-
 			
-				
-				
 				#if($userLogged.admin == 1)
 					<center> <a href="${basePath}/show_edit_topic.jbb?post.idPost=${post.id}&topic.idTopic=${topic.id}&url=topic">Editar</a> 
 					- <a href="javascript:excluir('${basePath}/excluirNoticia.jbb?noticia.notId=${noticia.notId}');">Excluir</a> 
@@ -265,6 +239,9 @@ document.write('<a href="javascript:;" onclick="TwitThis.pop();"><img src="http:
 
 	</div>
 		#sintaxHighlight("")
+
+		
+		<script src='http://ads6055.hotwords.com.br/show.jsp?id=6192'></script>
 
 </body>
 </html>
