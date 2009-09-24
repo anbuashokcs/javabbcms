@@ -10,7 +10,7 @@
 HTML - styles
 ============================================================================= */
 
-body {font:0.8em/1.5 "arial", sans-serif;}
+body {font:0.8em/1.5 "verdana", sans-serif;}
 h1, h2, h3, h4, h5, h6, address, blockquote, dl, fieldset, ol, p, table, ul {margin:15px 0;}
 #content h1 {font-size:180%;}
 #content h2 {font-size:160%;}
