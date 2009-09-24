@@ -1,0 +1,68 @@
+#parse("/forum/include/imports.vm")
+#parse("/forum/include/misc.vm")
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" href="${basePath}/home/css/forms.css" type="text/css" />
+</head>
+
+<style type="text/css">
+body
+{
+	font:12px Verdana, Arial, Helvetica, sans-serif;
+	
+}
+</style>
+
+<body">
+
+<div align="center">
+
+		#if("$!message" != "ok")
+		<fieldset style="width: 550px;">
+
+		<legend>Insira um aviso para este post</legend>
+		<form action="$basePath/admin/addMessageWarn.jbb" id="f2" name="f2" method="post" class="form-large" onsubmit="return submitFormWarn();">
+		<input type="hidden" name="p" value="$!postId"/>
+		<input type="hidden" name="" value=""/>
+		<input type="hidden" name="" value=""/>
+		
+			<div>
+				##<label for="name">Texto</label>
+				<textarea name="message" id="message"><i>Use sempre as tags <b>code</b> para marcar códigos. Exemplo: <br>
+<pre style="font-family:monospace;font-style:normal;color:blue;">  
+  [code]
+    public static void main ...
+  [/code]
+</pre>
+Por favor, edite a sua mensagem.</i>
+</textarea>
+			</div>
+
+			<div class="fieldset-footer">
+				<input type="submit" value="Continuar" class="button1" tabindex="4" /> 
+				<input type="button" value="Cancel" onclick="self.parent.tb_remove();"class="button2" />
+			</div>					
+		</form>
+		</fieldset>
+	#else
+		<fieldset style="width: 550px;">
+
+		<legend>Sua advertência foi enviada com sucesso!</legend>
+			<div class="fieldset-footer">
+				<input type="button" value="Fechar" onclick="self.parent.tb_remove();"class="button2" />
+			</div>					
+		</fieldset>
+	#end
+
+
+
+
+</div>
+
+</body>
+
+
+
+</html>
