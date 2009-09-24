@@ -104,7 +104,7 @@
 
         <action name="viewtopic" class="topicAction" method="showTopic">
             <result name="success" type="velocity">
-                <param name="location">/forum/posts.vm</param>
+                <param name="location">/forum/themes/nuvio/posts.html</param>
             </result>
             <result name="no_messages" type="velocity">
                 <param name="location">/forum/topics_found.vm</param>
