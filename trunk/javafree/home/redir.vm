@@ -1,3 +1,0 @@
-${res.setStatus(301)}
-${res.setHeader( "Location", $url )}
-${res.setHeader( "Connection", "close" )}

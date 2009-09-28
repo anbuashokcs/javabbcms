@@ -1,2 +1,0 @@
-#bean("org.javabb.infra.VelocityHelper" $vh)
-#bean("org.javabb.lucene.search.LuceneHighlighter" $highlighter)

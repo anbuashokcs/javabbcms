@@ -1,8 +1,0 @@
-Você foi advertido no tópico $topicTitle<bR>
-$topicURL
-
-<br><br>
-<hr>
-<br>
-<font size="2">${conf.forumName}<br>
-<a href="mailto:${conf.adminMail}">${conf.adminMail}</a></font>

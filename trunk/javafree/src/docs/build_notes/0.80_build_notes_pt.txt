@@ -1,9 +1,0 @@
-Bugs corrigidos:
-Bug: Erro no logout;
-Bug: Falha de seguranca cookies;
-Bug: Erro na pagina de login apos efetuar login;
-
-Novas funcionalidades:
-Administração: Rank de usuarios por posts;
-Administração: Rank de usuarios nos forums;
-

@@ -1,5 +1,0 @@
-#parse("forum/include/imports.vm")
-${res.setContentType("application/download")}
-${res.setHeader("Content-disposition", "attachment; filename=$vh.formatFileName($postFile.fileName)")}
-${res.setContentLength(${bytesA})}
-$action.getDownloadFile($res, $attachment, $bis)

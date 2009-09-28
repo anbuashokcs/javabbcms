@@ -1,2 +1,0 @@
-#parse("forum/include/misc.vm")
-#parse("forum/themes/${jbbConfig.forumConfig.theme}/admin/theme_user_management_profile.vm")

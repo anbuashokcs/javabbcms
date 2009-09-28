@@ -1,7 +1,0 @@
-#if("$!banner.html" == "")
-	<script type="text/javascript">
-			document.write('<a href="url" target="_blank"><img src="$!banner.imagem" title="$!banner.alt" alt="$!banner.alt" border="0"></a>');
-	</script>
-#else
-	$!banner.html
-#end

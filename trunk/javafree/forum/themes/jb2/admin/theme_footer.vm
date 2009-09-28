@@ -1,5 +1,0 @@
-<DIV align=center>
-<SPAN class=copyright>
- #parse("forum/include/copyright.vm")
-</SPAN>
-</DIV>
